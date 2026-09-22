@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-mindtrails-deploy
+          role-to-assume: arn:aws:iam::236565801201:role/maimons-infra-github-ssm
           aws-region: eu-central-1
 
       - name: Sync to S3
