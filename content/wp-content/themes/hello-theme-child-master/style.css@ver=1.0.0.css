@@ -1,0 +1,144 @@
+/* 
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 1.0.1
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/* Hello Title & Description */
+.hello_elementor_page_title {
+  display: none;
+}
+
+.entry-title {
+  display: none !important;
+}
+
+.site-title {
+  display: none !important;
+}
+
+.site-description {
+  display: none !important;
+}
+
+
+
+/*instagram social icon color official*/
+.elementor-social-icon-instagram {
+  width: 100px;
+  height: 100px;
+  background: #f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+}
+
+/*anchor margin top*/
+body:not(.elementor-editor-active) .elementor-menu-anchor:before {
+  content: "";
+  display: block;
+  height: 190px;
+  /* fixed header height*/
+  margin: -190px 0 0;
+  /* negative fixed header height */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Remove margin bottom from paragraph*/
+.elementor-widget-container p {
+  margin-bottom: 0
+}
+
+/*hide theme footer*/
+.site-footer:not(.dynamic-footer) {
+  display: none;
+}
+
+/*icon list - icon top position*/
+.elementor-icon-list-item a {
+  align-items: start !important;
+}
+
+.elementor-icon-list-item {
+  align-items: flex-start !important
+}
+
+.elementor-icon-list-icon {
+  margin-top: 5px !important
+}
+
+/*scrollbar design*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darkgray;
+}
+
+/*button pulse infinite*/
+@keyframes pulse {
+  from {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(0.5);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.fe-pulse {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@media (min-width:768px) {
+  br.mobile {
+    display: none;
+  }
+}
+
+@media (max-width:767px) {
+  br.desktop {
+    display: none;
+  }
+
+  /*icon list in mobile*/
+  ul.elementor-icon-list-items.elementor-inline-items {
+    display: block;
+  }
+
+  /*תיקון גלילה אופקית במובייל*/
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
