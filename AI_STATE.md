@@ -38,9 +38,37 @@ Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudfla
 
 ## Session Log
 
-### 2026-09-29 — Infrastructure fixes
+### 2026-09-29 — Infrastructure, content, and design improvements
+
+**Infrastructure fixes:**
 - Fixed critical S3 bucket name typo in deploy.yml (`mindtrails.net0` → `mindtrails.net`)
 - Created `.deployignore` to exclude WordPress files from S3 sync
 - Updated deploy workflow to use `--exclude` flags for WordPress directories
 - Simplified README.md and SETUP.md to clarify OIDC-based auth (no stored credentials)
 - Clarified Cloudflare secret requirements (zone ID + API token only)
+
+**Content improvements:**
+- Updated page title: "Home - custom quest" → "MindTrails - Custom Quest Experiences"
+- Updated meta description (added semantic description tag, improved og:description)
+- Changed "About me" → "About" (more professional)
+- Changed "Contact Me" → "Get In Touch" (more inviting)
+- Changed button text: "Send Message" → "Book Your Experience" (action-oriented CTA)
+- Updated og:site_name: "custom quest" → "MindTrails" (brand clarity)
+
+**Design & styling improvements:**
+- Created `custom.css` with:
+  - Standardized CSS variable color system (primary, secondary, accent, dark, light)
+  - Consolidated typography scale (h1-h3, body, small with proper ratios)
+  - Responsive padding/margin standards (clamp-based for fluid scaling)
+  - Button styling with hover states and proper contrast
+  - Improved image overlays (50% dark instead of 12-20% for text readability)
+  - Form field styling with focus states and accessibility enhancements
+  - Better responsive breakpoints for mobile/tablet/desktop
+  - Removed decorative underlines (improved accessibility)
+- Created `COLORS.md` documentation with:
+  - Primary palette (purple, orange, pink) with hex codes
+  - Usage guidelines for each color
+  - Contrast ratios and accessibility notes
+  - Semantic color meanings
+  - CSS variable mapping
+  - Guidance for dark mode (future)

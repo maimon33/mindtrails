@@ -1,0 +1,224 @@
+/* MindTrails Custom Stylesheet - overrides Elementor bloat */
+
+:root {
+  /* Color System */
+  --color-primary: #6F5FC1;
+  --color-secondary: #F0AD4E;
+  --color-accent: #E95AB2;
+  --color-dark: #2C3E50;
+  --color-light: #F8F9FA;
+
+  /* Typography Scale (8px base) */
+  --type-h1: 3.5rem;
+  --type-h2: 2.5rem;
+  --type-h3: 1.5rem;
+  --type-body: 1.125rem;
+  --type-small: 0.875rem;
+  --leading-tight: 1.2;
+  --leading-normal: 1.6;
+}
+
+/* Reset & Normalize */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: var(--type-body);
+  line-height: var(--leading-normal);
+  color: var(--color-dark);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--type-h1);
+  color: var(--color-dark);
+}
+
+h2 {
+  font-size: var(--type-h2);
+  color: var(--color-dark);
+}
+
+h3 {
+  font-size: var(--type-h3);
+  color: var(--color-dark);
+}
+
+p {
+  margin: 0;
+  line-height: var(--leading-normal);
+}
+
+/* Spacing Standardization */
+.elementor-element {
+  margin-bottom: 1rem !important;
+}
+
+/* Remove bloated Elementor padding */
+.elementor-element[data-element_type="container"] {
+  --padding-top: clamp(2rem, 5vw, 3rem);
+  --padding-bottom: clamp(2rem, 5vw, 3rem);
+  --padding-left: clamp(1rem, 3vw, 2rem);
+  --padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+@media (max-width: 768px) {
+  .elementor-element[data-element_type="container"] {
+    --padding-top: 1.5rem !important;
+    --padding-bottom: 1.5rem !important;
+    --padding-left: 1rem !important;
+    --padding-right: 1rem !important;
+  }
+}
+
+/* Button Styling */
+.elementor-button,
+.wp-element-button,
+[type="submit"] {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 2rem !important;
+  border: none !important;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: var(--type-small);
+}
+
+.elementor-button:hover,
+.wp-element-button:hover,
+[type="submit"]:hover {
+  background-color: var(--color-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Image Overlays - Improve contrast */
+[style*="background-image"] {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.elementor-element::before {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  opacity: 1 !important;
+}
+
+/* Navigation */
+.elementor-nav-menu--main .elementor-item {
+  font-weight: 600;
+  font-size: var(--type-small);
+}
+
+.elementor-nav-menu--main .elementor-item:hover,
+.elementor-nav-menu--main .elementor-item-active {
+  color: var(--color-accent) !important;
+}
+
+/* Form Styling */
+.elementor-field-group .elementor-field {
+  border: 2px solid var(--color-primary) !important;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem !important;
+  font-size: var(--type-body);
+}
+
+.elementor-field-group .elementor-field:focus {
+  outline: none;
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(233, 90, 178, 0.1);
+}
+
+.elementor-field-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Reduce CSS specificity conflicts - disable !important filters */
+.elementor-element[style*="filter"] {
+  filter: brightness(100%) contrast(100%) saturate(75%) !important;
+}
+
+/* Accessibility: remove decorative underlines */
+.e--pointer-underline .elementor-item::after {
+  display: none;
+}
+
+/* Container max-width for readability */
+.elementor-container,
+.e-con {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Card styling for content blocks */
+.elementor-element--accent-box {
+  background-color: var(--color-accent) !important;
+  padding: 2rem !important;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.elementor-element--accent-box h2,
+.elementor-element--accent-box h3 {
+  color: white;
+}
+
+/* Divider standardization */
+.elementor-divider-separator {
+  background-color: var(--color-accent) !important;
+  height: 3px !important;
+  width: 60px;
+  margin: 1rem auto !important;
+}
+
+/* Icon sizing */
+.elementor-widget-icon {
+  font-size: 3rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: clamp(2rem, 8vw, var(--type-h1));
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 6vw, var(--type-h2));
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+  }
+
+  .elementor-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Print styles */
+@media print {
+  .elementor-nav-menu,
+  .elementor-menu-toggle,
+  [href*="#contact"] {
+    display: none;
+  }
+}
