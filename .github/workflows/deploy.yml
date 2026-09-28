@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'content/**'
-      - '.github/workflows/deploy.yml'
+      - "content/**"
+      - ".github/workflows/deploy.yml"
 
 jobs:
   deploy:
@@ -24,7 +24,12 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync content/ s3://mindtrails/ --delete --region eu-central-1
+          aws s3 sync content/ s3://mindtrails.net/ --delete --region eu-central-1 \
+            --exclude "wp-content/plugins/*" \
+            --exclude "wp-includes/*" \
+            --exclude "wp-json/*" \
+            --exclude "feed/*" \
+            --exclude "comments/*"
           echo "✅ Files synced to S3"
 
       - name: Purge Cloudflare cache

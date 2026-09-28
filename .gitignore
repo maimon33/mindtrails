@@ -3,3 +3,14 @@
 node_modules/
 .DS_Store
 *.log
+
+# WordPress/Elementor generated files
+content/wp-content/plugins/
+content/wp-content/uploads/
+content/wp-includes/
+content/wp-json/
+content/feed/
+content/comments/
+content/xmlrpc.php
+*.sql
+*.sqlite

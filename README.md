@@ -16,20 +16,17 @@ Then open `http://localhost:8080` in your browser. Changes to files in `content/
 
 ## Deployment
 
-Push to `main` branch in the `content/` folder to automatically:
-1. Upload files to S3 bucket (`mindtrails`)
+Push to `main` branch to automatically:
+1. Upload files to S3 bucket via AWS OIDC (keyless authentication)
 2. Purge Cloudflare cache
 
-### Setup GitHub Secrets
+### Prerequisites
 
-Add these secrets to your GitHub repository settings:
-
-- `AWS_ACCESS_KEY_ID` — Your AWS access key
-- `AWS_SECRET_ACCESS_KEY` — Your AWS secret key
+Requires GitHub Secrets (set in repo Settings → Secrets and variables → Actions):
 - `CLOUDFLARE_ZONE_ID` — Your Cloudflare zone ID
 - `CLOUDFLARE_API_TOKEN` — Your Cloudflare API token (with cache purge permission)
 
-See `.env.example` for reference.
+AWS credentials are handled securely via OIDC—no keys stored in GitHub.
 
 ## File Structure
 
@@ -49,3 +46,11 @@ mindtrails/
 3. GitHub Actions automatically deploys to S3 and clears Cloudflare cache
 
 Done! Changes live in ~30 seconds.
+
+## Optional: Branch Protection
+
+For safety, enable GitHub branch protection on `main`:
+1. Go to Settings → Branches
+2. Add rule for `main` branch
+3. Require deployment status checks before merging
+4. Require approvals (if working with a team)

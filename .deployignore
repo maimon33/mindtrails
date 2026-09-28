@@ -1,0 +1,18 @@
+# Files to exclude from S3 deployment
+# These are included in the repo for reference but not needed on the live site
+
+# WordPress & plugin files
+wp-content/plugins/
+wp-includes/
+wp-json/
+feed/
+comments/
+xmlrpc.php
+
+# WordPress feeds and REST API
+index.xml
+comments/feed/
+
+# Database exports
+*.sql
+*.sqlite

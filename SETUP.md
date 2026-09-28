@@ -3,18 +3,12 @@
 ## Prerequisites
 
 - Git repository on GitHub
-- AWS account
+- AWS account with S3 bucket
 - Cloudflare account with your domain
 
 ## 1. GitHub Secrets Setup
 
 Add these secrets to your GitHub repository (Settings → Secrets and variables → Actions):
-
-### `AWS_ACCOUNT_ID`
-Your AWS account ID (12 digits). Find it in AWS console → Account menu.
-
-### `CLOUDFLARE_ACCOUNT_ID`
-Found in Cloudflare → Accounts → Your account → Account ID (visible in dashboard)
 
 ### `CLOUDFLARE_ZONE_ID`
 Found in Cloudflare dashboard for your domain → Overview tab → Zone ID (right sidebar)
@@ -34,6 +28,7 @@ This allows GitHub to assume an AWS IAM role without storing keys.
 
 ```bash
 # Run in AWS CLI or CloudShell
+# Find your AWS Account ID first: aws sts get-caller-identity
 aws iam create-open-id-connect-provider \
   --url "https://token.actions.githubusercontent.com" \
   --client-id-list "sts.amazonaws.com"
@@ -124,15 +119,17 @@ Edit files in `content/` and refresh browser to see changes.
 
 ## Troubleshooting
 
-### Workflow fails with "invalid token" or "AccessDenied"
-- Check AWS_ACCOUNT_ID secret is correct (12 digits)
-- Verify GitHub → AWS OIDC trust policy includes your repo/branch
+### Workflow fails with "AccessDenied" or "AssumeRoleUnauthorized"
+- Verify the IAM role ARN in `.github/workflows/deploy.yml` is correct
+- Confirm OIDC provider is created and visible in IAM → Identity providers
+- Check trust policy includes your GitHub repo and branch (e.g., `repo:username/mindtrails:ref:refs/heads/main`)
 
 ### Cloudflare cache not purging
-- Verify CLOUDFLARE_ZONE_ID is correct
-- Check CLOUDFLARE_API_TOKEN has "Cache Purge" permission
-- Token must be scoped to your domain's zone
+- Verify `CLOUDFLARE_ZONE_ID` is correct (should be 32 hex characters)
+- Confirm `CLOUDFLARE_API_TOKEN` has "Cache Purge" permission
+- Check token is scoped to your domain's zone
 
 ### Files not uploading to S3
-- Run locally: `aws s3 sync content/ s3://mindtrails/ --region eu-central-1`
-- Check S3 bucket exists and has public read policy
+- Verify S3 bucket name is correct: `s3://mindtrails.net/` (no trailing slash needed in sync command)
+- Check bucket exists and is in the correct AWS region
+- Run locally to test: `aws s3 ls s3://mindtrails.net/` (requires local AWS credentials configured)
