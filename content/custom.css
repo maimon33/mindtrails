@@ -214,6 +214,26 @@ p {
   }
 }
 
+/* Contact Section - Add Background Image */
+.elementor-element-ae75298 {
+  background-image: url("wp-content/uploads/2025/09/top-view-close-up-adventure-traveler-writes-plan-new-trip-his-curious-basenji-dog-sits-peacefully-knees.jpg") !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+/* Overlay for contact section for text readability */
+.elementor-element-ae75298::before {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 1024px) {
+  .elementor-element-ae75298 {
+    background-attachment: scroll !important;
+  }
+}
+
 /* Print styles */
 @media print {
   .elementor-nav-menu,
