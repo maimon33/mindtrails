@@ -15,5 +15,11 @@ content/xmlrpc.php
 *.sql
 *.sqlite
 
+# Terraform
+terraform/**/.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
 # Build artifacts
 lambda.zip
