@@ -10,7 +10,17 @@ output "s3_bucket_name" {
 
 output "lambda_function_name" {
   description = "Name of the Lambda function handling contact form submissions"
-  value       = "mindtrails-contact-form-handler"
+  value       = aws_lambda_function.contact_form.function_name
+}
+
+output "lambda_function_arn" {
+  description = "ARN of the Lambda function"
+  value       = aws_lambda_function.contact_form.arn
+}
+
+output "lambda_function_invoke_arn" {
+  description = "Invoke ARN of the Lambda function"
+  value       = aws_lambda_function.contact_form.invoke_arn
 }
 
 output "sender_email" {

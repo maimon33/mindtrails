@@ -15,7 +15,6 @@ const ses = new AWS.SES();
 
 const HCAPTCHA_SECRET_KEY = process.env.HCAPTCHA_SECRET_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-const SENDER_EMAIL = process.env.SENDER_EMAIL;
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME;
 
 const CORS_ORIGIN = 'https://mindtrails.net';
@@ -43,7 +42,7 @@ exports.handler = async (event) => {
     path: event.path
   });
 
-  // Step 2: CORS preflight handling
+  // Step 1: CORS preflight handling
   if (event.httpMethod === 'OPTIONS') {
     return response(200, { success: true });
   }
@@ -57,7 +56,7 @@ exports.handler = async (event) => {
   }
 
   try {
-    // Step 3: Request parsing and validation
+    // Step 2: Request parsing and validation
     let input;
     try {
       input = JSON.parse(event.body);
@@ -78,7 +77,7 @@ exports.handler = async (event) => {
       });
     }
 
-    // Step 4: CAPTCHA verification
+    // Step 3: CAPTCHA verification
     let captchaResult;
     try {
       captchaResult = await verifyHCaptcha(input.captchaToken, HCAPTCHA_SECRET_KEY);
@@ -102,7 +101,7 @@ exports.handler = async (event) => {
       });
     }
 
-    // Step 5: Rate limiting
+    // Step 4: Rate limiting
     const clientIp = event.requestContext.identity.sourceIp;
     console.log('Checking rate limit for IP:', clientIp);
 
@@ -143,7 +142,7 @@ exports.handler = async (event) => {
       });
     }
 
-    // Step 6: Sanitization and storage
+    // Step 5: Sanitization and storage
     const sanitized = sanitizeInput(input);
     console.log('Input sanitized');
 
@@ -176,7 +175,7 @@ exports.handler = async (event) => {
       });
     }
 
-    // Step 7: Email sending
+    // Step 6: Email sending
     try {
       await sendConfirmationEmail(sanitized.email, sanitized.name);
       console.log('Confirmation email sent to user:', sanitized.email);
