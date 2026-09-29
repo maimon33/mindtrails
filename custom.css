@@ -1,0 +1,119 @@
+/* MindTrails Custom Styles */
+
+/* ============================================================================
+   Text Readability Over Background Images
+   Targets middle sections: "Choose Your Adventure" through "About"
+   ============================================================================ */
+
+/* Main text elements with background images */
+.elementor-widget-heading h1,
+.elementor-widget-heading h2,
+.elementor-widget-heading h3,
+.elementor-widget-heading h4,
+.elementor-widget-heading h5,
+.elementor-widget-heading h6,
+.elementor-widget-text-editor p,
+.elementor-widget-text-editor a {
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.7),
+    -2px -2px 0 rgba(0, 0, 0, 0.7),
+    2px -2px 0 rgba(0, 0, 0, 0.7),
+    -2px 2px 0 rgba(0, 0, 0, 0.7),
+    0 2px 0 rgba(0, 0, 0, 0.7),
+    2px 0 0 rgba(0, 0, 0, 0.7),
+    0 -2px 0 rgba(0, 0, 0, 0.7),
+    -2px 0 0 rgba(0, 0, 0, 0.7);
+}
+
+/* Headings: Stronger outline */
+.elementor-widget-heading h1,
+.elementor-widget-heading h2,
+.elementor-widget-heading h3 {
+  text-shadow:
+    3px 3px 0 rgba(0, 0, 0, 0.8),
+    -3px -3px 0 rgba(0, 0, 0, 0.8),
+    3px -3px 0 rgba(0, 0, 0, 0.8),
+    -3px 3px 0 rgba(0, 0, 0, 0.8),
+    0 3px 0 rgba(0, 0, 0, 0.8),
+    3px 0 0 rgba(0, 0, 0, 0.8),
+    0 -3px 0 rgba(0, 0, 0, 0.8),
+    -3px 0 0 rgba(0, 0, 0, 0.8);
+}
+
+/* Semi-transparent background for better contrast */
+.elementor-widget-text-editor {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* Button text readability */
+.elementor-button,
+.elementor-button:hover,
+.elementor-button:focus {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* List items and paragraph text over images */
+.elementor-widget-text-editor ul li,
+.elementor-widget-text-editor ol li {
+  text-shadow:
+    1px 1px 0 rgba(0, 0, 0, 0.7),
+    -1px -1px 0 rgba(0, 0, 0, 0.7),
+    1px -1px 0 rgba(0, 0, 0, 0.7),
+    -1px 1px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* Stronger outline for white/light text specifically */
+.elementor-widget-heading h1:not([style*="color"]),
+.elementor-widget-heading h2:not([style*="color"]),
+.elementor-widget-heading h3:not([style*="color"]) {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Container sections with background images */
+.elementor-section-full_screen {
+  position: relative;
+}
+
+.elementor-section-full_screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* Specific treatment for text over images in containers */
+.elementor-section-full_screen .elementor-widget-heading,
+.elementor-section-full_screen .elementor-widget-text-editor {
+  position: relative;
+  z-index: 1;
+}
+
+/* Additional: Subtle glow effect for headings */
+.elementor-widget-heading h1,
+.elementor-widget-heading h2,
+.elementor-widget-heading h3 {
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================================
+   Spacing and Layout Adjustments
+   ============================================================================ */
+
+/* Ensure text blocks have proper spacing */
+.elementor-widget-text-editor {
+  line-height: 1.8;
+  word-spacing: 2px;
+}
+
+/* Better contrast for links */
+.elementor-widget-text-editor a {
+  text-decoration: underline;
+  font-weight: 600;
+}
