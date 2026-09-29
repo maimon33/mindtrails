@@ -1,6 +1,16 @@
 output "api_endpoint_url" {
   description = "API Gateway endpoint URL for contact form submissions"
-  value       = "https://api.mindtrails.net/contact"
+  value       = "${aws_apigatewayv2_stage.prod.invoke_url}/contact"
+}
+
+output "api_gateway_id" {
+  description = "ID of the HTTP API Gateway"
+  value       = aws_apigatewayv2_api.contact_form.id
+}
+
+output "api_gateway_endpoint" {
+  description = "API Gateway endpoint"
+  value       = aws_apigatewayv2_stage.prod.invoke_url
 }
 
 output "s3_bucket_name" {
