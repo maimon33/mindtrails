@@ -196,7 +196,7 @@ exports.handler = async (event) => {
       console.error('Failed to send admin notification:', error.message);
     }
 
-    // Step 8: Success response
+    // Step 7: Success response
     console.log('Contact form submission successful');
     return response(200, {
       success: true,
