@@ -8,14 +8,14 @@ terraform {
     }
   }
 
-  # Uncomment for remote state backend (S3 + DynamoDB)
-  # backend "s3" {
-  #   bucket         = "mindtrails-terraform-state"
-  #   key            = "contact-form/terraform.tfstate"
-  #   region         = "us-east-1"
-  #   dynamodb_table = "terraform-locks"
-  #   encrypt        = true
-  # }
+  # Remote state backend (S3 + KMS encryption)
+  backend "s3" {
+    bucket       = "maimons-infra-tfstate"
+    key          = "platform/prod/mindtrails-contact-form.tfstate"
+    region       = "eu-central-1"
+    kms_key_id   = "arn:aws:kms:eu-central-1:236565801201:key/478d49a7-7653-4509-bba0-8bd0593e3e8b"
+    use_lockfile = true
+  }
 }
 
 provider "aws" {

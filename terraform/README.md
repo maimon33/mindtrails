@@ -7,6 +7,7 @@ Terraform configuration for deploying the Lambda-based contact form with rate li
 - Terraform >= 1.0
 - AWS CLI configured with credentials
 - AWS SES verified sender emails (both admin and noreply)
+- S3 bucket for Terraform state (see "Setup Remote State Backend" below)
 
 ## Setup
 
@@ -26,6 +27,9 @@ Terraform configuration for deploying the Lambda-based contact form with rate li
    ```bash
    terraform init
    ```
+   
+   This connects to the remote S3 backend (`maimons-infra-tfstate`) with KMS encryption.
+   State is automatically stored remotely and locked during operations.
 
 4. **Verify configuration**
    ```bash
@@ -36,6 +40,17 @@ Terraform configuration for deploying the Lambda-based contact form with rate li
    ```bash
    terraform apply
    ```
+
+## State Management
+
+State is stored remotely in S3 with the following config:
+- **Bucket:** `maimons-infra-tfstate`
+- **Key:** `platform/prod/mindtrails-contact-form.tfstate`
+- **Region:** `eu-central-1`
+- **Encryption:** KMS (key: `478d49a7-7653-4509-bba0-8bd0593e3e8b`)
+- **Locking:** Enabled
+
+No need to create backend resources—they already exist.
 
 ## Outputs
 

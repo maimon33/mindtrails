@@ -12,7 +12,9 @@ on:
 
 env:
   AWS_REGION: us-east-1
+  BACKEND_REGION: eu-central-1
   TF_VERSION: 1.6.0
+  TF_CLI_ARGS_init: "-skip-provider-verification"
 
 jobs:
   validate:
