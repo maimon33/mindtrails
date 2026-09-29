@@ -1,91 +1,60 @@
-variable "aws_region" {
-  description = "AWS region for deployment"
+variable "admin_email" {
+  description = "Admin email address for contact form notifications"
   type        = string
-  default     = "us-east-1"
+  sensitive   = true
 
   validation {
-    condition     = contains(["us-east-1", "us-west-2", "eu-west-1", "eu-central-1"], var.aws_region)
-    error_message = "Region must be one that supports SES: us-east-1, us-west-2, eu-west-1, or eu-central-1."
+    condition = can(regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", var.admin_email))
+    error_message = "Admin email must be a valid email address matching pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
   }
 }
 
-variable "environment_name" {
-  description = "Environment name (prod, staging, etc)"
+variable "hcaptcha_secret_key" {
+  description = "hCaptcha secret key for form submission validation"
+  type        = string
+  sensitive   = true
+}
+
+variable "s3_bucket_name" {
+  description = "S3 bucket name for storing contact form submissions"
+  type        = string
+
+  validation {
+    condition     = can(regex("^[a-z0-9][a-z0-9-]*[a-z0-9]$", var.s3_bucket_name)) && length(var.s3_bucket_name) >= 3 && length(var.s3_bucket_name) <= 63
+    error_message = "S3 bucket name must be between 3 and 63 characters, start and end with alphanumeric characters, and contain only lowercase letters, numbers, and hyphens."
+  }
+}
+
+variable "rate_limit_minutes" {
+  description = "Rate limit period in minutes (60 = 1 hour)"
+  type        = number
+  default     = 60
+
+  validation {
+    condition     = var.rate_limit_minutes >= 1 && var.rate_limit_minutes <= 1440
+    error_message = "Rate limit must be between 1 and 1440 minutes."
+  }
+}
+
+variable "sender_email" {
+  description = "Email address to use as sender for contact form notifications"
+  type        = string
+  default     = "contact@mindtrails.net"
+  sensitive   = true
+
+  validation {
+    condition = can(regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", var.sender_email))
+    error_message = "Sender email must be a valid email address matching pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+  }
+}
+
+variable "environment" {
+  description = "Environment name (prod, staging, dev)"
   type        = string
   default     = "prod"
-}
-
-variable "allowed_origin" {
-  description = "CORS allowed origin (no trailing slash)"
-  type        = string
-  default     = "https://mindtrails.net"
-}
-
-variable "admin_email" {
-  description = "Admin email for inquiry notifications"
-  type        = string
-  sensitive   = true
-}
-
-variable "noreply_email" {
-  description = "No-reply sender email (must be SES verified)"
-  type        = string
-  sensitive   = true
-}
-
-variable "rate_limit_period" {
-  description = "Rate limit period in seconds (3600 = 1 hour, 86400 = 1 day)"
-  type        = number
-  default     = 3600
 
   validation {
-    condition     = var.rate_limit_period >= 60 && var.rate_limit_period <= 604800
-    error_message = "Rate limit period must be between 60 and 604800 seconds."
+    condition     = contains(["prod", "staging", "dev"], var.environment)
+    error_message = "Environment must be one of: prod, staging, dev."
   }
-}
-
-variable "lambda_timeout" {
-  description = "Lambda function timeout in seconds"
-  type        = number
-  default     = 10
-
-  validation {
-    condition     = var.lambda_timeout >= 3 && var.lambda_timeout <= 900
-    error_message = "Lambda timeout must be between 3 and 900 seconds."
-  }
-}
-
-variable "lambda_memory" {
-  description = "Lambda function memory in MB"
-  type        = number
-  default     = 256
-
-  validation {
-    condition     = contains([128, 256, 512, 1024, 1536, 2048, 2560, 3008], var.lambda_memory)
-    error_message = "Lambda memory must be one of the standard AWS values (128, 256, 512, 1024, 1536, 2048, 2560, 3008)."
-  }
-}
-
-variable "api_throttle_settings" {
-  description = "API Gateway throttling settings"
-  type = object({
-    burst_limit = number
-    rate_limit  = number
-  })
-  default = {
-    burst_limit = 100
-    rate_limit  = 50
-  }
-}
-
-variable "enable_api_logging" {
-  description = "Enable API Gateway CloudWatch logging"
-  type        = bool
-  default     = true
-}
-
-variable "dynamodb_deletion_protection" {
-  description = "Enable deletion protection on DynamoDB table"
-  type        = bool
-  default     = true
 }

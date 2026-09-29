@@ -9,6 +9,13 @@
 # Environment variable overrides
 terraform.tfvars
 !terraform.tfvars.example
+!contact-form.tfvars.example
+
+# Lambda build artifacts
+contact_form.zip
+
+# Terraform RC file
+.terraformrc
 
 # IDE
 .idea/

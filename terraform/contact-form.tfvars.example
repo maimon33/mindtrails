@@ -1,3 +1,4 @@
+# Contact Form Terraform Variables Template
 # Copy this file to terraform.tfvars and fill in your values
 # Then add terraform.tfvars to .gitignore
 
