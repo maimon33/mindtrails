@@ -1,0 +1,83 @@
+name: Deploy Lambda + API Gateway
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lambda/**'
+      - 'template.yaml'
+      - '.github/workflows/deploy-lambda.yml'
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  SES_REGION: us-east-1
+  STACK_NAME: mindtrails-contact-form-prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::236565801201:role/maimons-infra-github-ssm
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Validate CloudFormation template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://template.yaml
+          echo "✅ CloudFormation template is valid"
+
+      - name: Package Lambda function
+        run: |
+          # SAM CLI would do this, but we can also use direct zip
+          cd lambda
+          zip -r ../lambda.zip .
+          cd ..
+          echo "✅ Lambda function packaged"
+
+      - name: Deploy CloudFormation stack
+        run: |
+          aws cloudformation deploy \
+            --template-file template.yaml \
+            --stack-name ${{ env.STACK_NAME }} \
+            --parameter-overrides \
+              EnvironmentName=prod \
+              AllowedOrigin=${{ secrets.MINDTRAILS_DOMAIN_URL }} \
+              AdminEmail=${{ secrets.MINDTRAILS_ADMIN_EMAIL }} \
+              NoReplyEmail=${{ secrets.MINDTRAILS_NOREPLY_EMAIL }} \
+              AWSRegion=${{ env.AWS_REGION }} \
+            --capabilities CAPABILITY_NAMED_IAM \
+            --region ${{ env.AWS_REGION }} \
+            --no-fail-on-empty-changeset
+          echo "✅ CloudFormation stack deployed"
+
+      - name: Get API Gateway endpoint
+        id: get-endpoint
+        run: |
+          ENDPOINT=$(aws cloudformation describe-stacks \
+            --stack-name ${{ env.STACK_NAME }} \
+            --query 'Stacks[0].Outputs[?OutputKey==`ApiEndpoint`].OutputValue' \
+            --output text \
+            --region ${{ env.AWS_REGION }})
+          echo "api_endpoint=$ENDPOINT" >> $GITHUB_OUTPUT
+          echo "API Gateway endpoint: $ENDPOINT"
+
+      - name: Output deployment info
+        run: |
+          echo "✅ Lambda deployment complete"
+          echo ""
+          echo "API Endpoint: ${{ steps.get-endpoint.outputs.api_endpoint }}"
+          echo ""
+          echo "Next step: Update form action in content/index.html to use this endpoint"
+          echo "Form action should be: ${{ steps.get-endpoint.outputs.api_endpoint }}"

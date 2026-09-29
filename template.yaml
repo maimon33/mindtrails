@@ -1,0 +1,325 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2010-05-13
+
+Description: MindTrails Contact Form - Lambda + API Gateway with Request Validation
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: prod
+    Description: Environment name (prod, staging, etc)
+
+  AllowedOrigin:
+    Type: String
+    Default: https://mindtrails.net
+    Description: CORS allowed origin (no trailing slash)
+
+  AdminEmail:
+    Type: String
+    Description: Admin email for inquiry notifications
+    NoEcho: true
+
+  NoReplyEmail:
+    Type: String
+    Description: No-reply sender email (must be SES verified)
+    NoEcho: true
+
+  AWSRegion:
+    Type: String
+    Default: us-east-1
+    Description: AWS region for SES (must have SES access - typically us-east-1, us-west-2, or eu-west-1)
+    AllowedValues:
+      - us-east-1
+      - us-west-2
+      - eu-west-1
+      - eu-central-1
+
+  RateLimitPeriod:
+    Type: Number
+    Default: 3600
+    Description: Rate limit period in seconds (3600 = 1 hour, 86400 = 1 day)
+    MinValue: 60
+    MaxValue: 604800
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 256
+    Environment:
+      Variables:
+        ADMIN_EMAIL: !Ref AdminEmail
+        NOREPLY_EMAIL: !Ref NoReplyEmail
+        ALLOWED_ORIGIN: !Ref AllowedOrigin
+        AWS_REGION: !Ref AWSRegion
+        RATE_LIMIT_TABLE: !Ref SubmissionLogTable
+        RATE_LIMIT_PERIOD: !Ref RateLimitPeriod
+
+Resources:
+  # ============================================================================
+  # DynamoDB Table for Rate Limiting & Submission Logs
+  # ============================================================================
+  SubmissionLogTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub 'mindtrails-submission-log-${EnvironmentName}'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+      TimeToLiveSpecification:
+        Enabled: true
+        AttributeName: expirationTime
+      Tags:
+        - Key: Application
+          Value: MindTrails
+        - Key: Environment
+          Value: !Ref EnvironmentName
+
+  # ============================================================================
+  # IAM Role for Lambda
+  # ============================================================================
+  ContactFormRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AmazonSESFullAccess
+      Policies:
+        - PolicyName: DynamoDBRateLimitAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:PutItem
+                  - dynamodb:UpdateItem
+                Resource: !GetAtt SubmissionLogTable.Arn
+      Tags:
+        - Key: Application
+          Value: MindTrails
+        - Key: Environment
+          Value: !Ref EnvironmentName
+
+  # ============================================================================
+  # Lambda Function
+  # ============================================================================
+  ContactFormFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'mindtrails-contact-form-${EnvironmentName}'
+      CodeUri: lambda/
+      Handler: handler.handler
+      Runtime: nodejs20.x
+      Role: !GetAtt ContactFormRole.Arn
+      Architectures:
+        - x86_64
+      Tags:
+        Application: MindTrails
+        Environment: !Ref EnvironmentName
+
+  # ============================================================================
+  # API Gateway
+  # ============================================================================
+  ContactFormApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: !Sub 'mindtrails-contact-form-${EnvironmentName}'
+      Description: Contact form API with request validation
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  # API Gateway Resource: /contact
+  ContactResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      ParentId: !GetAtt ContactFormApi.RootResourceId
+      PathPart: contact
+
+  # ============================================================================
+  # Request Validator (Layer 3: Validate headers, content-type, structure)
+  # ============================================================================
+  RequestValidator:
+    Type: AWS::ApiGateway::RequestValidator
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      Name: ContactFormValidator
+      ValidateRequestBody: true
+      ValidateRequestParameters: true
+
+  # ============================================================================
+  # POST Method with Validation
+  # ============================================================================
+  ContactPostMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      ResourceId: !Ref ContactResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+
+      # Link to Lambda function
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ContactFormFunction.Arn}/invocations'
+
+      # Request validation
+      RequestValidatorId: !Ref RequestValidator
+      RequestParameters:
+        method.request.header.Content-Type: true
+        method.request.header.Referer: false
+
+      MethodResponses:
+        - StatusCode: 200
+        - StatusCode: 400
+        - StatusCode: 403
+        - StatusCode: 500
+
+  # ============================================================================
+  # OPTIONS Method for CORS Preflight
+  # ============================================================================
+  ContactOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      ResourceId: !Ref ContactResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: !Sub "'${AllowedOrigin}'"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # ============================================================================
+  # Lambda Permission for API Gateway
+  # ============================================================================
+  ContactFormLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref ContactFormFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ContactFormApi}/*/*'
+
+  # ============================================================================
+  # API Gateway Deployment
+  # ============================================================================
+  ContactFormDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - ContactPostMethod
+      - ContactOptionsMethod
+    Properties:
+      RestApiId: !Ref ContactFormApi
+      StageName: !Ref EnvironmentName
+      StageDescription:
+        ThrottlingBurstLimit: 100
+        ThrottlingRateLimit: 50
+        MetricsEnabled: true
+        LoggingLevel: INFO
+        DataTraceEnabled: false
+        CloudWatchMetricsEnabled: true
+
+  # ============================================================================
+  # CloudWatch Log Group for API Gateway
+  # ============================================================================
+  ApiGatewayLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/apigateway/mindtrails-${EnvironmentName}'
+      RetentionInDays: 30
+
+  # ============================================================================
+  # CloudWatch Alarms for Rate Limiting (Lambda 2)
+  # ============================================================================
+  HighErrorRateAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'mindtrails-form-high-error-rate-${EnvironmentName}'
+      AlarmDescription: Alert on high error rate from contact form
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 10
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref ContactFormFunction
+
+  HighInvocationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'mindtrails-form-high-invocation-${EnvironmentName}'
+      AlarmDescription: Alert on suspiciously high invocation rate (possible DoS)
+      MetricName: Invocations
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 2
+      Threshold: 100
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref ContactFormFunction
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint URL for contact form
+    Value: !Sub 'https://${ContactFormApi}.execute-api.${AWS::Region}.amazonaws.com/${EnvironmentName}/contact'
+    Export:
+      Name: !Sub 'MindTrails-ContactForm-Endpoint-${EnvironmentName}'
+
+  ApiId:
+    Description: API Gateway ID
+    Value: !Ref ContactFormApi
+    Export:
+      Name: !Sub 'MindTrails-ContactForm-ApiId-${EnvironmentName}'
+
+  LambdaFunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt ContactFormFunction.Arn
+    Export:
+      Name: !Sub 'MindTrails-ContactForm-Lambda-${EnvironmentName}'
+
+  LambdaFunctionName:
+    Description: Lambda function name
+    Value: !Ref ContactFormFunction
+    Export:
+      Name: !Sub 'MindTrails-ContactForm-LambdaName-${EnvironmentName}'
+
+  SubmissionLogTableName:
+    Description: DynamoDB table for rate limiting and submission logs
+    Value: !Ref SubmissionLogTable
+    Export:
+      Name: !Sub 'MindTrails-SubmissionLog-Table-${EnvironmentName}'
+
+  RateLimitPeriodSeconds:
+    Description: Rate limit period in seconds
+    Value: !Ref RateLimitPeriod
+    Export:
+      Name: !Sub 'MindTrails-RateLimit-Period-${EnvironmentName}'
