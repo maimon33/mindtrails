@@ -40,11 +40,21 @@ jobs:
 
       - name: Package Lambda function
         run: |
-          # SAM CLI would do this, but we can also use direct zip
           cd lambda
           zip -r ../lambda.zip .
           cd ..
           echo "✅ Lambda function packaged"
+
+      - name: Create S3 bucket for Lambda code
+        run: |
+          aws s3api head-bucket --bucket mindtrails-lambda-code --region ${{ env.AWS_REGION }} 2>/dev/null || \
+          aws s3 mb s3://mindtrails-lambda-code --region ${{ env.AWS_REGION }}
+          echo "✅ S3 bucket ready"
+
+      - name: Upload Lambda code to S3
+        run: |
+          aws s3 cp lambda.zip s3://mindtrails-lambda-code/lambda.zip --region ${{ env.AWS_REGION }}
+          echo "✅ Lambda code uploaded to S3"
 
       - name: Deploy CloudFormation stack
         run: |
@@ -57,6 +67,8 @@ jobs:
               AdminEmail=${{ secrets.MINDTRAILS_ADMIN_EMAIL }} \
               NoReplyEmail=${{ secrets.MINDTRAILS_NOREPLY_EMAIL }} \
               AWSRegion=${{ env.AWS_REGION }} \
+              LambdaCodeBucket=mindtrails-lambda-code \
+              LambdaCodeKey=lambda.zip \
             --capabilities CAPABILITY_NAMED_IAM \
             --region ${{ env.AWS_REGION }} \
             --no-fail-on-empty-changeset

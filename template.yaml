@@ -1,7 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2010-05-13
-
-Description: MindTrails Contact Form - Lambda + API Gateway with Request Validation
+Description: MindTrails Contact Form - Lambda + API Gateway with Rate Limiting
 
 Parameters:
   EnvironmentName:
@@ -41,18 +39,15 @@ Parameters:
     MinValue: 60
     MaxValue: 604800
 
-Globals:
-  Function:
-    Timeout: 10
-    MemorySize: 256
-    Environment:
-      Variables:
-        ADMIN_EMAIL: !Ref AdminEmail
-        NOREPLY_EMAIL: !Ref NoReplyEmail
-        ALLOWED_ORIGIN: !Ref AllowedOrigin
-        AWS_REGION: !Ref AWSRegion
-        RATE_LIMIT_TABLE: !Ref SubmissionLogTable
-        RATE_LIMIT_PERIOD: !Ref RateLimitPeriod
+  LambdaCodeBucket:
+    Type: String
+    Description: S3 bucket where Lambda code is stored
+    Default: mindtrails-lambda-code
+
+  LambdaCodeKey:
+    Type: String
+    Description: S3 key (path) for Lambda zip file
+    Default: lambda.zip
 
 Resources:
   # ============================================================================
@@ -115,18 +110,32 @@ Resources:
   # Lambda Function
   # ============================================================================
   ContactFormFunction:
-    Type: AWS::Serverless::Function
+    Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub 'mindtrails-contact-form-${EnvironmentName}'
-      CodeUri: lambda/
+      Code:
+        S3Bucket: !Ref LambdaCodeBucket
+        S3Key: !Ref LambdaCodeKey
       Handler: handler.handler
       Runtime: nodejs20.x
       Role: !GetAtt ContactFormRole.Arn
+      Timeout: 10
+      MemorySize: 256
+      Environment:
+        Variables:
+          ADMIN_EMAIL: !Ref AdminEmail
+          NOREPLY_EMAIL: !Ref NoReplyEmail
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+          AWS_REGION: !Ref AWSRegion
+          RATE_LIMIT_TABLE: !Ref SubmissionLogTable
+          RATE_LIMIT_PERIOD: !Ref RateLimitPeriod
       Architectures:
         - x86_64
       Tags:
-        Application: MindTrails
-        Environment: !Ref EnvironmentName
+        - Key: Application
+          Value: MindTrails
+        - Key: Environment
+          Value: !Ref EnvironmentName
 
   # ============================================================================
   # API Gateway
