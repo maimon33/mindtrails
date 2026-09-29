@@ -1,0 +1,29 @@
+# Copy this file to terraform.tfvars and fill in your values
+# Then add terraform.tfvars to .gitignore
+
+aws_region      = "us-east-1"
+environment_name = "prod"
+allowed_origin   = "https://mindtrails.net"
+
+# These must be SES verified emails
+admin_email   = "daniel@mindtrails.net"
+noreply_email = "noreply@mindtrails.net"
+
+# Rate limit: 3600 = 1 hour, 86400 = 1 day
+rate_limit_period = 3600
+
+# Lambda settings
+lambda_timeout = 10
+lambda_memory  = 256
+
+# API Gateway throttling
+api_throttle_settings = {
+  burst_limit = 100
+  rate_limit  = 50
+}
+
+# Enable API Gateway CloudWatch logging
+enable_api_logging = true
+
+# DynamoDB deletion protection
+dynamodb_deletion_protection = true
