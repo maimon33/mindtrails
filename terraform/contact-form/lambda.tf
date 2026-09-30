@@ -39,7 +39,7 @@ resource "aws_lambda_permission" "api_gateway_invoke" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.contact_form.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.contact.execution_arn}/*/*"
+  source_arn    = "${aws_apigatewayv2_api.contact_form.execution_arn}/*/*"
 }
 
 # Data source to get current AWS account ID
