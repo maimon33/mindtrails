@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
-const rateLimitSeconds = 3600;
+const rateLimitSeconds = parseInt(process.env.RATE_LIMIT_SECONDS || 3600, 10);
 
 function getMonthKey() {
   const now = new Date();
@@ -66,11 +66,13 @@ async function updateRateLimit(ip, email, bucket) {
       timestamp: Date.now()
     };
 
+    // Use conditional write with ETag to prevent race conditions
     await s3.putObject({
       Bucket: bucket,
       Key: s3Key,
       Body: JSON.stringify(data),
-      ContentType: 'application/json'
+      ContentType: 'application/json',
+      IfMatch: object.ETag
     }).promise();
   } catch (error) {
     if (error.code === 'NoSuchKey') {
@@ -87,6 +89,10 @@ async function updateRateLimit(ip, email, bucket) {
         Body: JSON.stringify(data),
         ContentType: 'application/json'
       }).promise();
+    } else if (error.code === 'PreconditionFailed') {
+      // ETag mismatch — file changed since read. Log and retry once
+      console.warn(`Rate limit update conflict for IP ${ip}, retrying...`);
+      return updateRateLimit(ip, email, bucket);
     } else {
       throw error;
     }

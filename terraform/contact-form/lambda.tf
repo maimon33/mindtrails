@@ -20,9 +20,9 @@ resource "aws_lambda_function" "contact_form" {
     variables = {
       HCAPTCHA_SECRET_KEY  = var.hcaptcha_secret_key
       ADMIN_EMAIL          = var.admin_email
-      SENDER_EMAIL         = var.sender_email
+      SES_FROM_EMAIL       = var.sender_email
       S3_BUCKET_NAME       = aws_s3_bucket.contact_submissions.id
-      RATE_LIMIT_MINUTES   = var.rate_limit_minutes
+      RATE_LIMIT_SECONDS   = var.rate_limit_minutes * 60
     }
   }
 
@@ -39,7 +39,7 @@ resource "aws_lambda_permission" "api_gateway_invoke" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.contact_form.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "arn:aws:execute-api:${data.aws_caller_identity.current.account_id}:*:*"
+  source_arn    = "${aws_apigatewayv2_api.contact.execution_arn}/*/*"
 }
 
 # Data source to get current AWS account ID
