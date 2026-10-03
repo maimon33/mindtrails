@@ -497,11 +497,23 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
 
       const formData = new FormData(contactForm);
+
+      let captchaToken = formData.get('h-captcha-response') ||
+                         formData.get('form_fields[h-captcha-response]') ||
+                         document.querySelector('[name="h-captcha-response"]')?.value ||
+                         window.hcaptcha?.getResponse?.();
+
+      if (!captchaToken) {
+        alert('Please complete the CAPTCHA verification.');
+        return;
+      }
+
       const data = {
         name: formData.get('form_fields[name]'),
         email: formData.get('form_fields[email]'),
         phone: formData.get('form_fields[field_7525a0a]') || '',
-        message: formData.get('form_fields[message]')
+        message: formData.get('form_fields[message]'),
+        captchaToken: captchaToken
       };
 
       try {
