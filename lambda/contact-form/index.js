@@ -37,18 +37,19 @@ function response(statusCode, body) {
 }
 
 exports.handler = async (event) => {
+  const method = event.requestContext.http.method;
   console.log('Contact form handler invoked', {
-    method: event.httpMethod,
-    path: event.path
+    method: method,
+    path: event.requestContext.http.path
   });
 
   // Step 1: CORS preflight handling
-  if (event.httpMethod === 'OPTIONS') {
+  if (method === 'OPTIONS') {
     return response(200, { success: true });
   }
 
   // Only allow POST
-  if (event.httpMethod !== 'POST') {
+  if (method !== 'POST') {
     return response(400, {
       success: false,
       error: 'Only POST requests are allowed'
@@ -102,7 +103,7 @@ exports.handler = async (event) => {
     }
 
     // Step 4: Rate limiting
-    const clientIp = event.requestContext.identity.sourceIp;
+    const clientIp = event.requestContext.http.sourceIp;
     console.log('Checking rate limit for IP:', clientIp);
 
     let rateLimitResult;
