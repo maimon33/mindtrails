@@ -22,7 +22,7 @@ async function sendConfirmationEmail(to, name) {
   return ses.sendEmail(params).promise();
 }
 
-async function sendAdminNotification(adminEmail, name, email, message, ip) {
+async function sendAdminNotification(adminEmail, name, email, message, ip, phone) {
   const params = {
     Source: process.env.SES_FROM_EMAIL,
     Destination: {
@@ -34,7 +34,7 @@ async function sendAdminNotification(adminEmail, name, email, message, ip) {
       },
       Body: {
         Text: {
-          Data: `New contact form submission received:\n\nName: ${name}\nEmail: ${email}\nIP: ${ip}\nMessage:\n${message}`
+          Data: `New contact form submission received:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nIP: ${ip}\nMessage:\n${message}`
         }
       }
     }

@@ -190,7 +190,8 @@ exports.handler = async (event) => {
         sanitized.name,
         sanitized.email,
         sanitized.message,
-        clientIp
+        clientIp,
+        sanitized.phone
       );
       console.log('Admin notification email sent');
     } catch (error) {

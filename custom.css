@@ -249,11 +249,11 @@ textarea.elementor-field {
    Dark card container matching example aesthetic
    ============================================================================ */
 
-/* Wrap contact form in minimal dark card */
+/* Wrap contact form in minimal dark background */
 .elementor-element-a8bf80b {
-  background: transparent !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  padding: 20px 24px !important;
+  border-radius: 6px !important;
   border: none !important;
   box-shadow: none !important;
   display: block !important;
@@ -261,6 +261,11 @@ textarea.elementor-field {
 
 .elementor-widget-form {
   background: transparent !important;
+}
+
+/* Form field labels - visible text */
+.elementor-field-label {
+  color: #b8a6ff !important;
 }
 
 /* Form heading */
