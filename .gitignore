@@ -20,6 +20,8 @@ terraform/**/.terraform/
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+*.tfvars
+!*.tfvars.example
 
 # Build artifacts
 lambda.zip
