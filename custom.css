@@ -203,11 +203,17 @@ textarea.elementor-field {
   margin-top: 2px !important;
 }
 
-/* Tighter hCaptcha container */
+/* Tighter hCaptcha container - hidden by default */
 .h-captcha {
   transform: scale(0.8);
   transform-origin: 0 0;
   margin: 2px 0 !important;
+  display: none;
+}
+
+/* Show hCaptcha when form has been attempted */
+.h-captcha.show {
+  display: block;
 }
 
 /* Dark background for icon-list text (contact info) */

@@ -497,9 +497,18 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const contactForm = document.querySelector('form[name="Contact Us"]');
+  const hcaptchaWidget = document.querySelector('.h-captcha');
+
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+
+      // Show hCaptcha on first submit attempt
+      if (hcaptchaWidget && !hcaptchaWidget.classList.contains('show')) {
+        hcaptchaWidget.classList.add('show');
+        alert('Please complete the CAPTCHA verification below.');
+        return;
+      }
 
       const formData = new FormData(contactForm);
 
