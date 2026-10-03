@@ -205,15 +205,15 @@ textarea.elementor-field {
 
 /* Tighter hCaptcha container - hidden by default */
 .h-captcha {
-  transform: scale(0.8);
-  transform-origin: 0 0;
+  transform: scale(0.8) !important;
+  transform-origin: 0 0 !important;
   margin: 2px 0 !important;
-  display: none;
+  display: none !important;
 }
 
 /* Show hCaptcha when form has been attempted */
 .h-captcha.show {
-  display: block;
+  display: block !important;
 }
 
 /* Dark background for icon-list text (contact info) */
@@ -233,64 +233,72 @@ textarea.elementor-field {
    ============================================================================ */
 
 /* Wrap contact form in dark card */
+.elementor-element-a8bf80b,
 .elementor-widget-form {
   background: linear-gradient(135deg, #1a0f2e 0%, #2d1a45 100%) !important;
   padding: 32px 28px !important;
-  border-radius: 12px;
-  border: 1px solid rgba(184, 166, 255, 0.15);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 12px !important;
+  border: 1px solid rgba(184, 166, 255, 0.15) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Form heading */
+.elementor-element-a8bf80b .elementor-heading-title,
 .elementor-widget-form .elementor-heading-title {
   background: none !important;
   padding: 0 !important;
   margin-bottom: 12px !important;
-  color: #b8a6ff;
-  font-size: 24px;
-  font-weight: 700;
+  color: #b8a6ff !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
 }
 
 /* Form description text */
+.elementor-element-a8bf80b + .elementor-widget-text-editor,
 .elementor-widget-form + .elementor-widget-text-editor {
   background: none !important;
   padding: 0 0 16px 0 !important;
-  color: #c8b8ff;
-  font-size: 13px;
+  color: #c8b8ff !important;
+  font-size: 13px !important;
 }
 
 /* Form fields styling inside card */
+.elementor-element-a8bf80b .elementor-form-fields-wrapper,
 .elementor-form-fields-wrapper {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(184, 166, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05) !important;
+  padding: 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(184, 166, 255, 0.1) !important;
 }
 
-.elementor-field {
+.elementor-element-a8bf80b .elementor-field,
+.elementor-widget-form .elementor-field {
   background-color: rgba(255, 255, 255, 0.08) !important;
   border: 1px solid rgba(184, 166, 255, 0.2) !important;
   color: #ffffff !important;
 }
 
-.elementor-field::placeholder {
+.elementor-element-a8bf80b .elementor-field::placeholder,
+.elementor-widget-form .elementor-field::placeholder {
   color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Form button in card */
-.elementor-button {
+.elementor-element-a8bf80b .elementor-button,
+.elementor-widget-form .elementor-button {
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
   color: #ffffff !important;
   border: none !important;
-  width: 100%;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  width: 100% !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
 }
 
-.elementor-button:hover {
+.elementor-element-a8bf80b .elementor-button:hover,
+.elementor-widget-form .elementor-button:hover {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
   color: #ffffff !important;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3) !important;
 }
