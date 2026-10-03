@@ -1,78 +1,79 @@
 /* MindTrails Custom Styles */
 
 /* ============================================================================
-   Text Readability Over Background Images
-   Targets middle sections: "Choose Your Adventure" through "About"
+   Text Readability Over Background Images (Best Practice Approach)
+   Uses solid semi-opaque containers + white text for WCAG AA compliance
    ============================================================================ */
 
-/* Main text elements with background images */
+/* Solid semi-opaque backgrounds for text containers (50% opacity dark) */
+.elementor-widget-text-editor {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 24px 28px;
+  border-radius: 6px;
+  color: #ffffff;
+  line-height: 1.8;
+}
+
+.elementor-widget-text-editor p {
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.elementor-widget-text-editor p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings with solid background overlays */
 .elementor-widget-heading h1,
 .elementor-widget-heading h2,
 .elementor-widget-heading h3,
 .elementor-widget-heading h4,
 .elementor-widget-heading h5,
-.elementor-widget-heading h6,
-.elementor-widget-text-editor p,
+.elementor-widget-heading h6 {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 24px;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.4;
+  display: inline-block;
+}
+
+/* Links inside text editors */
 .elementor-widget-text-editor a {
-  text-shadow:
-    2px 2px 0 rgba(0, 0, 0, 0.7),
-    -2px -2px 0 rgba(0, 0, 0, 0.7),
-    2px -2px 0 rgba(0, 0, 0, 0.7),
-    -2px 2px 0 rgba(0, 0, 0, 0.7),
-    0 2px 0 rgba(0, 0, 0, 0.7),
-    2px 0 0 rgba(0, 0, 0, 0.7),
-    0 -2px 0 rgba(0, 0, 0, 0.7),
-    -2px 0 0 rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
 }
 
-/* Headings: Stronger outline */
-.elementor-widget-heading h1,
-.elementor-widget-heading h2,
-.elementor-widget-heading h3 {
-  text-shadow:
-    3px 3px 0 rgba(0, 0, 0, 0.8),
-    -3px -3px 0 rgba(0, 0, 0, 0.8),
-    3px -3px 0 rgba(0, 0, 0, 0.8),
-    -3px 3px 0 rgba(0, 0, 0, 0.8),
-    0 3px 0 rgba(0, 0, 0, 0.8),
-    3px 0 0 rgba(0, 0, 0, 0.8),
-    0 -3px 0 rgba(0, 0, 0, 0.8),
-    -3px 0 0 rgba(0, 0, 0, 0.8);
+.elementor-widget-text-editor a:hover {
+  opacity: 0.85;
 }
 
-/* Semi-transparent background for better contrast */
-.elementor-widget-text-editor {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 4px;
+/* List items */
+.elementor-widget-text-editor ul li,
+.elementor-widget-text-editor ol li {
+  color: #ffffff;
 }
 
-/* Button text readability */
+/* Button styling with proper contrast */
 .elementor-button,
 .elementor-button:hover,
 .elementor-button:focus {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* List items and paragraph text over images */
-.elementor-widget-text-editor ul li,
-.elementor-widget-text-editor ol li {
-  text-shadow:
-    1px 1px 0 rgba(0, 0, 0, 0.7),
-    -1px -1px 0 rgba(0, 0, 0, 0.7),
-    1px -1px 0 rgba(0, 0, 0, 0.7),
-    -1px 1px 0 rgba(0, 0, 0, 0.7);
-}
-
-/* Stronger outline for white/light text specifically */
-.elementor-widget-heading h1:not([style*="color"]),
-.elementor-widget-heading h2:not([style*="color"]),
-.elementor-widget-heading h3:not([style*="color"]) {
+  background-color: #1a1a1a;
   color: #ffffff;
-  font-weight: 700;
+  border: 2px solid #ffffff;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-/* Container sections with background images */
+.elementor-button:hover {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+/* Container sections with dark overlay scrim */
 .elementor-section-full_screen {
   position: relative;
 }
@@ -84,36 +85,63 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   pointer-events: none;
-}
-
-/* Specific treatment for text over images in containers */
-.elementor-section-full_screen .elementor-widget-heading,
-.elementor-section-full_screen .elementor-widget-text-editor {
-  position: relative;
   z-index: 1;
 }
 
-/* Additional: Subtle glow effect for headings */
-.elementor-widget-heading h1,
-.elementor-widget-heading h2,
-.elementor-widget-heading h3 {
-  letter-spacing: 0.5px;
+/* Text elements positioned above overlay */
+.elementor-section-full_screen .elementor-widget-heading,
+.elementor-section-full_screen .elementor-widget-text-editor {
+  position: relative;
+  z-index: 2;
 }
 
 /* ============================================================================
-   Spacing and Layout Adjustments
+   Hero Section Gradient Background
+   Complements the brand gradient logo (purple, orange, pink palette)
    ============================================================================ */
 
-/* Ensure text blocks have proper spacing */
+.elementor-element-c18df28 {
+  background: linear-gradient(
+    135deg,
+    #1a0f3c 0%,
+    #2d1565 30%,
+    #3d1a5c 60%,
+    #4a1a5c 100%
+  ) !important;
+}
+
+/* Hero container - clean minimalist design */
+.elementor-element-9c1df5c {
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 60px 20px;
+}
+
+/* Logo in hero section */
+.elementor-element-84ead3b img {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(255, 105, 0, 0.2));
+}
+
+/* ============================================================================
+   Spacing and Layout
+   ============================================================================ */
+
 .elementor-widget-text-editor {
-  line-height: 1.8;
   word-spacing: 2px;
 }
 
-/* Better contrast for links */
-.elementor-widget-text-editor a {
-  text-decoration: underline;
-  font-weight: 600;
+/* Ensure proper spacing between elements */
+.e-con-inner > * + * {
+  margin-top: 24px;
 }

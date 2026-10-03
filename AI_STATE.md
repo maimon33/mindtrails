@@ -26,7 +26,9 @@ Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudfla
 - **Done**: Fixed S3 bucket name typo in deploy workflow (was `mindtrails.net0`)
 - **Done**: Added `.deployignore` to exclude WordPress/plugin bloat from S3
 - **Done**: Updated docs to reflect OIDC auth (no stored AWS keys)
-- **Next**: Review and optimize site content, design, and styles
+- **Done**: Integrated Terraform Lambda API endpoint into contact form
+- **Done**: Improved text readability with solid semi-opaque overlays (WCAG AA compliant)
+- **Done**: Redesigned hero section with brand-gradient background
 
 ## Known Constraints & Decisions
 - Site is fully static (no server-side logic possible)
@@ -37,6 +39,25 @@ Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudfla
 ---
 
 ## Session Log
+
+### 2026-10-03 — Contact form integration & design improvements
+
+**Contact form & API:**
+- Inserted Terraform Lambda API endpoint (`https://yga0l4agjf.execute-api.eu-central-1.amazonaws.com/prod/contact`) as config in HTML
+- Added JavaScript handler to intercept form submission and POST to Lambda endpoint
+- Includes success/error feedback to user
+
+**Text readability (best practices):**
+- Replaced text-shadow approach with solid semi-opaque dark containers (50% opacity)
+- Updated background-colors: h1-h6 headings and text-editor blocks now have `rgba(0, 0, 0, 0.5)` backgrounds
+- Ensured white text on dark backgrounds for WCAG AA compliance (4.5:1 contrast ratio)
+- Added smooth transitions and proper padding/spacing for professional appearance
+
+**Hero section redesign:**
+- Replaced simple black background with brand-gradient (purple/indigo tones: `#1a0f3c` → `#4a1a5c`)
+- Gradient echoes the logo's color palette (purple, orange, pink)
+- Added subtle drop shadow on logo for depth
+- Cleaner, more modern aesthetic aligned with leading sites
 
 ### 2026-09-29 — Infrastructure, content, and design improvements
 
