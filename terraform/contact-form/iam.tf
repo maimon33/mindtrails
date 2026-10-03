@@ -32,6 +32,13 @@ resource "aws_iam_role_policy" "s3_policy" {
     Statement = [
       {
         Action = [
+          "s3:ListBucket"
+        ]
+        Effect   = "Allow"
+        Resource = aws_s3_bucket.contact_submissions.arn
+      },
+      {
+        Action = [
           "s3:GetObject",
           "s3:PutObject"
         ]
