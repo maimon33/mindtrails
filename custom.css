@@ -31,11 +31,21 @@
 .elementor-widget-heading h5,
 .elementor-widget-heading h6 {
   background-color: rgba(0, 0, 0, 0.75);
-  padding: 20px 24px;
+  padding: 12px 16px;
   border-radius: 6px;
   color: #ffffff;
   font-weight: 700;
   line-height: 1.4;
+  display: inline-block;
+  margin: 0 !important;
+}
+
+/* All text elements get dark backgrounds */
+.elementor-widget-heading .elementor-heading-title {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: #ffffff;
   display: inline-block;
 }
 
@@ -152,48 +162,61 @@
 
 /* Tighter form field spacing */
 .elementor-form-fields-wrapper {
-  gap: 8px !important;
+  gap: 4px !important;
 }
 
 .elementor-field-group {
-  margin-bottom: 8px !important;
+  margin-bottom: 4px !important;
 }
 
-/* Reduce field padding */
+/* Reduce field padding even more */
 .elementor-field {
-  padding: 8px 12px !important;
-  font-size: 14px !important;
-  line-height: 1.4 !important;
-  min-height: 36px !important;
+  padding: 5px 8px !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  min-height: 30px !important;
 }
 
 .elementor-field-textual {
-  padding: 8px 12px !important;
+  padding: 5px 8px !important;
 }
 
 /* Compact textarea */
 textarea.elementor-field {
-  min-height: 80px !important;
-  padding: 8px 12px !important;
+  min-height: 60px !important;
+  padding: 5px 8px !important;
 }
 
 /* Reduce label spacing */
 .elementor-field-label {
-  font-size: 13px !important;
-  margin-bottom: 4px !important;
+  font-size: 11px !important;
+  margin-bottom: 2px !important;
   font-weight: 600;
+  color: #b8a6ff;
 }
 
 /* Compact button */
 .elementor-button {
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  min-height: 40px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+  min-height: 32px !important;
+  margin-top: 2px !important;
 }
 
 /* Tighter hCaptcha container */
 .h-captcha {
-  transform: scale(0.9);
+  transform: scale(0.8);
   transform-origin: 0 0;
-  margin: 4px 0 !important;
+  margin: 2px 0 !important;
+}
+
+/* Dark background for icon-list text (contact info) */
+.elementor-icon-list-item,
+.elementor-icon-list-text {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  padding: 8px 12px !important;
+  border-radius: 4px;
+  color: #ffffff !important;
+  display: inline-block;
+  margin-bottom: 4px;
 }
