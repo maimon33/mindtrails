@@ -5,9 +5,9 @@
    Uses solid semi-opaque containers + white text for WCAG AA compliance
    ============================================================================ */
 
-/* Solid semi-opaque backgrounds for text containers (50% opacity dark) */
+/* Solid semi-opaque backgrounds for text containers (75% opacity dark for better readability) */
 .elementor-widget-text-editor {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
   padding: 24px 28px;
   border-radius: 6px;
   color: #ffffff;
@@ -30,7 +30,7 @@
 .elementor-widget-heading h4,
 .elementor-widget-heading h5,
 .elementor-widget-heading h6 {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
   padding: 20px 24px;
   border-radius: 6px;
   color: #ffffff;
