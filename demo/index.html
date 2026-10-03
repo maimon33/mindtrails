@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_standard" name="shell-type" />
+    <title>MindTrails - Turning Knowledge into Adventure</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        @layer base {
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                overscroll-behavior: none;
+            }
+
+            main> :first-child {
+                margin-top: 0 !important;
+            }
+
+            main> :last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#3c0091",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#c4abff",
+                        "on-primary-container": "#00422b",
+                        "tertiary-container": "#e29100",
+                        "background": "#0f131d",
+                        "on-surface": "#dfe2f1",
+                        "surface-container-high": "#262a35",
+                        "on-primary": "#003824",
+                        "secondary-container": "#571bc1",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "surface-container": "#1c1f2a",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-surface": "#dfe2f1",
+                        "surface-dim": "#0f131d",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container-highest": "#313540",
+                        "on-primary-fixed": "#002113",
+                        "error-container": "#93000a",
+                        "surface-bright": "#353944",
+                        "outline-variant": "#3c4a42",
+                        "surface": "#0f131d",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary-container": "#523200",
+                        "surface-tint": "#4edea3",
+                        "inverse-on-surface": "#2c303b",
+                        "surface-container-lowest": "#0a0e18",
+                        "outline": "#86948a",
+                        "on-background": "#dfe2f1",
+                        "tertiary": "#ffb95f",
+                        "tertiary-fixed": "#ffddb8",
+                        "primary": "#4edea3",
+                        "on-surface-variant": "#bbcabf",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#472a00",
+                        "primary-container": "#10b981",
+                        "primary-fixed-dim": "#4edea3",
+                        "inverse-primary": "#006c49",
+                        "error": "#ffb4ab",
+                        "secondary": "#d0bcff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-container-low": "#171b26",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed": "#23005c",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "surface-variant": "#313540"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        md: "0.375rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "space-lg": "1.5rem",
+                        "margin-mobile": "1.25rem",
+                        "gutter": "1.5rem",
+                        "margin": "3rem",
+                        "space-xl": "2.5rem",
+                        "space-xs": "0.25rem",
+                        "gutter-mobile": "1rem",
+                        "space-md": "1rem",
+                        "space-sm": "0.5rem"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display": ["Outfit"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Outfit"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Outfit"],
+                        "display-mobile": ["Outfit"]
+                    },
+                    fontSize: {
+                        "body-md": ["15px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "600" }],
+                        "display": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "800" }],
+                        "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "700" }],
+                        "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "700" }],
+                        "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "display-mobile": ["38px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Required CDNs -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/history@5/umd/history.development.js"></script>
+    <script src="https://unpkg.com/react-router@6.3.0/umd/react-router.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body
+    class="bg-surface font-body-md text-body-md text-on-surface min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        const { MemoryRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
+
+        // Header Component
+        function NavigationHeader() {
+            const location = useLocation();
+            const currentPath = location.pathname;
+
+            const navLinks = [
+                { path: "/", label: "Home & Experiences" },
+                { path: "/corporate", label: "Corporate & Office Quests" },
+                { path: "/pub-quizzes", label: "Pub Quizzes & 'Not a Quiz'" },
+                { path: "/storytelling", label: "Storytelling & Founder" },
+            ];
+
+            return (
+                <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high/40">
+                    <div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-space-md">
+                        <div class="flex items-center gap-space-md">
+                            <Link to="/" class="flex items-center gap-space-sm group">
+                                <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary shadow-[0_0_16px_rgba(78,222,163,0.2)] group-hover:shadow-[0_0_24px_rgba(78,222,163,0.45)] transition-all">
+                                    <span class="material-symbols-outlined text-[24px]">deployed_code</span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none group-hover:text-primary transition-colors">
+                                        MindTrails
+                                    </span>
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden sm:block">
+                                        Turning Knowledge into Adventure
+                                    </span>
+                                </div>
+                            </Link>
+                        </div>
+
+                        <nav class="hidden xl:flex items-center gap-space-sm">
+                            {navLinks.map((item) => {
+                                const isActive = currentPath === item.path;
+                                return (
+                                    <Link
+                                        key={item.path}
+                                        to={item.path}
+                                        class={`font-label-lg text-label-lg px-space-md py-space-sm rounded-lg transition-colors ${isActive
+                                                ? "bg-primary-container text-on-primary font-bold shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                                                : "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"
+                                            }`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
+                        </nav>
+
+                        <div class="flex items-center gap-space-md">
+                            <div class="hidden md:flex flex-col items-end">
+                                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Direct Inquiries</span>
+                                <a class="font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors" href="tel:538203896">
+                                    Call 538-203-896
+                                </a>
+                            </div>
+                            <Link
+                                to="/booking"
+                                class="px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_0_20px_rgba(16,185,129,0.35)] hover:shadow-[0_0_28px_rgba(16,185,129,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center"
+                            >
+                                <span class="whitespace-nowrap">Book an Experience</span>
+                            </Link>
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            );
+        }
+
+        // Shared Footer Component
+        function Footer() {
+            return (
+                <footer class="w-full bg-surface-container-lowest text-on-surface shadow-[0_-1px_12px_rgba(0,0,0,0.2)] border-t border-surface-container-high/40">
+                    <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-space-xl pb-space-lg">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter mb-space-xl">
+                            <div class="lg:col-span-4 flex flex-col gap-space-md">
+                                <div class="flex items-center gap-space-sm">
+                                    <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary shadow-[0_0_12px_rgba(78,222,163,0.3)]">
+                                        <span class="material-symbols-outlined text-[20px]">deployed_code</span>
+                                    </div>
+                                    <span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">MindTrails</span>
+                                </div>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+                                    Crafting high-octane mobile escape rooms, corporate intelligence missions, and narrative mystery experiences that turn team knowledge into adrenaline-fueled victory.
+                                </p>
+                                <div class="inline-flex items-center gap-space-sm px-space-md py-space-xs rounded-full bg-surface-container-high w-fit">
+                                    <span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+                                    <span class="font-label-sm text-label-sm text-on-surface">500+ Immersive Missions Delivered</span>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-3 flex flex-col gap-space-sm">
+                                <span class="font-label-md text-label-md uppercase text-primary tracking-wider">Featured Adventures</span>
+                                <ul class="flex flex-col gap-space-xs">
+                                    <li><Link to="/corporate" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">The Corporate Heist: Vault 9</Link></li>
+                                    <li><Link to="/pub-quizzes" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">This Is Not A Quiz: Live Mystery</Link></li>
+                                    <li><Link to="/" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Mobile Cipher Box Escapes</Link></li>
+                                    <li><Link to="/corporate" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Urban Spy Trail: City Outpost</Link></li>
+                                    <li><Link to="/storytelling" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Narrative Decoders Workshop</Link></li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-2 flex flex-col gap-space-sm">
+                                <span class="font-label-md text-label-md uppercase text-secondary tracking-wider">Navigation</span>
+                                <ul class="flex flex-col gap-space-xs">
+                                    <li><Link to="/" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">All Experiences</Link></li>
+                                    <li><Link to="/corporate" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Team Building</Link></li>
+                                    <li><Link to="/pub-quizzes" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Pub Venues</Link></li>
+                                    <li><Link to="/storytelling" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Founder's Journal</Link></li>
+                                    <li><Link to="/booking" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Request Proposal</Link></li>
+                                </ul>
+                            </div>
+
+                            <div class="lg:col-span-3 flex flex-col gap-space-sm">
+                                <span class="font-label-md text-label-md uppercase text-tertiary tracking-wider">Command Center</span>
+                                <div class="flex flex-col gap-space-xs">
+                                    <div class="flex items-center gap-space-sm text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-[18px] text-primary">call</span>
+                                        <a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" href="tel:538203896">+48 538 203 896</a>
+                                    </div>
+                                    <div class="flex items-center gap-space-sm text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-[18px] text-secondary">mail</span>
+                                        <a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" href="mailto:missions@mindtrails.io">missions@mindtrails.io</a>
+                                    </div>
+                                    <div class="flex items-center gap-space-sm text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-[18px] text-tertiary">chat</span>
+                                        <a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" href="https://wa.me/538203896" target="_blank" rel="noreferrer">WhatsApp Instant Dispatch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant border-t border-surface-container-high/40">
+                            <p class="font-body-sm text-body-sm">© 2025 MindTrails. Turning Knowledge into Adventure. All rights reserved.</p>
+                            <div class="flex items-center gap-space-md font-label-sm text-label-sm">
+                                <a class="hover:text-on-surface transition-colors" href="#">Confidentiality &amp; Terms</a>
+                                <a class="hover:text-on-surface transition-colors" href="#">Event Safety Protocol</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            );
+        }
+
+        // SCREEN 1: Home & Experiences Overview
+        function HomeScreen() {
+            const [submitted, setSubmitted] = useState(false);
+            const navigate = useNavigate();
+
+            return (
+                <div class="flex flex-col w-full">
+                    <div class="relative w-full overflow-hidden">
+                        <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-secondary-container/20 blur-[128px] pointer-events-none"></div>
+                        <div class="absolute top-1/4 -right-32 w-80 h-80 rounded-full bg-primary/10 blur-[120px] pointer-events-none"></div>
+                        <div class="absolute top-3/4 left-1/3 w-[500px] h-[500px] rounded-full bg-tertiary-container/10 blur-[140px] pointer-events-none"></div>
+
+                        {/* HERO SECTION */}
+                        <section class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-20 lg:pt-16 lg:pb-28">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+                                <div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+                                    <div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-high border-0 shadow-[0_0_16px_rgba(78,222,163,0.15)]">
+                                        <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                        <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Interactive Storytelling &amp; Mobile Escape Games</span>
+                                    </div>
+                                    <h1 class="font-display text-display text-on-surface tracking-tight leading-[1.08] max-w-2xl">
+                                        Turning Knowledge Into <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed to-secondary">Adventure</span>
+                                    </h1>
+                                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                                        We design tailored content experiences that combine learning and entertainment. Whether it’s a mobile escape room, a custom pub quiz, or a creative writing workshop, our programs deliver knowledge in a way that is engaging, memorable, and impactful.
+                                    </p>
+
+                                    <div class="flex flex-wrap items-center gap-space-md pt-space-xs w-full sm:w-auto">
+                                        <a
+                                            class="px-space-lg py-space-md rounded-xl bg-gradient-to-br from-primary-container to-primary text-on-primary font-label-lg text-label-lg shadow-[0_0_24px_rgba(16,185,129,0.4)] hover:shadow-[0_0_36px_rgba(78,222,163,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-space-xs"
+                                            href="#experiences"
+                                        >
+                                            <span>Explore Our Adventures</span>
+                                            <span class="material-symbols-outlined text-[18px]">explore</span>
+                                        </a>
+                                        <Link
+                                            to="/booking"
+                                            class="px-space-lg py-space-md rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-lg text-label-lg hover:shadow-[0_0_20px_rgba(208,188,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-space-xs"
+                                        >
+                                            <span>Book for Your Team</span>
+                                            <span class="material-symbols-outlined text-secondary text-[18px]">calendar_month</span>
+                                        </Link>
+                                    </div>
+
+                                    <div class="grid grid-cols-3 gap-space-md pt-space-md w-full max-w-md">
+                                        <div class="flex flex-col">
+                                            <span class="font-display text-[28px] leading-tight text-primary font-bold">500+</span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Missions Run</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-display text-[28px] leading-tight text-secondary font-bold">100%</span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tangible Props</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-display text-[28px] leading-tight text-tertiary font-bold">0%</span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Screen Fatigue</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="lg:col-span-5 relative mt-6 lg:mt-0 flex flex-col gap-space-sm">
+                                    <div class="relative rounded-2xl overflow-hidden bg-surface-container shadow-2xl p-space-xs group">
+                                        <div class="relative h-64 sm:h-72 w-full rounded-xl overflow-hidden">
+                                            <img alt="Cognizant team celebrating after cracking the escape quest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1VuOe2AmdPve-yQqAUa4BehPBcd55LHE1puYzHa5bIW4MpijsKuTgTpE_T9Chxn8W_tbUQp_iU0s7FpSkQPP-G8KKmK8gWmcF3s2GFyThmAAlEEnMfEK2MTnblNRMBdPIbV5FrToBBNTBGxN6ivEPEoiK8CoM6cotvACszmNhXd9MgIsaDgfP5Uk8sH2X300BfmS9AWnQLqVv9Uimi1aO91LpKUy6m5d2q57-tPTWbZ4kzN05irDQctOOs" />
+                                            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+                                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest/90 backdrop-blur-md font-label-sm text-label-sm text-primary">
+                                                    <span class="material-symbols-outlined text-[14px]">groups</span> Cognizant Tech Hub Quest
+                                                </span>
+                                                <span class="font-label-sm text-label-sm text-on-surface/80 bg-surface-container-lowest/80 px-2.5 py-1 rounded-full">Victory Achieved</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-space-sm -mt-3">
+                                        <div class="relative rounded-xl overflow-hidden bg-surface-container shadow-xl p-space-xs group hover:-translate-y-1 transition-transform">
+                                            <div class="relative h-36 w-full rounded-lg overflow-hidden">
+                                                <img alt="Winning players unlocking secret treasure box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1ULs5NplrdP3bhEdMzhpN3ovXQsBusjCLmCSV4TfMcIxrHfLUPQe8rS1gbbcOVaWmRk5As9CQCYK5SH5Eiv0OZpD8phoGRQ0XxbTjN5DiSuT4R5J82ig4E81P2_KluBOjQkLP3GFosbry6nsMuiFSVJSe4vBThsnWf6vAGy9TD_ocSfomDOE2DYKyALIHoFjvR_EdexDqsRngQGrR7OQL_EBd9x7BmBSue91aUCL1Fq8R96YAMtR1RnLI0" />
+                                                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent"></div>
+                                                <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[11px] font-label-sm text-on-surface">
+                                                    <span class="material-symbols-outlined text-tertiary text-[14px]">lock_open</span> Lock Unsealed
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="relative rounded-xl overflow-hidden bg-surface-container shadow-xl p-space-xs group hover:-translate-y-1 transition-transform">
+                                            <div class="relative h-36 w-full rounded-lg overflow-hidden">
+                                                <img alt="Ultraviolet light decoding hidden clues on canvas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1WSc3Hnol-gh6JWTUn6Y3Jj8z9wLP7Cb0CXMhBdBJdOGbNd12JzK6oZNawcpIexrE2t1aeQCTTRUsXgaCNz_8l-Ka2o203fVJQBS0yJ-WeDiZkQL1gBeDtYjud8ZqM7SkjmwR3b7_cTZXlKzOOyLA6fPQ5R2m_7v9HuvppVoSqpAXFcYKzvL1OZEjprETlWn3z1u3pkyxMOT1nPyW50JN9ftW8YE2s4OwTfRMC75DFjSjN-CtLed1FAVEg" />
+                                                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent"></div>
+                                                <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[11px] font-label-sm text-secondary">
+                                                    <span class="material-symbols-outlined text-[14px]">lightbulb</span> UV Cipher Clue
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* TRUST STRIP */}
+                        <div class="w-full bg-surface-container-low py-6 shadow-inner">
+                            <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-md">
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="material-symbols-outlined text-primary text-[22px]">verified_user</span>
+                                    <p class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">
+                                        Trusted by leading innovators, universities &amp; enterprise crews
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-8 text-on-surface-variant/70 font-display text-lg tracking-wider">
+                                    <span class="hover:text-primary transition-colors">COGNIZANT</span>
+                                    <span class="text-surface-bright">•</span>
+                                    <span class="hover:text-primary transition-colors">IMPERVA</span>
+                                    <span class="text-surface-bright">•</span>
+                                    <span class="hover:text-primary transition-colors">TECH HUBS</span>
+                                    <span class="text-surface-bright">•</span>
+                                    <span class="hover:text-primary transition-colors">MUSEUMS &amp; UNIVERSITIES</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* BENTO GRID: 5 CORE ADVENTURES */}
+                    <section class="w-full py-20 lg:py-28 bg-surface" id="experiences">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-space-xl">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+                                <div class="flex flex-col gap-space-xs max-w-2xl">
+                                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest flex items-center gap-2">
+                                        <span class="w-6 h-px bg-secondary"></span>
+                                        Curated Mystery Catalog
+                                    </span>
+                                    <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                        5 Distinct Formats. Infinite "Aha!" Moments.
+                                    </h2>
+                                    <p class="font-body-md text-body-md text-on-surface-variant">
+                                        Every quest is hand-crafted with tactile props, bespoke ciphers, and dynamic storylines that adapt directly to your space.
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-space-sm">
+                                    <span class="font-label-sm text-label-sm px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface">
+                                        Mobile Delivery to Any Location
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
+                                {/* CARD 1: Corporate Office Quests */}
+                                <div class="lg:col-span-7 rounded-2xl bg-surface-container p-6 lg:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all shadow-xl">
+                                    <div class="flex flex-col gap-space-md">
+                                        <div class="flex items-center justify-between">
+                                            <span class="px-space-md py-space-xs rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[16px]">apartment</span>
+                                                Corporate Team Building
+                                            </span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">60-90 Min • 10-150 Players</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+                                                Our Adventure, Your Office
+                                            </h3>
+                                            <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+                                                Tired of the same old activities? We deliver a story-driven experience with clues, locks, and big "aha!" moments—boost communication, problem-solving, and trust. It’s more than boxes and riddles: it’s an unexpected adventure you’ll share with your colleagues.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 rounded-xl overflow-hidden relative h-60 w-full">
+                                        <img alt="Colleagues opening wooden lockboxes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1VtGMUk2j_Iji9HOX39NUDP1NdRB9F0zUubnaS2YY68lW_GlQgJFrp7qQD81w-_JqDK2sgf-2l2X422Q0_dHLppo3iN-dusGrDKIhoXvJUXmxVYbrQXjJwZhZon1Pw6Ct1BO-M6VQpE7cnRRpni-HKy9fNSwRmvi4tuqSkEZy1rMLo-zv5u0VPnMrFEZy2oiKEXR2d-qp72QGaB8wwKNVAryZtVBJRlroZpRyp6T2QN7_-8e0vCbMlPVA" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+                                        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+                                            <span class="bg-surface-container/90 px-3 py-1 rounded-md backdrop-blur">Custom corporate branding available</span>
+                                            <Link class="text-primary hover:underline flex items-center gap-1 font-semibold" to="/corporate">
+                                                Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* CARD 2: Home Adventure */}
+                                <div class="lg:col-span-5 rounded-2xl bg-surface-container p-6 lg:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all shadow-xl">
+                                    <div class="flex flex-col gap-space-md">
+                                        <div class="flex items-center justify-between">
+                                            <span class="px-space-md py-space-xs rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[16px]">cottage</span>
+                                                Private Parties &amp; Families
+                                            </span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">45-75 Min</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-secondary transition-colors">
+                                                Your Home Adventure
+                                            </h3>
+                                            <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+                                                Turn your living room or backyard into a mini-adventure packed with clues, twists, and laughter. Perfect for birthdays, family nights, and house parties. Pure fun with zero hassle.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 grid grid-cols-2 gap-space-sm h-60">
+                                        <div class="rounded-xl overflow-hidden h-full">
+                                            <img alt="Living room escape game props" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1VPB4jjOhHho9mmT841eYwhZ1onw9_hxTKkaqYz4hWNvAfYKEWc_bCWQgzMGNqk0bhE3BgAn09RtmgwZF5w4IdM9J6lL4m9xHMMbPlCHOB6hgHI07_zdYV90CQhnGizDIjxJBbmwfpwQurl50Lmn6ATo3wRBur4YjQR6wKKcnGwVqdpqWuPev6Vkz_TkKcLFmjPO-Lf_MNcMuN5LMHovKcRgWmfTBkQWAPNqKyma2AJbCJy_JBVXdvYWlY" />
+                                        </div>
+                                        <div class="rounded-xl overflow-hidden h-full">
+                                            <img alt="Family solving quest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1VyeJr9NHAxnugkQ5p1DBk9YUrMX3q6bFwOpS8ximRczs_NvA-TUOXBy-wr2vS1iPbLSsmI_25HR6Ri8THGjglBSMRDAvsUueYOWvJXX5WazPKB9J_7xXJk8L3HK65frKmc2CZoSgV5g3KuPLW2qUfQH38jRwlDVeMKkZRLMGTV_V9kHSFqWRbzQAf6d041FKr06DW5Fqr1lfDHMvOLjygwIrIKM5zkXuFuQAj_cq0xBXVf1q16ULI37g" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* CARD 3: Pub Quizzes */}
+                                <div class="lg:col-span-4 rounded-2xl bg-surface-container p-6 lg:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all shadow-xl">
+                                    <div class="flex flex-col gap-space-md">
+                                        <div class="flex items-center justify-between">
+                                            <span class="px-space-md py-space-xs rounded-full bg-tertiary/15 text-tertiary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[16px]">sports_bar</span>
+                                                Pub Quizzes &amp; Trivia
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors">
+                                                This is Not a Quiz 🙂
+                                            </h3>
+                                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+                                                Forget those stuffy trivia nights and pub quizzes. Challenge your knowledge in surprising ways with bonus questions that flip the standard format on its head!
+                                            </p>
+                                        </div>
+                                        <div class="rounded-xl bg-surface-container-high p-space-sm text-on-surface-variant flex flex-col gap-1.5">
+                                            <span class="font-label-sm text-label-sm text-tertiary uppercase font-bold">What won't be part of it?</span>
+                                            <div class="flex flex-col gap-1 font-body-sm text-body-sm">
+                                                <span class="text-on-surface">✓ No boring standard multiple choice</span>
+                                                <span class="text-on-surface">✓ No dry IQ tests</span>
+                                                <span class="text-on-surface font-semibold text-primary">✓ 100% dynamic teamwork &amp; surprise layers</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 grid grid-cols-2 gap-space-xs h-36">
+                                        <div class="rounded-lg overflow-hidden">
+                                            <img alt="Pop art creative styling" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WHzTCZ_apz-G2NuT0LTmHws4p-Mg1Xm2jox_cw4nQ9OwCmYWuh5uddRZvxNBovx1w8mwnbGN5KANsP8zp4uTcqGKK2zCfnlQvo3C-AnflG4unvwchvDFser8jdiYF4UI7Pfbfk7ncp7L6QgmD936ViU7EkktQ7uW6gN1Ll396dsuhcNNyERJLOAni-35oWtMzp4t6BVJMxXcuUejnVvjr9tm1lXRWjzIVIoRrTTNhxwes1lES8i0604rs" />
+                                        </div>
+                                        <div class="rounded-lg overflow-hidden">
+                                            <img alt="Neon trivia signage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1Wzw3lW06AjlZwEIIJechHWPJ2nqF60Xh7TnY9aMXHwr3yMTv7B7oQj1759VT5qUp0sYGXRotv2Mtb7rDgKVj_KIDngjkLzp5p8fItXCZn0essU_RV60yYQ1oDaTLfXjGtt9PMjmEV5cqbVg62Zp3XBG8BG5u_ZZAV_ZUTrfHwDPFK9dTFWnIoPf2tAgZSg_F_XqrQT7NH7UDJANRw-XQAjyhdqtsC9bbvZ0UIegCdjG8_AAO_Dzk-6xnQ" />
+                                        </div>
+                                    </div>
+                                    <div class="pt-4 flex justify-between items-center">
+                                        <Link to="/pub-quizzes" class="text-tertiary text-label-sm hover:underline flex items-center gap-1 font-semibold">
+                                            Explore Format <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* CARD 4: Custom Cultural Quests */}
+                                <div class="lg:col-span-4 rounded-2xl bg-surface-container p-6 lg:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all shadow-xl">
+                                    <div class="flex flex-col gap-space-md">
+                                        <div class="flex items-center justify-between">
+                                            <span class="px-space-md py-space-xs rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[16px]">account_balance</span>
+                                                Cultural Quests
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">
+                                                Choose Your Adventure
+                                            </h3>
+                                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+                                                Transform your organization’s story or historical collection into an unforgettable escape room. For universities, museums, schools, and cultural heritage sites.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 grid grid-cols-2 gap-space-xs h-36">
+                                        <div class="rounded-lg overflow-hidden">
+                                            <img alt="Giant chess outdoor clue" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XYvMwv7BHcg-PaBIOX23vG2Hxr-1nJFzRUJLN9yrpvqfjt8Pia4XL90PRhGagthhHtZQnIumaLdtssYG-Vi_E6TQSfU_lERMGwiddNSXtsTGtYvTzcUD7WeURFnIvHqlfTZpg5CgZRjfRHtnr586n2ENYFN6D1Sv3THwxRpHRiIhg-XoqRh1HuaXhAL4ll0mBn9gA9ZpMIjo5_ybOnpC2kxP7DRsGLrytqfQSkP8rqKRRqbfYvp_s_ND0" />
+                                        </div>
+                                        <div class="rounded-lg overflow-hidden">
+                                            <img alt="Manuscript clue analysis" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VpEqD14zHfALQLC_vTXtNKFCFm1UEyTiznraHrSgIpuHibssP7XGtmUM_VxwAIk3sjOrAbE8tzEDWTbTg5MVDhIVDxsHX3h-e0yFtMmQMhhNMNW6SHRhOnppOF9fdhYVDYeRGF7Hvvqz3wU4ci85msQhRsvxf0DneXLnu3mFPWsazCAB3fkVWmPU9PDjAWXrCzkG4aykfTG0OHe9hvmo4BJ7FXV5RR6soMY6OR8PudSJ9IzxPQrc7fE4U" />
+                                        </div>
+                                    </div>
+                                    <div class="pt-4 flex justify-between items-center">
+                                        <span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[16px]">palette</span> Custom artifact design
+                                        </span>
+                                        <Link to="/storytelling" class="text-primary text-label-sm hover:underline">Read Details →</Link>
+                                    </div>
+                                </div>
+
+                                {/* CARD 5: Creative Writing Workshops */}
+                                <div class="lg:col-span-4 rounded-2xl bg-surface-container p-6 lg:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all shadow-xl">
+                                    <div class="flex flex-col gap-space-md">
+                                        <div class="flex items-center justify-between">
+                                            <span class="px-space-md py-space-xs rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[16px]">edit_note</span>
+                                                Creative Writing
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors">
+                                                Stranger Than Fiction
+                                            </h3>
+                                            <p class="font-body-sm text-body-sm italic text-on-surface mt-2 font-medium">
+                                                “From fleeting thoughts to finished stories – your journey as a writer begins now.”
+                                            </p>
+                                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+                                                A hands-on workshop guiding all experience levels through story architecture, character creation, and distinct literary voice.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 flex flex-col gap-2 rounded-xl bg-surface-container-high p-space-sm">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface">Story Structure &amp; Arc</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface">Tactile Character Prompts</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+                                            <span class="font-body-sm text-body-sm text-on-surface">Targeted Constructive Feedback</span>
+                                        </div>
+                                    </div>
+                                    <div class="pt-4 flex items-center justify-between">
+                                        <span class="font-label-sm text-label-sm text-on-surface-variant">Beginners &amp; Pros</span>
+                                        <Link class="font-label-sm text-label-sm text-secondary hover:underline" to="/storytelling">Join Next Cohort →</Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* REAL EVENT CHRONICLES */}
+                    <section class="w-full py-20 bg-surface-container-low">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-space-lg">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+                                <div class="flex flex-col gap-space-xs max-w-xl">
+                                    <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest flex items-center gap-2">
+                                        <span class="w-6 h-px bg-primary"></span>
+                                        Real Event Chronicles
+                                    </span>
+                                    <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                        Tactile Intelligence in Action
+                                    </h2>
+                                    <p class="font-body-md text-body-md text-on-surface-variant">
+                                        No virtual simulations or computer screens. We bring heavy wooden riddle boxes, UV decoders, cipher rings, and authentic physical components straight to your venue.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap gap-space-sm">
+                                    <div class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-on-surface flex items-center gap-2 font-label-sm text-label-sm">
+                                        <span class="material-symbols-outlined text-primary text-[16px]">bolt</span>
+                                        Zero Screen Fatigue
+                                    </div>
+                                    <div class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-on-surface flex items-center gap-2 font-label-sm text-label-sm">
+                                        <span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+                                        Tangible Locks &amp; Props
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-stretch">
+                                <div class="md:col-span-7 rounded-2xl overflow-hidden bg-surface-container relative group shadow-xl h-96 lg:h-[460px]">
+                                    <img alt="Collaborative corporate group" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1W-5aoNBNCOrWF3U0HEmo2C1QkjdrBR_neJS28Ehjsa1XPC69HNe6vr5dxC_pE1WrXP-XUUxqHoy_0MHBA1t5CR8orNDVMWRF3wVdmH0Bkyg743nxOg1KgBnPQWSNfAaXtSr2mdQj4QSVsrtOKkrl3CL6-7qL97U0D2Or5JEXaHNtTf6IRXMlEHsof2d0Gxr7p79_99jNPijgdmAl4B_e1XUA5fdJ0eaRvH7fPVEVng17kg2JEc1nQseWI" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 right-6 flex flex-col gap-1">
+                                        <span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Custom Clues Built For Your Team</span>
+                                        <p class="font-headline-sm text-headline-sm text-on-surface">The Corporate Heist Scenario: Cracking the Master Safe</p>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Colleagues deciphering cipher notes and collaborating under ticking time pressure.</p>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-5 flex flex-col gap-gutter h-full">
+                                    <div class="rounded-2xl overflow-hidden bg-surface-container relative group shadow-xl h-44 lg:h-[218px]">
+                                        <img alt="Participant examining mechanical puzzle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1XbPM2ETvNi66-2WyiVfkAQo4AHRKCcm2i6WeL0Mj5UQdE6izVypwUhE5cfZOEv9KotFJdHJ1xM28aAHHVrPs3vFgP23Ejd4zPpnuWza6awN3oKmhwbUylRXnm1fG1bjyysULRXkGH7UUvbjZRPqU87ecg5elOhTye4u1b3eYtry0y1v9ES3yU7rwzOjQUVdY674EfiqEMzhmVlI0zg4XdUkV38w8PXO9E8aqUj3-HFMX2ZEgD_B8EVEfA" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+                                        <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                                            <span class="font-label-sm text-label-sm text-on-surface font-semibold">Hands-on tangible props &amp; mysterious boxes</span>
+                                            <span class="material-symbols-outlined text-tertiary text-[20px]">extension</span>
+                                        </div>
+                                    </div>
+                                    <div class="rounded-2xl overflow-hidden bg-surface-container relative group shadow-xl h-44 lg:h-[218px]">
+                                        <img alt="Team celebrating victory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1ULs5NplrdP3bhEdMzhpN3ovXQsBusjCLmCSV4TfMcIxrHfLUPQe8rS1gbbcOVaWmRk5As9CQCYK5SH5Eiv0OZpD8phoGRQ0XxbTjN5DiSuT4R5J82ig4E81P2_KluBOjQkLP3GFosbry6nsMuiFSVJSe4vBThsnWf6vAGy9TD_ocSfomDOE2DYKyALIHoFjvR_EdexDqsRngQGrR7OQL_EBd9x7BmBSue91aUCL1Fq8R96YAMtR1RnLI0" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+                                        <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                                            <span class="font-label-sm text-label-sm text-on-surface font-semibold">The big victorious revelation</span>
+                                            <span class="material-symbols-outlined text-primary text-[20px]">celebration</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* FOUNDER SNAPSHOT: DANIEL ABISRUR */}
+                    <section class="w-full py-20 lg:py-28 bg-surface">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                            <div class="rounded-3xl bg-surface-container p-8 lg:p-14 shadow-2xl relative overflow-hidden">
+                                <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-secondary-container/15 blur-[100px] pointer-events-none"></div>
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+                                    <div class="lg:col-span-4 flex flex-col items-center">
+                                        <div class="relative w-64 h-64 lg:w-72 lg:h-72 rounded-2xl overflow-hidden shadow-2xl p-space-xs bg-surface-container-high group">
+                                            <img alt="Daniel Abisrur" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1WBO35GFVdecWYfVbIbWc-jZ414gfQIsGQPRAbodOupi04idsKHeDY71EVxrkptvJ7eKEZfjUJ1byCFyXjvYFmgwaR5FWSgSpE7a880YdnzAMOXLDHlP_MjINA1HDqpo1WoZxGq51obPyxo0iHgjFIXeFTrDOJec6VIqJAcIlonVH2S4ZGRlrzskSKifI88qp9nwQQJm176vMDm6Nrg9k4NGwQGYHgCUMbIessEmMQJl-ZGVFBwm_a-tnw" />
+                                            <div class="absolute bottom-3 left-3 right-3 py-1.5 px-3 rounded-lg bg-surface-container-lowest/90 backdrop-blur text-center">
+                                                <span class="font-label-sm text-label-sm text-primary font-bold">Daniel Abisrur</span>
+                                                <span class="block text-[11px] text-on-surface-variant">Founder &amp; Content Designer</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-8 flex flex-col gap-space-md">
+                                        <div class="flex items-center gap-space-xs">
+                                            <span class="material-symbols-outlined text-secondary text-[20px]">auto_stories</span>
+                                            <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Architect of MindTrails</span>
+                                        </div>
+                                        <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                            Designing Adventures Where Minds Connect
+                                        </h2>
+                                        <div class="flex flex-col gap-space-sm font-body-md text-body-md text-on-surface-variant">
+                                            <p>
+                                                Daniel Abisrur is an educator, content designer, and TED speaker coach who served as lead writer for Questomania’s mobile escape rooms. With a degree in Literature and Education (graduated with honors), he specializes in adventure-based learning, even constructing a mobile escape experience inspired by George Orwell’s <em>1984</em>.
+                                            </p>
+                                            <p>
+                                                His interactive methodology transforms abstract training topics and social gatherings into vibrant, story-driven challenges.
+                                            </p>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+                                            <div class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-primary text-[16px]">mic</span> TED Speaker Coach
+                                            </div>
+                                            <div class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-secondary text-[16px]">school</span> Literature &amp; Education Honors
+                                            </div>
+                                            <div class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-tertiary text-[16px]">menu_book</span> Orwellian &amp; Historical Escape Creator
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* QUICK DIRECT CONTACT FORM */}
+                    <section class="w-full py-20 bg-surface-container-lowest" id="booking">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                            <div class="rounded-3xl bg-surface-container-low p-8 lg:p-14 shadow-2xl relative">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+                                    <div class="lg:col-span-5 flex flex-col justify-between gap-space-lg">
+                                        <div class="flex flex-col gap-space-sm">
+                                            <div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-primary/10 text-primary w-fit font-label-sm text-label-sm uppercase tracking-wider">
+                                                <span class="material-symbols-outlined text-[16px]">send</span> Direct Dispatch &amp; Inquiries
+                                            </div>
+                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                                Ready to Bring the Adventure to You?
+                                            </h2>
+                                            <p class="font-body-md text-body-md text-on-surface-variant">
+                                                Tell us about your team, preferred date, and location. We handle the full setup, game master facilitation, and immersive staging.
+                                            </p>
+                                        </div>
+                                        <div class="flex flex-col gap-space-sm">
+                                            <div class="p-space-md rounded-xl bg-surface-container flex items-center gap-space-md">
+                                                <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                                                    <span class="material-symbols-outlined text-[24px]">call</span>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Call or WhatsApp</span>
+                                                    <a class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors" href="tel:538203896">538-203-896</a>
+                                                </div>
+                                            </div>
+                                            <div class="p-space-md rounded-xl bg-surface-container flex items-center gap-space-md">
+                                                <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                                                    <span class="material-symbols-outlined text-[24px]">mail</span>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Direct Email</span>
+                                                    <a class="font-headline-sm text-headline-sm text-on-surface hover:text-secondary transition-colors" href="mailto:missions@mindtrails.io">missions@mindtrails.io</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="lg:col-span-7 bg-surface-container rounded-2xl p-6 lg:p-8 shadow-xl">
+                                        <form
+                                            class="flex flex-col gap-space-md"
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                setSubmitted(true);
+                                            }}
+                                        >
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                                <div class="flex flex-col gap-1.5">
+                                                    <label class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Full Name</label>
+                                                    <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" placeholder="Alex Mercer" required type="text" />
+                                                </div>
+                                                <div class="flex flex-col gap-1.5">
+                                                    <label class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Work Email</label>
+                                                    <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" placeholder="alex@company.com" required type="email" />
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                                <div class="flex flex-col gap-1.5">
+                                                    <label class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Phone Number</label>
+                                                    <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" placeholder="538 203 896" required type="tel" />
+                                                </div>
+                                                <div class="flex flex-col gap-1.5">
+                                                    <label class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Experience Type</label>
+                                                    <select class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md">
+                                                        <option value="corporate">Our Adventure, Your Office (Corporate)</option>
+                                                        <option value="home">Your Home Adventure (Private / Family)</option>
+                                                        <option value="quiz">This is Not a Quiz (Pub Trivia Reimagined)</option>
+                                                        <option value="cultural">Choose Your Adventure (Museum / Custom)</option>
+                                                        <option value="writing">Stranger Than Fiction (Writing Workshop)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-1.5">
+                                                <label class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Estimated Group Size &amp; Location</label>
+                                                <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" placeholder="e.g. 35 people at our downtown office" type="text" />
+                                            </div>
+                                            <div class="flex flex-col gap-1.5">
+                                                <label class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Drop Us a Line</label>
+                                                <textarea class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md resize-none" placeholder="Tell us about special themes, timeline requirements, or custom riddle requests..." rows="3"></textarea>
+                                            </div>
+                                            <button class="w-full py-4 rounded-xl bg-gradient-to-r from-primary-container to-primary text-on-primary font-label-lg text-label-lg shadow-[0_0_24px_rgba(16,185,129,0.4)] hover:shadow-[0_0_36px_rgba(78,222,163,0.6)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2" type="submit">
+                                                <span>Book Your Experience</span>
+                                                <span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                                            </button>
+
+                                            {submitted && (
+                                                <div class="p-space-md rounded-xl bg-primary/20 text-primary font-body-sm text-body-sm flex items-center gap-2">
+                                                    <span class="material-symbols-outlined">check_circle</span>
+                                                    Thank you! Your dispatch request has been received. Daniel and team will reach out promptly.
+                                                </div>
+                                            )}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            );
+        }
+
+        // SCREEN 2: Corporate & Office Quests
+        function CorporateScreen() {
+            const [teamSize, setTeamSize] = useState(35);
+            const [proposalSent, setProposalSent] = useState(false);
+            const squads = Math.ceil(teamSize / 6);
+            const perSquad = Math.round(teamSize / squads);
+
+            return (
+                <div class="flex flex-col w-full">
+                    <section class="relative w-full overflow-hidden bg-surface-container-lowest">
+                        <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary-container/15 blur-[120px] pointer-events-none"></div>
+                        <div class="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-secondary-container/20 blur-[130px] pointer-events-none"></div>
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-20 relative z-10">
+                            <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                                <div class="inline-flex items-center gap-space-sm px-4 py-1.5 rounded-full bg-surface-container-high/70 backdrop-blur-md shadow-sm">
+                                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">🏢 Team Building Reimagined</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+                                    <span class="material-symbols-outlined text-primary text-[18px]">lock_open</span>
+                                    <span>Zero travel required • We set up at your premises</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+                                <div class="lg:col-span-7 flex flex-col gap-6">
+                                    <div class="flex flex-col gap-3">
+                                        <span class="font-label-lg text-label-lg text-secondary tracking-widest uppercase">Corporate Intelligence Quests</span>
+                                        <h1 class="font-display text-display text-on-surface tracking-tight leading-[1.08]">
+                                            Our Adventure, <br />
+                                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed-dim to-tertiary">
+                                                Your Office.
+                                            </span>
+                                        </h1>
+                                    </div>
+                                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                                        Tired of the same old corporate team-building activities? We bring an immersive, story-driven escape room directly to your workplace, conference room, or company retreat venue.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                        <div class="p-4 rounded-xl bg-surface-container/70 backdrop-blur-md shadow-sm flex flex-col gap-2">
+                                            <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                                                <span class="material-symbols-outlined text-[20px]">cases</span>
+                                            </div>
+                                            <span class="font-headline-sm text-headline-sm text-on-surface text-[17px] leading-tight">100% Mobile &amp; Turnkey</span>
+                                            <p class="font-body-sm text-body-sm text-on-surface-variant">We bring cipher boxes, UV torches, iron locks, &amp; physical props.</p>
+                                        </div>
+                                        <div class="p-4 rounded-xl bg-surface-container/70 backdrop-blur-md shadow-sm flex flex-col gap-2">
+                                            <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+                                                <span class="material-symbols-outlined text-[20px]">psychology</span>
+                                            </div>
+                                            <span class="font-headline-sm text-headline-sm text-on-surface text-[17px] leading-tight">Custom Company Clues</span>
+                                            <p class="font-body-sm text-body-sm text-on-surface-variant">Personalized around your product roadmap, culture, &amp; inside lore.</p>
+                                        </div>
+                                        <div class="p-4 rounded-xl bg-surface-container/70 backdrop-blur-md shadow-sm flex flex-col gap-2">
+                                            <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+                                                <span class="material-symbols-outlined text-[20px]">groups</span>
+                                            </div>
+                                            <span class="font-headline-sm text-headline-sm text-on-surface text-[17px] leading-tight">Real Cross-Trust</span>
+                                            <p class="font-body-sm text-body-sm text-on-surface-variant">Forges tactical synergy, communication, and sheer collaborative joy.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-wrap items-center gap-space-md pt-4">
+                                        <a class="px-7 py-3.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2" href="#quote-calculator">
+                                            <span>Get a Custom Corporate Quote</span>
+                                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                        </a>
+                                        <a class="px-6 py-3.5 rounded-lg bg-surface-container-high/80 text-on-surface hover:bg-surface-container-highest font-label-lg text-label-lg transition-all flex items-center gap-2" href="#showcase">
+                                            <span class="material-symbols-outlined text-[18px] text-secondary">play_circle</span>
+                                            <span>See Live Office Cases</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="lg:col-span-5 relative mt-6 lg:mt-0">
+                                    <div class="relative w-full rounded-2xl overflow-hidden bg-surface-container shadow-2xl">
+                                        <img alt="Cognizant corporate team celebrating" class="w-full h-80 sm:h-96 object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VuOe2AmdPve-yQqAUa4BehPBcd55LHE1puYzHa5bIW4MpijsKuTgTpE_T9Chxn8W_tbUQp_iU0s7FpSkQPP-G8KKmK8gWmcF3s2GFyThmAAlEEnMfEK2MTnblNRMBdPIbV5FrToBBNTBGxN6ivEPEoiK8CoM6cotvACszmNhXd9MgIsaDgfP5Uk8sH2X300BfmS9AWnQLqVv9Uimi1aO91LpKUy6m5d2q57-tPTWbZ4kzN05irDQctOOs" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/30 to-transparent"></div>
+                                        <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-surface-container-high/90 backdrop-blur-xl shadow-lg flex items-center justify-between gap-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                                                    <span class="material-symbols-outlined text-[22px]">verified</span>
+                                                </div>
+                                                <div>
+                                                    <div class="font-headline-sm text-headline-sm text-on-surface text-[15px] leading-snug">Cognizant Tech Solutions</div>
+                                                    <div class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Cracked Vault 9 in 54m 12s • 48 Players</div>
+                                                </div>
+                                            </div>
+                                            <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">MISSION ACCOMPLISHED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Metric & Trust Strip */}
+                    <section class="w-full bg-surface-container-low py-8 shadow-inner">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="flex flex-col">
+                                <span class="font-display text-[32px] sm:text-display text-primary leading-none">100+</span>
+                                <span class="font-label-lg text-label-lg text-on-surface mt-1">Offsites Delivered</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">From startups to Fortune 500 tech</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-display text-[32px] sm:text-display text-secondary leading-none">10-150+</span>
+                                <span class="font-label-lg text-label-lg text-on-surface mt-1">Player Capacity</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Concurrent multi-squad gameplay</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-display text-[32px] sm:text-display text-tertiary leading-none">99.4%</span>
+                                <span class="font-label-lg text-label-lg text-on-surface mt-1">Team Approval Rating</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Measured across post-game surveys</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-display text-[32px] sm:text-display text-primary-fixed leading-none">0 Miles</span>
+                                <span class="font-label-lg text-label-lg text-on-surface mt-1">Commute For Your Staff</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Hosted inside your conference room</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Real Cases Section */}
+                    <section class="w-full bg-surface py-20" id="showcase">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-12">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                                <div class="flex flex-col gap-2 max-w-2xl">
+                                    <span class="font-label-lg text-label-lg text-primary uppercase tracking-wider">Battle-Tested Operations</span>
+                                    <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Real Office Quests &amp; Authentic Team Wins</h2>
+                                    <p class="font-body-md text-body-md text-on-surface-variant">
+                                        No cheesy icebreakers or awkward roll-calls. See how actual teams turn boardroom tables into adrenaline-fueled cipher workstations.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-surface-container-high/80 max-w-sm backdrop-blur-md shadow-sm">
+                                    <p class="font-body-sm text-body-sm text-tertiary italic">
+                                        “It’s more than boxes and riddles: it’s an unexpected adventure you’ll share with your colleagues.”
+                                    </p>
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant block mt-2">— MindTrails Mission Principle</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                                <div class="md:col-span-7 group rounded-2xl overflow-hidden bg-surface-container flex flex-col shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                                    <div class="relative w-full h-72 sm:h-84 overflow-hidden">
+                                        <img alt="Corporate team with wooden puzzle trunks" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1VtGMUk2j_Iji9HOX39NUDP1NdRB9F0zUubnaS2YY68lW_GlQgJFrp7qQD81w-_JqDK2sgf-2l2X422Q0_dHLppo3iN-dusGrDKIhoXvJUXmxVYbrQXjJwZhZon1Pw6Ct1BO-M6VQpE7cnRRpni-HKy9fNSwRmvi4tuqSkEZy1rMLo-zv5u0VPnMrFEZy2oiKEXR2d-qp72QGaB8wwKNVAryZtVBJRlroZpRyp6T2QN7_-8e0vCbMlPVA" />
+                                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md font-label-sm text-label-sm text-secondary">
+                                            Open Space Transformation
+                                        </div>
+                                    </div>
+                                    <div class="p-6 flex flex-col gap-3">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-headline-sm text-headline-sm text-on-surface">The Open-Plan Infiltration Challenge</span>
+                                            <span class="font-label-md text-label-md text-primary">34 Participants</span>
+                                        </div>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">
+                                            Engineers and product designers cracked custom cipher locks, decrypted coordinates using tactical blue laser pointers, and recovered confidential prototype plans.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-5 group rounded-2xl overflow-hidden bg-surface-container flex flex-col shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                                    <div class="relative w-full h-72 sm:h-84 overflow-hidden">
+                                        <img alt="Teamwork solving card decipher challenge" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1W-5aoNBNCOrWF3U0HEmo2C1QkjdrBR_neJS28Ehjsa1XPC69HNe6vr5dxC_pE1WrXP-XUUxqHoy_0MHBA1t5CR8orNDVMWRF3wVdmH0Bkyg743nxOg1KgBnPQWSNfAaXtSr2mdQj4QSVsrtOKkrl3CL6-7qL97U0D2Or5JEXaHNtTf6IRXMlEHsof2d0Gxr7p79_99jNPijgdmAl4B_e1XUA5fdJ0eaRvH7fPVEVng17kg2JEc1nQseWI" />
+                                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md font-label-sm text-label-sm text-tertiary">
+                                            Cognitive Speed Trial
+                                        </div>
+                                    </div>
+                                    <div class="p-6 flex flex-col gap-3">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-headline-sm text-headline-sm text-on-surface">High-Stakes Heist Mechanics</span>
+                                            <span class="font-label-md text-label-md text-tertiary">4-6 Per Table</span>
+                                        </div>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">
+                                            Combining tactile poker card ciphers, hidden UV clues, and multi-tier dials that require simultaneous team hand-offs to unlock before the timer expires.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Turnkey Calculator Section */}
+                    <section class="w-full bg-surface-container-lowest py-20 relative overflow-hidden" id="quote-calculator">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+                                <div class="lg:col-span-5 flex flex-col gap-8">
+                                    <div class="flex flex-col gap-3">
+                                        <span class="font-label-lg text-label-lg text-primary uppercase tracking-wider">Fast Turnaround Quote</span>
+                                        <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Configure Your Team Quest</h2>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">
+                                            Select your team size and preferred parameters to estimate format scope. We answer every inquiry within 2 business hours with full pricing tiers and dates.
+                                        </p>
+                                    </div>
+                                    <div class="p-6 rounded-2xl bg-surface-container flex flex-col gap-4 shadow-md">
+                                        <span class="font-label-md text-label-md uppercase text-on-surface-variant tracking-wider">Direct Coordinator Hotline</span>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary">
+                                                <span class="material-symbols-outlined text-[26px]">headset_mic</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <a class="font-headline-sm text-headline-sm text-primary hover:underline" href="tel:538203896">538-203-896</a>
+                                                <span class="font-body-sm text-body-sm text-on-surface-variant">Mon – Fri • 08:00 – 20:00 CET</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="lg:col-span-7 bg-surface-container p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col gap-6">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-headline-sm text-headline-sm text-on-surface">Mission Parameter Calculator</span>
+                                        <span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-3 py-1 rounded-full uppercase">Step 1 of 2</span>
+                                    </div>
+
+                                    <form
+                                        class="flex flex-col gap-6"
+                                        onSubmit={(e) => {
+                                            e.preventDefault();
+                                            setProposalSent(true);
+                                        }}
+                                    >
+                                        <div class="flex flex-col gap-2">
+                                            <div class="flex justify-between items-center">
+                                                <label class="font-label-lg text-label-lg text-on-surface">Estimated Players / Team Size</label>
+                                                <span class="font-headline-sm text-headline-sm text-primary">{teamSize} Players</span>
+                                            </div>
+                                            <input
+                                                class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary"
+                                                max="150"
+                                                min="10"
+                                                step="5"
+                                                type="range"
+                                                value={teamSize}
+                                                onChange={(e) => setTeamSize(Number(e.target.value))}
+                                            />
+                                            <div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+                                                <span>10 (1 squad)</span>
+                                                <span>Estimated ~{squads} concurrent squads ({perSquad} per team)</span>
+                                                <span>150+ (Multi-hub)</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-label-md text-label-md text-on-surface">Target Event Date</label>
+                                                <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40" required type="date" />
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-label-md text-label-md text-on-surface">Venue Location / City</label>
+                                                <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="e.g. Warsaw Office HQ, Hotel" required type="text" />
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-label-md text-label-md text-on-surface">Your Name &amp; Role</label>
+                                                <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="e.g. Maya Lin, People &amp; Culture Lead" required type="text" />
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-label-md text-label-md text-on-surface">Work Email</label>
+                                                <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="name@company.com" required type="email" />
+                                            </div>
+                                        </div>
+
+                                        <button class="w-full py-4 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg shadow-lg hover:shadow-primary/30 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2" type="submit">
+                                            <span>Transmit Quest Request for Proposal</span>
+                                            <span class="material-symbols-outlined text-[20px]">send</span>
+                                        </button>
+
+                                        {proposalSent && (
+                                            <div class="p-4 rounded-xl bg-surface-container-highest flex items-center gap-3">
+                                                <span class="material-symbols-outlined text-primary text-[24px]">mark_email_read</span>
+                                                <div class="flex flex-col">
+                                                    <span class="font-headline-sm text-headline-sm text-on-surface text-[15px]">Proposal Requested!</span>
+                                                    <span class="font-body-sm text-body-sm text-on-surface-variant">We are assembling your custom scenario plan. Expect an email within 2 hours.</span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            );
+        }
+
+        // SCREEN 3: Pub Quizzes & 'Not a Quiz'
+        function PubQuizzesScreen() {
+            const [pitchSent, setPitchSent] = useState(false);
+            const [customPitch, setCustomPitch] = useState("");
+            const [booked, setBooked] = useState(false);
+
+            return (
+                <div class="flex flex-col w-full">
+                    <div class="relative w-full overflow-hidden">
+                        <div class="absolute -top-40 left-1/4 w-96 h-96 bg-secondary-container/20 rounded-full blur-[128px] pointer-events-none"></div>
+                        <div class="absolute top-20 right-10 w-80 h-80 bg-primary/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+                        {/* HERO */}
+                        <section class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-10 pb-20">
+                            <div class="flex items-center gap-space-sm mb-6">
+                                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/30 text-secondary font-label-md text-label-md uppercase tracking-wider shadow-[0_0_16px_rgba(208,188,255,0.25)]">
+                                    <span class="material-symbols-outlined text-[16px]">sports_bar</span>
+                                    🍺 Pop-Culture &amp; Trivia Nights with a Twist
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+                                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    Live Venue &amp; Private Tours
+                                </span>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+                                <div class="lg:col-span-7 flex flex-col gap-6">
+                                    <div class="inline-flex items-center gap-2 text-tertiary font-label-md text-label-md uppercase tracking-widest">
+                                        <span class="material-symbols-outlined text-[18px]">electric_bolt</span>
+                                        MindTrails Interactive Anti-Quiz Experience
+                                    </div>
+                                    <h1 class="font-display text-display text-on-surface tracking-tight leading-[1.05]">
+                                        This is <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed to-secondary">Not a Quiz</span> <span class="inline-block hover:rotate-12 transition-transform cursor-pointer">🙂</span>
+                                    </h1>
+                                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+                                        Forget those stuffy trivia nights and boring multiple-choice pub quizzes. Challenge your knowledge in surprising ways, embrace teamwork that brings your crew closer, and spice things up with bonus rounds that flip the entire format on its head!
+                                    </p>
+                                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                                        <a class="px-7 py-3.5 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_0_24px_rgba(16,185,129,0.35)] hover:shadow-[0_0_36px_rgba(16,185,129,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2" href="#booking-calendar">
+                                            <span class="material-symbols-outlined text-[20px]">celebration</span>
+                                            Book For Your Venue / Party
+                                        </a>
+                                        <a class="px-6 py-3.5 rounded-xl bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-bright transition-all flex items-center gap-2" href="#anti-quiz-manifesto">
+                                            <span class="material-symbols-outlined text-[20px]">psychology_alt</span>
+                                            How It Works
+                                        </a>
+                                    </div>
+
+                                    <div class="grid grid-cols-3 gap-4 pt-6 max-w-lg">
+                                        <div class="bg-surface-container/60 p-3 rounded-lg shadow-sm">
+                                            <span class="block font-headline-sm text-headline-sm text-primary">100%</span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">Un-Googleable Riddles</span>
+                                        </div>
+                                        <div class="bg-surface-container/60 p-3 rounded-lg shadow-sm">
+                                            <span class="block font-headline-sm text-headline-sm text-secondary">4.9 ★</span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">Player Euphoria Score</span>
+                                        </div>
+                                        <div class="bg-surface-container/60 p-3 rounded-lg shadow-sm">
+                                            <span class="block font-headline-sm text-headline-sm text-tertiary">0</span>
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">Boring Pen &amp; Paper Slips</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="lg:col-span-5 relative">
+                                    <div class="relative grid grid-cols-12 gap-4">
+                                        <div class="col-span-8 group relative rounded-2xl overflow-hidden bg-surface-container shadow-2xl hover:scale-[1.02] transition-transform duration-300">
+                                            <img alt="Pop Art Marilyn Monroe styled poster" class="w-full h-80 object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1WHzTCZ_apz-G2NuT0LTmHws4p-Mg1Xm2jox_cw4nQ9OwCmYWuh5uddRZvxNBovx1w8mwnbGN5KANsP8zp4uTcqGKK2zCfnlQvo3C-AnflG4unvwchvDFser8jdiYF4UI7Pfbfk7ncp7L6QgmD936ViU7EkktQ7uW6gN1Ll396dsuhcNNyERJLOAni-35oWtMzp4t6BVJMxXcuUejnVvjr9tm1lXRWjzIVIoRrTTNhxwes1lES8i0604rs" />
+                                            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent flex flex-col justify-end p-4">
+                                                <span class="inline-block px-2.5 py-1 rounded bg-secondary/20 text-secondary text-label-sm font-label-sm w-fit mb-1">Pop-Art Special</span>
+                                                <span class="font-headline-sm text-headline-sm text-on-surface">This is Not a Quiz 🙂</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-4 flex flex-col gap-4">
+                                            <div class="rounded-2xl overflow-hidden bg-surface-container shadow-xl h-48 group hover:scale-[1.03] transition-transform">
+                                                <img alt="Neon glowing sign" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wzw3lW06AjlZwEIIJechHWPJ2nqF60Xh7TnY9aMXHwr3yMTv7B7oQj1759VT5qUp0sYGXRotv2Mtb7rDgKVj_KIDngjkLzp5p8fItXCZn0essU_RV60yYQ1oDaTLfXjGtt9PMjmEV5cqbVg62Zp3XBG8BG5u_ZZAV_ZUTrfHwDPFK9dTFWnIoPf2tAgZSg_F_XqrQT7NH7UDJANRw-XQAjyhdqtsC9bbvZ0UIegCdjG8_AAO_Dzk-6xnQ" />
+                                            </div>
+                                            <div class="rounded-2xl bg-surface-container-high/90 p-4 flex flex-col justify-center items-center text-center shadow-lg">
+                                                <span class="material-symbols-outlined text-primary text-[32px] mb-1">local_fire_department</span>
+                                                <span class="font-label-md text-label-md text-on-surface">Next Round</span>
+                                                <span class="font-label-sm text-label-sm text-tertiary">Layla Lounge Live</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* MANIFESTO & THEME SUGGESTION */}
+                        <section class="relative w-full bg-surface-container-low/70 py-20 shadow-inner" id="anti-quiz-manifesto">
+                            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-stretch mb-16">
+                                    <div class="lg:col-span-7 bg-surface-container rounded-2xl p-8 lg:p-10 shadow-xl flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex items-center justify-between mb-6">
+                                                <span class="inline-flex items-center gap-2 font-label-md text-label-md text-primary uppercase">
+                                                    <span class="material-symbols-outlined text-[18px]">verified_user</span> Question 01 // Live Reality Check
+                                                </span>
+                                                <span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                                                    1,000 Pts
+                                                </span>
+                                            </div>
+                                            <h3 class="font-headline-md text-headline-md text-on-surface mb-6">
+                                                What <span class="text-tertiary">WON'T</span> be part of “This is Not a Quiz 🙂”?
+                                            </h3>
+                                            <div class="space-y-3.5">
+                                                <div class="p-4 rounded-xl bg-surface-container-high/80 text-on-surface flex items-center justify-between">
+                                                    <span class="font-body-md text-body-md flex items-center gap-3">
+                                                        <span class="w-7 h-7 rounded-full bg-error-container text-on-error flex items-center justify-center font-label-sm text-label-sm font-bold">❌</span>
+                                                        <span><strong>A.</strong> Boring multiple-choice questions</span>
+                                                    </span>
+                                                </div>
+                                                <div class="p-4 rounded-xl bg-surface-container-high/80 text-on-surface flex items-center justify-between">
+                                                    <span class="font-body-md text-body-md flex items-center gap-3">
+                                                        <span class="w-7 h-7 rounded-full bg-error-container text-on-error flex items-center justify-center font-label-sm text-label-sm font-bold">❌</span>
+                                                        <span><strong>B.</strong> Serious dry IQ tests &amp; trivia elitism</span>
+                                                    </span>
+                                                </div>
+                                                <div class="p-4 rounded-xl bg-primary-container text-on-primary flex items-center justify-between shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                                                    <span class="font-body-md text-body-md flex items-center gap-3 font-semibold">
+                                                        <span class="w-7 h-7 rounded-full bg-on-primary text-primary flex items-center justify-center font-label-sm text-label-sm font-bold">✅</span>
+                                                        <span><strong>D.</strong> ALL OF THE ABOVE! Banish boring, ignite electric fun!</span>
+                                                    </span>
+                                                    <span class="material-symbols-outlined text-[24px]">task_alt</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="lg:col-span-5 flex flex-col justify-between rounded-2xl bg-surface-container p-8 shadow-xl relative overflow-hidden">
+                                        <div>
+                                            <div class="inline-flex items-center gap-2 text-secondary font-label-md text-label-md uppercase mb-3">
+                                                <span class="material-symbols-outlined text-[18px]">palette</span> Custom Deck Design
+                                            </div>
+                                            <h3 class="font-headline-md text-headline-md text-on-surface mb-3">
+                                                Want to see a specific theme?
+                                            </h3>
+                                            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                                From cult film obsessions to custom company lore, every “Not a Quiz” edition can be fully tailored to your crew.
+                                            </p>
+                                        </div>
+
+                                        <div class="p-4 rounded-xl bg-surface-container-low shadow-inner">
+                                            <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Drop your dream trivia topic:</label>
+                                            <div class="flex gap-2">
+                                                <input
+                                                    class="w-full bg-surface-container-highest px-3.5 py-2.5 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary"
+                                                    placeholder="e.g. Tarantino Soundtracks..."
+                                                    type="text"
+                                                    value={customPitch}
+                                                    onChange={(e) => setCustomPitch(e.target.value)}
+                                                />
+                                                <button
+                                                    class="px-4 py-2.5 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm shrink-0 hover:bg-secondary-fixed transition-colors"
+                                                    onClick={() => {
+                                                        if (customPitch.trim()) setPitchSent(true);
+                                                    }}
+                                                >
+                                                    Pitch
+                                                </button>
+                                            </div>
+                                            {pitchSent && (
+                                                <p class="text-primary text-[12px] mt-2 font-semibold">Idea received! Daniel will sketch a custom round for it.</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* BOOKING CALENDAR & FORM */}
+                        <section class="max-w-7xl mx-auto px-6 lg:px-12 py-20" id="booking-calendar">
+                            <div class="rounded-3xl bg-surface-container p-8 lg:p-14 shadow-2xl relative overflow-hidden">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+                                    <div class="lg:col-span-5 flex flex-col justify-between h-full">
+                                        <div>
+                                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-md text-label-md uppercase tracking-wider mb-4">
+                                                <span class="material-symbols-outlined text-[16px]">bolt</span> Ready For Ignition
+                                            </span>
+                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4">
+                                                Book a Quiz Night for Your Venue or Event
+                                            </h2>
+                                            <p class="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed">
+                                                Tell us your date, expected headcount, and venue location. We will handle questions, props, audio curation, and electric live hosting.
+                                            </p>
+                                            <div class="p-6 rounded-2xl bg-surface-container-high mb-8 shadow-md">
+                                                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block mb-2">Direct Booking Hotline</span>
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                                                        <span class="material-symbols-outlined text-[20px]">call</span>
+                                                    </div>
+                                                    <div>
+                                                        <a class="font-headline-sm text-headline-sm text-primary hover:text-primary-fixed transition-colors" href="tel:538203896">
+                                                            +48 538 203 896
+                                                        </a>
+                                                        <p class="font-body-sm text-body-sm text-on-surface-variant">Instant WhatsApp &amp; voice dispatch</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="lg:col-span-7 bg-surface-container-low p-6 sm:p-8 rounded-2xl shadow-xl">
+                                        <form
+                                            class="space-y-5"
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                setBooked(true);
+                                            }}
+                                        >
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div>
+                                                    <label class="block font-label-sm text-label-sm text-on-surface uppercase mb-1.5">Full Name *</label>
+                                                    <input class="w-full bg-surface-container-highest px-4 py-3 rounded-lg text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="e.g. Alex Mercer" required type="text" />
+                                                </div>
+                                                <div>
+                                                    <label class="block font-label-sm text-label-sm text-on-surface uppercase mb-1.5">Email Address *</label>
+                                                    <input class="w-full bg-surface-container-highest px-4 py-3 rounded-lg text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="alex@company.com" required type="email" />
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div>
+                                                    <label class="block font-label-sm text-label-sm text-on-surface uppercase mb-1.5">Phone Number *</label>
+                                                    <input class="w-full bg-surface-container-highest px-4 py-3 rounded-lg text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="538 203 896" required type="tel" />
+                                                </div>
+                                                <div>
+                                                    <label class="block font-label-sm text-label-sm text-on-surface uppercase mb-1.5">Experience Format</label>
+                                                    <select class="w-full bg-surface-container-highest px-4 py-3 rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm">
+                                                        <option>Bar / Pub Takeover</option>
+                                                        <option>Private Birthday / House Party</option>
+                                                        <option>Corporate Team Social</option>
+                                                        <option>She Can Quiz It (Women's Edition)</option>
+                                                        <option>Custom Mystery Deck Creation</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button class="w-full py-4 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_0_24px_rgba(16,185,129,0.35)] hover:shadow-[0_0_36px_rgba(16,185,129,0.6)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2" type="submit">
+                                                <span class="material-symbols-outlined text-[20px]">send</span>
+                                                <span>Send Booking Request</span>
+                                            </button>
+                                            {booked && (
+                                                <div class="p-3 bg-primary/20 rounded-lg text-primary text-center font-label-sm">
+                                                    Booking request transmitted! Daniel will contact you within 24 hours.
+                                                </div>
+                                            )}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            );
+        }
+
+        // SCREEN 4: Storytelling & Founder (Daniel Abisrur)
+        function StorytellingScreen() {
+            const [storySubmitted, setStorySubmitted] = useState(false);
+
+            return (
+                <div class="flex flex-col w-full">
+                    <div class="relative w-full overflow-hidden">
+                        <div class="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-[128px] pointer-events-none"></div>
+                        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-secondary/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+                        {/* HERO EDITORIAL */}
+                        <section class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-20 lg:pt-16 lg:pb-28">
+                            <div class="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16">
+                                <div class="flex-1 flex flex-col items-start">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border-0 mb-6">
+                                        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                                        <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Storytelling &amp; Pedagogical Game Design</span>
+                                    </div>
+                                    <h1 class="font-display text-display text-on-surface tracking-tight leading-[1.08] mb-6">
+                                        Where Stories <br />
+                                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed to-secondary">Come Alive</span> &amp; <br />
+                                        Knowledge Turns to Play.
+                                    </h1>
+                                    <div class="relative pl-6 py-2 my-4 bg-surface-container/40 rounded-r-xl">
+                                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-secondary rounded-full"></div>
+                                        <p class="font-body-lg text-body-lg text-on-surface italic font-medium">
+                                            “From fleeting thoughts to finished stories — your journey as a writer begins now.”
+                                        </p>
+                                    </div>
+                                    <p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-xl">
+                                        Meet Daniel Abisrur: an honors-accredited educator, puzzle architect, and TED speaker coach transforming passive study into adrenaline-charged narrative play and actionable, vibrant literature.
+                                    </p>
+                                    <div class="flex flex-wrap items-center gap-4 mt-8">
+                                        <a class="px-6 py-3.5 rounded-lg bg-gradient-to-r from-primary-container to-emerald-600 text-on-primary font-label-lg text-label-lg shadow-xl hover:shadow-[0_0_28px_rgba(78,222,163,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2" href="#workshop-curriculum">
+                                            <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                                            <span>Join 'Stranger Than Fiction'</span>
+                                        </a>
+                                        <a class="px-6 py-3.5 rounded-lg bg-secondary/15 text-secondary font-label-lg text-label-lg shadow-md hover:bg-secondary/25 transition-all flex items-center gap-2" href="#custom-quests">
+                                            <span class="material-symbols-outlined text-[20px]">explore</span>
+                                            <span>Explore Cultural Quests</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="w-full lg:w-[460px] flex flex-col gap-4">
+                                    <div class="p-8 rounded-2xl bg-surface-container/60 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                                        <div class="flex items-center justify-between mb-6">
+                                            <span class="font-label-sm text-label-sm uppercase tracking-widest text-tertiary">Core Philosophy</span>
+                                            <span class="font-label-md text-label-md px-2.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-mono">01 // ETHOS</span>
+                                        </div>
+                                        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Play Over Passive Listening</h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">
+                                            Human memory doesn’t cement through bullet points or lectures. It locks in when stakes are tangible, mysteries unfold through tactile artifacts, and players conquer problems side-by-side.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* FOUNDER DOSSIER */}
+                        <section class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+                            <div class="p-8 lg:p-14 rounded-3xl bg-surface-container/50 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                                    <div class="lg:col-span-5 relative group">
+                                        <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-surface-container-lowest">
+                                            <img alt="Daniel Abisrur" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida/AEtjO1WBO35GFVdecWYfVbIbWc-jZ414gfQIsGQPRAbodOupi04idsKHeDY71EVxrkptvJ7eKEZfjUJ1byCFyXjvYFmgwaR5FWSgSpE7a880YdnzAMOXLDHlP_MjINA1HDqpo1WoZxGq51obPyxo0iHgjFIXeFTrDOJec6VIqJAcIlonVH2S4ZGRlrzskSKifI88qp9nwQQJm176vMDm6Nrg9k4NGwQGYHgCUMbIessEmMQJl-ZGVFBwm_a-tnw" />
+                                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-surface-container-high/90 backdrop-blur-md shadow-lg">
+                                                <p class="font-headline-sm text-headline-sm text-on-surface leading-tight">Daniel Abisrur</p>
+                                                <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider mt-0.5">Literature &amp; Education Honors • TED Coach</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="lg:col-span-7 flex flex-col">
+                                        <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-6">
+                                            Architecting Worlds Where Learning is an Act of Rebellion.
+                                        </h2>
+                                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed">
+                                            Daniel Abisrur stands at the crossroads of classical humanities and modern interactive design. With an academic background in Literature and Education (graduating with honors), his career began inside the mechanics of storytelling — deciphering why certain narratives endure while others dissolve into static.
+                                        </p>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="p-4 rounded-xl bg-surface-container-low/70">
+                                                <div class="flex items-start gap-3">
+                                                    <div class="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+                                                        <span class="material-symbols-outlined text-[20px]">mic</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-label-lg text-label-lg text-on-surface">TED Speaker Coach</h4>
+                                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Guiding thinkers to distill life’s research into electric keynotes.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-4 rounded-xl bg-surface-container-low/70">
+                                                <div class="flex items-start gap-3">
+                                                    <div class="p-2 rounded-lg bg-secondary/10 text-secondary shrink-0">
+                                                        <span class="material-symbols-outlined text-[20px]">extension</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-label-lg text-label-lg text-on-surface">Questomania Lead Architect</h4>
+                                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Engineered tactical puzzle systems for corporate teams.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* STRANGER THAN FICTION SECTION */}
+                        <section class="max-w-7xl mx-auto px-6 lg:px-12 py-16" id="workshop-curriculum">
+                            <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 mb-4">
+                                    <span class="material-symbols-outlined text-[16px] text-secondary">stylus_note</span>
+                                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Flagship Workshop</span>
+                                </div>
+                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4">Stranger Than Fiction</h2>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant">
+                                    A practical, hands-on masterclass designed to shatter creative paralysis, sharpen your writer’s ear, and translate fleeting sparks into print.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                                <div class="p-8 rounded-2xl bg-surface-container/60 backdrop-blur-md shadow-xl flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Story Structure &amp; Development</h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">Demystify narrative tension, rising stakes, and plot reversals.</p>
+                                    </div>
+                                </div>
+                                <div class="p-8 rounded-2xl bg-surface-container/60 backdrop-blur-md shadow-xl flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Character Creation &amp; Anatomy</h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">Construct multifaceted figures driven by authentic flaws and distinct rhythms.</p>
+                                    </div>
+                                </div>
+                                <div class="p-8 rounded-2xl bg-surface-container/60 backdrop-blur-md shadow-xl flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Finding Your Genuine Voice</h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant">Rapid-fire writing sprints, micro-prompts, and structured safe-space critique.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* DIRECT INTAKE FORM */}
+                        <section class="max-w-7xl mx-auto px-6 lg:px-12 py-20" id="booking-contact">
+                            <div class="p-8 lg:p-16 rounded-3xl bg-gradient-to-b from-surface-container to-surface-container-low shadow-2xl relative overflow-hidden">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                                    <div class="lg:col-span-5 flex flex-col justify-between">
+                                        <div>
+                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4">
+                                                So What Are You Waiting For?
+                                            </h2>
+                                            <p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                                                Come write with Daniel or commission a bespoke game designed entirely around your team, students, or cultural venue.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="lg:col-span-7 bg-surface-container-lowest/80 backdrop-blur-xl p-8 lg:p-10 rounded-2xl shadow-xl">
+                                        <form
+                                            class="flex flex-col gap-5"
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                setStorySubmitted(true);
+                                            }}
+                                        >
+                                            <div class="flex flex-col gap-1.5">
+                                                <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Full Name</label>
+                                                <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high/80 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary text-body-md font-body-md" placeholder="e.g. Elena Rostova" required type="text" />
+                                            </div>
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div class="flex flex-col gap-1.5">
+                                                    <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Email Address</label>
+                                                    <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high/80 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary text-body-md font-body-md" placeholder="name@institution.com" required type="email" />
+                                                </div>
+                                                <div class="flex flex-col gap-1.5">
+                                                    <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Phone / WhatsApp</label>
+                                                    <input class="w-full px-4 py-3 rounded-lg bg-surface-container-high/80 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary text-body-md font-body-md" placeholder="+48 538 203 896" required type="tel" />
+                                                </div>
+                                            </div>
+                                            <button class="w-full mt-2 py-4 rounded-lg bg-gradient-to-r from-primary-container to-emerald-600 text-on-primary font-label-lg text-label-lg shadow-xl hover:shadow-[0_0_24px_rgba(78,222,163,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2" type="submit">
+                                                <span>Book Your Experience With Daniel</span>
+                                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                            </button>
+                                            {storySubmitted && (
+                                                <div class="p-3 bg-primary-container text-on-primary font-label-md rounded-lg text-center">
+                                                    Thank you! Daniel has received your dispatch and will reply shortly.
+                                                </div>
+                                            )}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            );
+        }
+
+        // SCREEN 5: Booking Inquiry / Master Reservation Form
+        function BookingInquiryScreen() {
+            const [step, setStep] = useState(1);
+            const [selectedFormats, setSelectedFormats] = useState(["office_escape"]);
+            const [headcount, setHeadcount] = useState("26-50");
+            const [faqOpen, setFaqOpen] = useState(null);
+            const [completed, setCompleted] = useState(false);
+
+            const toggleFormat = (val) => {
+                if (selectedFormats.includes(val)) {
+                    setSelectedFormats(selectedFormats.filter((x) => x !== val));
+                } else {
+                    setSelectedFormats([...selectedFormats, val]);
+                }
+            };
+
+            const faqs = [
+                {
+                    id: 1,
+                    q: "How much space do we need for an office escape?",
+                    a: "A standard meeting room or an open lounge area is plenty. We calibrate our mysterious cipher cases and clue chains so players can comfortably gather in groups of 4–7 per station."
+                },
+                {
+                    id: 2,
+                    q: "Can riddles be personalized for specific members?",
+                    a: "Absolutely! That’s our signature touch. We can incorporate inside jokes, company lore, personal stories, and surprise shoutouts right into lock combinations and narrative ciphers."
+                },
+                {
+                    id: 3,
+                    q: "How far in advance should we book?",
+                    a: "We recommend 2–4 weeks notice for heavily customized corporate games. However, we maintain quick-dispatch turnkey mobile boxes and can often accommodate rapid bookings within 3–5 days."
+                },
+                {
+                    id: 4,
+                    q: "Do you travel directly to our chosen venue?",
+                    a: "Yes, 100% turnkey delivery! Offices, rental villas, university auditoriums, neighborhood pubs, or community halls. We arrive with all gear, orchestrate the session, and pack up seamlessly."
+                }
+            ];
+
+            return (
+                <div class="flex flex-col w-full">
+                    <div class="relative w-full overflow-hidden">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16 relative z-10">
+                            <section class="max-w-4xl mx-auto text-center mb-16">
+                                <div class="inline-flex items-center gap-space-sm px-space-md py-space-xs rounded-full bg-primary/10 text-primary mb-6 shadow-sm">
+                                    <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                                    <span class="font-label-sm text-label-sm uppercase tracking-wider">Direct Reservation &amp; Adventure Dispatch</span>
+                                </div>
+                                <h1 class="font-display text-display text-on-surface tracking-tight mb-6">
+                                    Let’s Turn Your Next Event Into an <span class="bg-gradient-to-r from-primary via-primary-fixed to-secondary text-transparent bg-clip-text">Unforgettable Adventure</span>
+                                </h1>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                                    Whether you want a portable escape game in your office, a hilarious trivia night at your pub, a living room mystery for a birthday, or a writing workshop, we customize every detail.
+                                </p>
+                            </section>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+                                <div class="lg:col-span-8 flex flex-col gap-gutter">
+                                    <div class="bg-surface-container p-6 sm:p-10 rounded-xl shadow-xl flex flex-col gap-10">
+                                        {/* Stepper Header */}
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-space-sm">
+                                                <span class={`w-8 h-8 rounded-full ${step >= 1 ? "bg-primary text-on-primary" : "bg-surface-container-highest text-on-surface-variant"} font-label-md flex items-center justify-center`}>1</span>
+                                                <span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider hidden sm:inline">Choose Adventure</span>
+                                            </div>
+                                            <div class="w-12 h-[2px] bg-surface-container-high rounded-full"></div>
+                                            <div class="flex items-center gap-space-sm">
+                                                <span class={`w-8 h-8 rounded-full ${step >= 2 ? "bg-primary text-on-primary" : "bg-surface-container-highest text-on-surface-variant"} font-label-md flex items-center justify-center`}>2</span>
+                                                <span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider hidden sm:inline">Event Specs</span>
+                                            </div>
+                                            <div class="w-12 h-[2px] bg-surface-container-high rounded-full"></div>
+                                            <div class="flex items-center gap-space-sm">
+                                                <span class={`w-8 h-8 rounded-full ${step >= 3 ? "bg-primary text-on-primary" : "bg-surface-container-highest text-on-surface-variant"} font-label-md flex items-center justify-center`}>3</span>
+                                                <span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider hidden sm:inline">Dispatch Details</span>
+                                            </div>
+                                        </div>
+
+                                        <form
+                                            class="flex flex-col gap-10"
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                setCompleted(true);
+                                            }}
+                                        >
+                                            {/* Step 1: Formats */}
+                                            <div class="flex flex-col gap-space-md">
+                                                <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Step 01 / Phase Calibration</span>
+                                                <h3 class="font-headline-md text-headline-md text-on-surface">Select Your Mission Format</h3>
+                                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                                                    {[
+                                                        { id: "office_escape", title: "Our Adventure, Your Office", badge: "Office Escape", desc: "Story-driven escape mission inside your rooms." },
+                                                        { id: "not_a_quiz", title: "This is Not a Quiz 🙂", badge: "Pub & Venue", desc: "Ditch boring trivia: unconventional bonus rounds." },
+                                                        { id: "home_adventure", title: "Your Home Adventure", badge: "Family & Social", desc: "Living rooms or gardens turned into escape zones." },
+                                                        { id: "custom_cultural", title: "Choose Your Adventure", badge: "Cultural / Uni", desc: "Bespoke narrative expeditions for institutions." },
+                                                    ].map((item) => {
+                                                        const isSelected = selectedFormats.includes(item.id);
+                                                        return (
+                                                            <div
+                                                                key={item.id}
+                                                                onClick={() => toggleFormat(item.id)}
+                                                                class={`cursor-pointer p-5 rounded-lg transition-all flex flex-col justify-between shadow-sm border ${isSelected
+                                                                        ? "bg-surface-container-high border-primary/50"
+                                                                        : "bg-surface-container-low border-transparent hover:bg-surface-container-high"
+                                                                    }`}
+                                                            >
+                                                                <div class="flex items-start justify-between mb-3">
+                                                                    <span class="px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">{item.badge}</span>
+                                                                    <div class="w-6 h-6 rounded flex items-center justify-center">
+                                                                        <span class={`material-symbols-outlined text-[18px] ${isSelected ? "text-primary" : "text-on-surface-variant"}`}>
+                                                                            {isSelected ? "check_circle" : "radio_button_unchecked"}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">{item.title}</h4>
+                                                                <p class="font-body-sm text-body-sm text-on-surface-variant">{item.desc}</p>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+
+                                            {/* Step 2: Headcount */}
+                                            <div class="flex flex-col gap-space-md">
+                                                <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Step 02 / Operational Scope</span>
+                                                <h3 class="font-headline-md text-headline-md text-on-surface">Group Dimensions &amp; Venue</h3>
+                                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+                                                    {["10-25", "26-50", "51-100", "100+"].map((tier) => (
+                                                        <button
+                                                            type="button"
+                                                            key={tier}
+                                                            onClick={() => setHeadcount(tier)}
+                                                            class={`py-3 px-4 rounded-lg font-label-lg transition-all ${headcount === tier
+                                                                    ? "bg-primary-container text-on-primary shadow-md"
+                                                                    : "bg-surface-container-low text-on-surface hover:bg-surface-container-high"
+                                                                }`}
+                                                        >
+                                                            {tier} seekers
+                                                        </button>
+                                                    ))}
+                                                </div>
+
+                                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md mt-4">
+                                                    <input class="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg font-body-md" required type="date" />
+                                                    <input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/40 px-4 py-3 rounded-lg font-body-md" placeholder="Venue / City or Office Area" required type="text" />
+                                                </div>
+                                            </div>
+
+                                            {/* Step 3: Contact */}
+                                            <div class="flex flex-col gap-space-md">
+                                                <span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Step 03 / Commander Identity</span>
+                                                <h3 class="font-headline-md text-headline-md text-on-surface">Where Shall We Send the Dossier?</h3>
+                                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+                                                    <input class="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg font-body-md" placeholder="Sarah Connor" required type="text" />
+                                                    <input class="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg font-body-md" placeholder="s.connor@cyberdyne.io" required type="email" />
+                                                    <input class="w-full bg-surface-container-low text-on-surface px-4 py-3 rounded-lg font-body-md" placeholder="+48 538 203 896" required type="tel" />
+                                                </div>
+                                            </div>
+
+                                            <button class="w-full py-4 rounded-lg bg-primary text-on-primary font-headline-sm text-headline-sm shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-space-sm" type="submit">
+                                                <span>Request Custom Proposal</span>
+                                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                            </button>
+
+                                            {completed && (
+                                                <div class="p-6 rounded-xl bg-surface-container-highest text-center">
+                                                    <span class="material-symbols-outlined text-[36px] text-primary">check_circle</span>
+                                                    <h4 class="font-headline-md text-headline-md text-on-surface mt-2">Adventure Transmission Received!</h4>
+                                                    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Our Game Master Daniel will contact you within 24 hours.</p>
+                                                </div>
+                                            )}
+                                        </form>
+                                    </div>
+                                </div>
+
+                                {/* Right: Direct Dispatch Hotline & FAQ */}
+                                <div class="lg:col-span-4 flex flex-col gap-gutter">
+                                    <div class="bg-surface-container p-6 sm:p-8 rounded-xl shadow-xl flex flex-col gap-6">
+                                        <h3 class="font-headline-md text-headline-md text-on-surface leading-tight">Need Answers in 15 Minutes?</h3>
+                                        <div class="flex flex-col gap-space-sm">
+                                            <a class="flex items-center justify-between p-4 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface transition-all" href="tel:538203896">
+                                                <div class="flex items-center gap-space-sm">
+                                                    <span class="material-symbols-outlined text-primary text-[24px]">call</span>
+                                                    <div class="flex flex-col">
+                                                        <span class="font-label-md text-label-md font-bold">538-203-896</span>
+                                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Voice direct hotline</span>
+                                                    </div>
+                                                </div>
+                                                <span class="material-symbols-outlined text-[20px]">arrow_outward</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    {/* FAQ Accordion */}
+                                    <div class="bg-surface-container p-6 sm:p-8 rounded-xl shadow-xl flex flex-col gap-6">
+                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Frequently Asked</h3>
+                                        <div class="flex flex-col gap-space-sm">
+                                            {faqs.map((f) => (
+                                                <div key={f.id} class="bg-surface-container-low rounded-lg overflow-hidden">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setFaqOpen(faqOpen === f.id ? null : f.id)}
+                                                        class="w-full p-4 text-left flex items-center justify-between gap-space-sm text-on-surface"
+                                                    >
+                                                        <span class="font-label-md text-label-md font-semibold">{f.q}</span>
+                                                        <span class={`material-symbols-outlined text-[18px] transition-transform ${faqOpen === f.id ? "rotate-180 text-primary" : ""}`}>
+                                                            expand_more
+                                                        </span>
+                                                    </button>
+                                                    {faqOpen === f.id && (
+                                                        <div class="px-4 pb-4 font-body-sm text-body-sm text-on-surface-variant">
+                                                            {f.a}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // Main App Container with Router & Route Switching
+        function App() {
+            return (
+                <div class="min-h-screen bg-surface flex flex-col">
+                    <NavigationHeader />
+                    <main class="w-full pt-20 bg-surface flex-grow">
+                        <Routes>
+                            <Route path="/" element={<HomeScreen />} />
+                            <Route path="/corporate" element={<CorporateScreen />} />
+                            <Route path="/pub-quizzes" element={<PubQuizzesScreen />} />
+                            <Route path="/storytelling" element={<StorytellingScreen />} />
+                            <Route path="/booking" element={<BookingInquiryScreen />} />
+                            <Route path="*" element={<HomeScreen />} />
+                        </Routes>
+                    </main>
+                    <Footer />
+                </div>
+            );
+        }
+
+        // Top-Level MemoryRouter Mount
+        const root = createRoot(document.getElementById("root"));
+        root.render(
+            <MemoryRouter initialEntries={["/"]}>
+                <App />
+            </MemoryRouter>
+        );
+    </script>
+</body>
+
+</html>
