@@ -12,7 +12,7 @@ Static website hosted on S3 with Cloudflare CDN and automated deployments.
 docker-compose up
 ```
 
-Then open `http://localhost:8080` in your browser. Changes to files in `content/` reload automatically.
+Then open `http://localhost:8080` in your browser. The container serves `Mind-Trails-website/site/` read-only, so rebuild the site (see below) and refresh.
 
 ## Deployment
 
@@ -32,7 +32,10 @@ AWS credentials are handled securely via OIDC—no keys stored in GitHub.
 
 ```
 mindtrails/
-├── content/              # Your website files (HTML, CSS, images, etc)
+├── Mind-Trails-website/
+│   ├── site/             # Built website, deployed to S3
+│   └── source/           # Astro project the site is built from
+├── Archive/              # Previous WordPress export (not deployed)
 ├── Dockerfile            # Container for local dev
 ├── docker-compose.yml    # Docker setup
 ├── .github/workflows/    # GitHub Actions automation
@@ -41,9 +44,10 @@ mindtrails/
 
 ## Updating the Site
 
-1. Edit files in `content/`
-2. Commit and push to `main`
-3. GitHub Actions automatically deploys to S3 and clears Cloudflare cache
+1. Edit `Mind-Trails-website/source/` (texts in `src/data/site.js`, page in `src/pages/index.astro`)
+2. Rebuild: `cd Mind-Trails-website/source && npm install && npm run build -- --outDir ../site`, then commit `Mind-Trails-website/site/`
+3. Commit and push to `main`
+4. GitHub Actions automatically deploys to S3 and clears Cloudflare cache
 
 Done! Changes live in ~30 seconds.
 

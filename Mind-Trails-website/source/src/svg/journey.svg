@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 250" preserveAspectRatio="xMidYMid meet">
+<g transform="translate(0,-70)">
+  <path d="M 100 180 C 150 180, 170 160, 240 160 C 340 160, 380 200, 480 200 C 580 200, 620 160, 720 160 C 820 160, 860 200, 960 200 C 1030 200, 1050 180, 1100 180" fill="none" stroke="#232A33" stroke-width="2" />
+  
+  <circle cx="240" cy="160" r="4.5" fill="#0E1116" stroke="#34C77B" stroke-width="2.5" />
+  <circle cx="480" cy="200" r="4.5" fill="#0E1116" stroke="#34C77B" stroke-width="2.5" />
+  <circle cx="720" cy="160" r="4.5" fill="#0E1116" stroke="#34C77B" stroke-width="2.5" />
+  <circle cx="960" cy="200" r="6" fill="#34C77B" />
+  <circle cx="960" cy="200" r="12" fill="none" stroke="#34C77B" stroke-width="1.5" opacity="0.4" />
+  
+  <text x="240" y="95" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="middle">
+    <tspan font-size="13" fill="#34C77B" font-weight="bold">01 </tspan>
+    <tspan font-size="18" font-weight="bold" fill="#E8EDF2">Pick the experience</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="240" dy="24">Five formats. We help you</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="240" dy="18">choose by team size.</tspan>
+  </text>
+  
+  <text x="480" y="240" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="middle">
+    <tspan font-size="13" fill="#34C77B" font-weight="bold">02 </tspan>
+    <tspan font-size="18" font-weight="bold" fill="#E8EDF2">We build it around you</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="480" dy="24">Optional custom riddles</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="480" dy="18">on your company story.</tspan>
+  </text>
+  
+  <text x="720" y="95" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="middle">
+    <tspan font-size="13" fill="#34C77B" font-weight="bold">03 </tspan>
+    <tspan font-size="18" font-weight="bold" fill="#E8EDF2">We arrive with everything</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="720" dy="24">Props, locks, boards and</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="720" dy="18">clues come with us.</tspan>
+  </text>
+  
+  <text x="960" y="240" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="middle">
+    <tspan font-size="13" fill="#34C77B" font-weight="bold">04 </tspan>
+    <tspan font-size="18" font-weight="bold" fill="#E8EDF2">Everyone plays at once</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="960" dy="24">60 to 90 minutes. Nobody</tspan>
+    <tspan font-size="14" fill="#8D99A6" x="960" dy="18">sits on the side.</tspan>
+  </text>
+</g>
+</svg>

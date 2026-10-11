@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid meet">
+<g transform="translate(0,-100)">
+  <ellipse cx="600" cy="342" rx="170" ry="60" fill="none" stroke="#8B7FD4" stroke-width="2" />
+  <text x="600" y="360" font-family="Segoe UI, system-ui, Arial, sans-serif" font-size="64" font-weight="bold" fill="#E8EDF2" text-anchor="middle">something</text>
+  
+  <g fill="none" stroke="#232A33" stroke-width="1.5">
+    <path d="M 370 165 C 430 165, 440 295, 495 295" />
+    <path d="M 830 255 C 790 255, 780 310, 743 310" />
+    <path d="M 370 345 L 430 345" />
+    <path d="M 830 435 C 790 435, 780 374, 743 374" />
+    <path d="M 370 525 C 430 525, 440 389, 495 389" />
+  </g>
+
+  <circle cx="370" cy="165" r="2" fill="#34C77B" />
+  <circle cx="830" cy="255" r="2" fill="#34C77B" />
+  <circle cx="370" cy="345" r="2" fill="#34C77B" />
+  <circle cx="830" cy="435" r="2" fill="#34C77B" />
+  <circle cx="370" cy="525" r="2" fill="#34C77B" />
+
+  <text x="350" y="170" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="end">
+    <tspan font-size="16" fill="#34C77B" font-weight="bold">01 </tspan>
+    <tspan font-size="22" font-weight="bold" fill="#E8EDF2">to be part of</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="350" dy="24">The team builds itself</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="350" dy="22">through the experience.</tspan>
+  </text>
+  
+  <text x="850" y="260" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="start">
+    <tspan font-size="16" fill="#34C77B" font-weight="bold">02 </tspan>
+    <tspan font-size="22" font-weight="bold" fill="#E8EDF2">to enjoy</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="850" dy="24">100% original activities,</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="850" dy="22">created to be fun.</tspan>
+  </text>
+  
+  <text x="350" y="350" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="end">
+    <tspan font-size="16" fill="#34C77B" font-weight="bold">03 </tspan>
+    <tspan font-size="22" font-weight="bold" fill="#E8EDF2">to solve</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="350" dy="24">Challenges that spark thinking</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="350" dy="22">through curiosity.</tspan>
+  </text>
+  
+  <text x="850" y="440" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="start">
+    <tspan font-size="16" fill="#34C77B" font-weight="bold">04 </tspan>
+    <tspan font-size="22" font-weight="bold" fill="#E8EDF2">to discuss</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="850" dy="24">Human communication is the</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="850" dy="22">key to the experience.</tspan>
+  </text>
+  
+  <text x="350" y="530" font-family="Segoe UI, system-ui, Arial, sans-serif" text-anchor="end">
+    <tspan font-size="16" fill="#34C77B" font-weight="bold">05 </tspan>
+    <tspan font-size="22" font-weight="bold" fill="#E8EDF2">to take with you</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="350" dy="24">The activity ends. The impact</tspan>
+    <tspan font-size="15" fill="#8D99A6" x="350" dy="22">stays with the team.</tspan>
+  </text>
+</g>
+</svg>

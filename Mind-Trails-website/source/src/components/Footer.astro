@@ -1,0 +1,62 @@
+---
+import { brand, experiences, nav } from '../data/site.js';
+const year = 2026;
+---
+<footer class="ft">
+  <div class="wrap">
+    <div class="top">
+      <div class="col brandcol">
+        <img src="/img/logo.svg" alt="Mind Trails" width="150" height="70">
+        <p class="mut">{brand.tagline}</p>
+        <p class="mut sm">Screen-free quest experiences and workshops, brought to
+          your workplace in {brand.area}.</p>
+      </div>
+
+      <div class="col">
+        <h4>Activities</h4>
+        {experiences.map((e) => (
+          <a href={`#${e.slug}`}>{e.name}</a>
+        ))}
+      </div>
+
+      <div class="col">
+        <h4>Company</h4>
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a href="/presentation/">Presentation</a>
+        <a href="#kit">Your own quest</a>
+      </div>
+
+      <div class="col">
+        <h4>Contact</h4>
+        <a href={`mailto:${brand.email}`}>{brand.email}</a>
+        <a href={`tel:${brand.phoneHref}`}>{brand.phone}</a>
+        <span class="mut">{brand.area}</span>
+        <span class="mut">English-friendly</span>
+      </div>
+    </div>
+
+    <div class="bot">
+      <span>© {year} {brand.name}</span>
+      <span>Not another corporate workshop</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+.ft{border-top:1px solid var(--line);background:var(--surf);padding:56px 0 26px;
+  margin-top:0}
+.top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+.col{display:flex;flex-direction:column;gap:11px}
+.brandcol img{height:40px;width:auto;margin-bottom:6px}
+.col h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);
+  font-weight:800;margin-bottom:4px}
+.col a{font-size:14.5px;color:var(--tx);transition:.15s}
+.col a:hover{color:var(--acc)}
+.col span{font-size:14.5px}
+.sm{font-size:14px;max-width:330px}
+.bot{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:13px;color:var(--mut)}
+@media(max-width:900px){ .top{grid-template-columns:1fr 1fr} }
+@media(max-width:560px){ .top{grid-template-columns:1fr} }
+</style>

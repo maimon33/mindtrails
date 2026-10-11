@@ -1,0 +1,28 @@
+---
+import { clients } from '../data/site.js';
+const { label = 'Run for teams at' } = Astro.props;
+---
+<section class="lg-sec">
+  <div class="wrap">
+    <p class="label">{label}</p>
+    <div class="row">
+      {clients.map((c) => (
+        <div class="bx"><img src={`/img/logos-norm/${c.file}`} alt={c.name}
+          loading="lazy" width="200" height="70"></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.lg-sec{padding:34px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)}
+.label{font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--mut);
+  font-weight:800;margin-bottom:20px;text-align:center}
+.row{display:grid;grid-template-columns:repeat(9,1fr);gap:12px;align-items:center}
+.bx{background:#fff;border-radius:9px;height:56px;display:flex;align-items:center;
+  justify-content:center;padding:9px 13px}
+.bx img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain}
+@media(max-width:1000px){ .row{grid-template-columns:repeat(5,1fr)} }
+@media(max-width:620px){ .row{grid-template-columns:repeat(3,1fr)} }
+</style>

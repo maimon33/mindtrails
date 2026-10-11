@@ -1,0 +1,54 @@
+---
+import { nav } from '../data/site.js';
+---
+<header class="hd">
+  <div class="wrap inner">
+    <a href="#top" class="lg" aria-label="Mind Trails">
+      <img src="/img/logo.svg" alt="Mind Trails" width="150" height="70">
+    </a>
+    <nav aria-label="Main">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+    <a class="btn sm" href="#contact">Book a demo</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+.hd{position:sticky;top:0;z-index:60;background:rgba(14,17,22,.93);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.inner{display:flex;align-items:center;gap:30px;padding-top:10px;padding-bottom:10px}
+.lg img{height:52px;width:auto}
+nav{display:flex;gap:26px;margin-left:auto}
+nav a{font-size:14px;color:var(--mut);font-weight:600;transition:.15s}
+nav a:hover{color:var(--acc)}
+.btn.sm{padding:10px 19px;font-size:14px}
+.burger{display:none;background:transparent;border:0;flex-direction:column;gap:5px;
+  padding:6px;cursor:pointer}
+.burger span{width:22px;height:2px;background:var(--tx);display:block;border-radius:2px}
+
+@media(max-width:980px){
+  .inner{gap:14px}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--surf);
+    border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 26px 18px}
+  nav.open{display:flex}
+  nav a{padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+  .btn.sm{margin-left:auto}
+  .burger{display:flex}
+}
+@media(max-width:560px){ .btn.sm{display:none} .burger{margin-left:auto} }
+</style>
+
+<script>
+  const b = document.querySelector('.burger');
+  const n = document.querySelector('.hd nav');
+  b?.addEventListener('click', () => {
+    const open = n.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(open));
+  });
+  n?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => n.classList.remove('open'))
+  );
+</script>

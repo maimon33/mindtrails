@@ -7,6 +7,7 @@ node_modules/
 # WordPress/Elementor generated files
 content/wp-content/plugins/
 content/wp-content/uploads/
+Archive/content/wp-content/uploads/
 content/wp-includes/
 content/wp-json/
 content/feed/

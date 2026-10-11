@@ -1,0 +1,590 @@
+---
+import Base from '../layouts/Base.astro';
+import Logos from '../components/Logos.astro';
+import Photo from '../components/Photo.astro';
+import Activity from '../components/Activity.astro';
+import journeySvg from '../svg/journey.svg?raw';
+import {
+  brand, hero, notFind, something, evolution, steps, experiences,
+  testimonials, kit, daniel, logistics, faq, cta, gallery, photos,
+} from '../data/site.js';
+
+const title = 'Mind Trails - interactive team activities brought to your office in Krakow';
+const description =
+  'Pop-up escape rooms, trivia and workshops for company teams in Krakow. We bring the entire experience to your workplace. 60 to 90 minutes, up to 40 people per session, English-friendly.';
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: brand.name,
+  description,
+  url: Astro.site?.href,
+  email: brand.email,
+  telephone: brand.phoneHref,
+  areaServed: { '@type': 'City', name: 'Krakow' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Krakow', addressCountry: 'PL' },
+  slogan: brand.tagline,
+  founder: { '@type': 'Person', name: daniel.name, jobTitle: daniel.role },
+  makesOffer: experiences.map((e) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: e.name, description: e.card },
+  })),
+  review: testimonials.map((t) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: t.name },
+    reviewBody: t.text,
+  })),
+};
+
+const ldFaq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <script type="application/ld+json" set:html={JSON.stringify(ldFaq)} />
+
+  <!-- ============ 1 HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap inner">
+      <div>
+        <p class="slogan">{hero.slogan}</p>
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1>Interactive activities that spark thinking through{' '}
+          <span class="g">curiosity</span></h1>
+        <ul class="hlines">
+          {hero.lines.map((l) => <li>{l}</li>)}
+        </ul>
+        <p class="note">{hero.note}</p>
+        <div class="ctarow">
+          <a class="btn" href="#contact">{hero.cta}</a>
+          <p class="mut small">{hero.ctaSub}</p>
+        </div>
+      </div>
+      <Photo name="cognizant" h="400px" pos="center" />
+    </div>
+  </section>
+
+  <Logos label="Run for teams at" />
+
+  <!-- ============ 2 WHAT YOU WILL NOT FIND ============ -->
+  <section class="sec" id="not">
+    <div class="wrap">
+      <img class="gfx" src={notFind.img} alt={notFind.alt} width="1672" height="941" loading="lazy">
+      <div class="sechead narrow">
+        <p class="eyebrow">{notFind.eyebrow}</p>
+        <h2>{notFind.h2}</h2>
+      </div>
+      <div class="grid3 narrow">
+        {notFind.items.map((i) => (
+          <div class="card notcard">
+            <p class="n">{i.n}</p>
+            {i.lines.map((l) => <p class="no">{l}</p>)}
+            <p class="without">{i.without}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 SOMETHING ============ -->
+  <section class="sec alt" id="something">
+    <div class="wrap">
+      <img class="gfx" src={something.img} alt={something.alt} width="1672" height="941" loading="lazy">
+      <div class="sechead center narrow">
+        <h2>One experience. <span class="g">Something</span> for every mind.</h2>
+      </div>
+
+      <div class="hub">
+        <div class="hubword"><span>something</span></div>
+        <div class="branches">
+          {something.branches.map((b) => (
+            <div class="branch">
+              <span class="bn">{b.n}</span>
+              <div>
+                <p class="bl">{b.label}</p>
+                <p class="bt">{b.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 ACTIVITIES ============ -->
+  <section class="sec" id="activities">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow g">The activities</p>
+        <h2>Five formats. Open the one that fits your team</h2>
+        <p>Each card is short on purpose. Open it and you get the whole thing, what
+          happens in the room, what the team walks out with, and who it is built for.</p>
+      </div>
+      <div class="acts">
+        {experiences.map((e) => <Activity e={e} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EVOLUTION ============ -->
+  <section class="sec alt tight" id="evolution">
+    <div class="wrap">
+      <img class="gfx" src={evolution.img} alt={evolution.alt} width="2038" height="771" loading="lazy">
+      <div class="sechead center narrow">
+        <p class="eyebrow">{evolution.eyebrow}</p>
+        <h2>{evolution.h2}</h2>
+      </div>
+      <div class="evo narrow">
+        {evolution.stages.map((s) => (
+          <div class="evoq">
+            <span class="dot"></span>
+            <b class="evol">{s.label}</b>
+            <p>{s.q}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 HOW IT WORKS ============ -->
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow g">{steps.eyebrow}</p>
+        <h2>{steps.h2}</h2>
+      </div>
+      <div class="gfx svgx" set:html={journeySvg}></div>
+
+      <div class="trail">
+        {steps.items.map((s) => (
+          <div class="stop">
+            <span class="marker"></span>
+            <p class="sn">{s.n}</p>
+            <h3>{s.title}</h3>
+            <p class="mut">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="sec alt" id="testimonials">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow">In their own words</p>
+        <h2>What people said afterwards</h2>
+      </div>
+      <div class="tgrid">
+        {testimonials.map((t) => (
+          <blockquote class="tcard">
+            <p>{t.text}</p>
+            <footer><b>{t.name}</b><span>{t.company}</span></footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="sec tight" id="gallery">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow">{gallery.eyebrow}</p>
+        <h2>{gallery.h2}</h2>
+        <p>{gallery.sub}</p>
+      </div>
+      <div class="ggrid">
+        {gallery.keys.map((k) => {
+          const g = photos[k];
+          return (
+            <figure class="gitem">
+              <div class="gimg" style={`background-image:url('${g.src}')`}
+                role="img" aria-label={g.alt}></div>
+              <figcaption><b>{g.who}</b>{g.what}</figcaption>
+            </figure>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 KIT ============ -->
+  <section class="sec" id="kit">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">{kit.eyebrow}</p>
+        <h2>{kit.h2}</h2>
+        <p class="lead" style="margin-top:16px">{kit.lead}</p>
+        <p class="turn">{kit.turn}</p>
+        <ul class="uses">
+          {kit.uses.map((u) => <li>{u}</li>)}
+        </ul>
+        <p class="mut usesnote">{kit.usesNote}</p>
+        <p class="lead" style="margin-top:20px">{kit.close}</p>
+        <p class="sig">{kit.signature}</p>
+      </div>
+      <div class="collage">
+        <Photo name="typewriter" h="215px" />
+        <Photo name="table" h="215px" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 DANIEL ============ -->
+  <section class="sec alt" id="daniel">
+    <div class="wrap split narrow">
+      <Photo name="daniel" h="420px" grayscale={true} cap={false} />
+      <div>
+        <p class="eyebrow">Who runs your event</p>
+        <h2>{daniel.name}</h2>
+        <p class="role">{daniel.role}</p>
+        <ul class="tick" style="margin-top:22px">
+          {daniel.facts.map((f) => <li>{f}</li>)}
+        </ul>
+        <blockquote class="dq">{daniel.quote}</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGISTICS ============ -->
+  <section class="sec" id="logistics">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow g">{logistics.eyebrow}</p>
+        <h2>{logistics.h2}</h2>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3 class="g" style="margin-bottom:16px">What you provide</h3>
+          <ul class="tick">{logistics.you.map((i) => <li>{i}</li>)}</ul>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--acc2);margin-bottom:16px">What we bring</h3>
+          <ul class="tick pv">{logistics.us.map((i) => <li>{i}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="sec alt" id="faq">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow">Quick answers</p>
+        <h2>The questions we get first</h2>
+      </div>
+      <div class="faq">
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p class="mut">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="sec" id="contact">
+    <div class="wrap ccols">
+      <div>
+        <p class="eyebrow g">Next step</p>
+        <h2>{cta.h2}</h2>
+        <div class="ctabox">
+          <p class="big">{cta.big}</p>
+          <p class="mut">{cta.text}</p>
+        </div>
+        <p class="alt mut">{cta.alt}</p>
+
+        <div class="direct">
+          <div><span class="k">Email</span><a href={`mailto:${brand.email}`}>{brand.email}</a></div>
+          <div><span class="k">Phone</span><a href={`tel:${brand.phoneHref}`}>{brand.phone}</a></div>
+          <div><span class="k">Where</span><span>{brand.area}</span></div>
+        </div>
+      </div>
+
+      <form class="card form" id="contact-form">
+        <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+        <div class="f">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="two">
+          <div class="f">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" autocomplete="organization">
+          </div>
+          <div class="f">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" required autocomplete="email">
+          </div>
+        </div>
+        <div class="two">
+          <div class="f">
+            <label for="people">How many people</label>
+            <input id="people" name="people" type="text" placeholder="around 25">
+          </div>
+          <div class="f">
+            <label for="date">Date you have in mind</label>
+            <input id="date" name="date" type="text" placeholder="mid October, flexible">
+          </div>
+        </div>
+        <div class="f">
+          <label for="format">Activity you are looking at</label>
+          <select id="format" name="format">
+            <option value="">Not sure yet, help us pick</option>
+            {experiences.map((e) => <option value={e.name}>{e.name} - {e.type}</option>)}
+            <option value="kit">A quest built around our own company</option>
+            <option value="demo">Just the free thirty-minute demo for now</option>
+          </select>
+        </div>
+        <div class="f">
+          <label for="msg">Anything we should know</label>
+          <textarea id="msg" name="message" rows="3"
+            placeholder="What the day is for, what went wrong last time, anything else"></textarea>
+        </div>
+        <div class="h-captcha" data-sitekey="b3e46b0c-3f30-4f9a-b114-9b944cc09aa8"></div>
+        <button class="btn" type="submit">Send</button>
+        <p class="note mut">We reply from a real person, usually the same day.</p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+<script>
+  const CONTACT_API = 'https://yga0l4agjf.execute-api.eu-central-1.amazonaws.com/prod/contact';
+  const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const captchaToken = data.get('h-captcha-response');
+    if (!captchaToken) {
+      alert('Please complete the CAPTCHA verification.');
+      return;
+    }
+
+    const details = [
+      ['Company', data.get('company')],
+      ['People', data.get('people')],
+      ['Date', data.get('date')],
+      ['Activity', data.get('format')],
+    ]
+      .filter(([, value]) => value)
+      .map(([label, value]) => `${label}: ${value}`);
+
+    const payload = {
+      name: data.get('name'),
+      email: data.get('email'),
+      message: [...details, data.get('message')].filter(Boolean).join('\n'),
+      captchaToken,
+    };
+
+    try {
+      const response = await fetch(CONTACT_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert('Thank you! Your message has been sent.');
+        form.reset();
+      } else {
+        alert('Error: ' + (result.error || 'Failed to send message.'));
+      }
+    } catch (error) {
+      alert('Error sending message. Please contact us directly.');
+      console.error('Form error:', error);
+    }
+    window.hcaptcha?.reset();
+  });
+</script>
+
+<style>
+/* ---------- hero ---------- */
+.hero{padding:66px 0 58px}
+.hero .inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:center}
+.hero :global(.ph .img){height:auto;aspect-ratio:3/2}
+.slogan{font-size:clamp(34px,4.6vw,56px);line-height:1.08;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--acc);padding-bottom:22px;margin-bottom:24px;position:relative}
+.slogan::after{content:"";position:absolute;left:0;bottom:0;width:120px;height:4px;border-radius:2px;background:var(--acc2)}
+.hero h1{font-size:clamp(24px,2.7vw,34px)}
+.hlines{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:11px}
+.hlines li{font-size:17px;color:#C7D0D9;padding-left:26px;position:relative}
+.hlines li::before{content:"";position:absolute;left:2px;top:10px;width:9px;height:9px;
+  border-radius:3px;background:var(--acc)}
+.note{margin-top:22px;font-size:15.5px;color:var(--acc2);font-weight:600;
+  border-left:3px solid var(--acc2);padding-left:15px;line-height:1.5}
+.ctarow{margin-top:30px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.small{font-size:14px;max-width:230px;line-height:1.45}
+
+/* ---------- what you will not find ---------- */
+.notcard .n{font-size:12px;letter-spacing:.18em;font-weight:800;color:var(--acc2);
+  margin-bottom:16px}
+.no{font-size:19px;font-weight:800;line-height:1.3;letter-spacing:-.01em;
+  margin-bottom:7px}
+.without{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:14.5px;line-height:1.55;color:var(--mut)}
+
+/* ---------- инфографика ---------- */
+.gfx{display:block;margin:0 auto;max-width:1120px;width:100%;height:auto;border-radius:var(--rad);border:1px solid var(--line)}
+.gfx.svgx{border:0;border-radius:0;margin-top:6px}
+.gfx :global(svg){width:100%;height:auto;display:block}
+.narrow{display:none !important}
+.evol{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx);margin-bottom:6px}
+.hub,.trail{display:none}
+
+/* ---------- something hub, мобильная раскладка ---------- */
+.sechead.center{text-align:center;margin-left:auto;margin-right:auto}
+.hub{grid-template-columns:300px 1fr;gap:52px;align-items:center;margin-top:14px}
+.hubword{display:grid;place-items:center;aspect-ratio:1;border-radius:50%;
+  border:1px solid var(--line2, rgba(139,127,212,.35));position:relative}
+.hubword::after{content:"";position:absolute;inset:26px;border-radius:50%;
+  border:1px dashed rgba(139,127,212,.22)}
+.hubword span{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.03em;
+  color:var(--acc2)}
+.branches{display:flex;flex-direction:column}
+.branch{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:17px 0;
+  border-bottom:1px solid var(--line);align-items:start}
+.branch:last-child{border-bottom:0}
+.bn{font-size:12.5px;font-weight:800;color:var(--acc);letter-spacing:.1em;
+  padding-top:5px;position:relative}
+.bn::after{content:"";position:absolute;right:-9px;top:11px;width:5px;height:5px;
+  border-radius:50%;background:var(--acc)}
+.bl{font-size:21px;font-weight:800;letter-spacing:-.015em;margin-bottom:4px}
+.bt{font-size:15px;color:var(--mut);line-height:1.5}
+
+/* ---------- evolution ---------- */
+.evo{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:8px;
+  position:relative}
+.evo::before{content:"";position:absolute;left:6%;right:6%;top:7px;height:1px;
+  background:var(--line)}
+.evoq{padding:0 16px;text-align:center;position:relative}
+.dot{width:15px;height:15px;border-radius:50%;background:var(--bg);
+  border:2px solid var(--acc);display:block;margin:0 auto 20px;position:relative;z-index:1}
+.evoq:nth-child(1) .dot{border-color:#4B555F}
+.evoq:nth-child(2) .dot{border-color:#6E7A85}
+.evoq:nth-child(4) .dot{background:var(--acc)}
+.evoq p{font-size:16.5px;font-style:italic;line-height:1.45;color:#C7D0D9}
+.evoq:nth-child(4) p{color:var(--acc);font-weight:700;font-style:normal}
+
+/* ---------- trail ---------- */
+.trail{grid-template-columns:repeat(4,1fr);gap:22px;margin-top:10px;position:relative}
+.trail::before{content:"";position:absolute;left:5%;right:5%;top:8px;height:2px;
+  background:var(--line)}
+.stop{position:relative;padding-top:34px}
+.marker{position:absolute;top:2px;left:0;width:15px;height:15px;border-radius:4px;
+  background:var(--bg);border:2px solid var(--acc);transform:rotate(45deg)}
+.stop:last-child .marker{background:var(--acc)}
+.sn{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--acc);
+  margin-bottom:8px}
+.stop h3{font-size:18px;margin-bottom:7px}
+.stop p{font-size:14.5px;line-height:1.55}
+
+/* ---------- activities ---------- */
+.acts{display:flex;flex-direction:column;gap:18px}
+
+/* ---------- testimonials ---------- */
+.tgrid{columns:3;column-gap:20px}
+.tcard{background:var(--surf2);border:1px solid var(--line);border-radius:var(--rad);
+  padding:24px 26px;margin:0 0 20px;break-inside:avoid;display:inline-block;width:100%}
+.tcard p{font-size:15.5px;line-height:1.62;color:#C7D0D9}
+.tcard footer{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;gap:10px;align-items:baseline}
+.tcard footer b{font-size:15px;color:var(--tx)}
+.tcard footer span{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--acc);font-weight:700}
+
+
+/* ---------- галерея ---------- */
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gitem{margin:0}
+.gimg{height:220px;background-size:cover;background-position:center;
+  border-radius:var(--rad);border:1px solid var(--line)}
+.gitem figcaption{margin-top:10px;font-size:12.5px;line-height:1.45;color:#7E8A96}
+.gitem figcaption b{color:var(--acc);font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;font-size:11px;margin-right:8px}
+
+/* ---------- kit ---------- */
+.turn{margin-top:18px;font-size:19px;font-weight:800;letter-spacing:-.01em;
+  color:var(--acc)}
+.uses{list-style:none;display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.uses li{border:1px solid var(--line);border-radius:999px;padding:8px 16px;
+  font-size:14px;font-weight:700;color:#C7D0D9;background:var(--surf)}
+.usesnote{margin-top:12px;font-size:14.5px}
+.sig{margin-top:22px;font-size:18px;font-weight:800;color:var(--acc2);
+  letter-spacing:-.01em}
+.collage{display:grid;grid-template-rows:auto auto;gap:20px}
+
+/* ---------- daniel ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.split.narrow{grid-template-columns:340px 1fr}
+.role{color:var(--acc2);font-weight:700;font-size:18px;margin-top:8px}
+.dq{margin-top:24px;padding-left:18px;border-left:3px solid var(--acc2);
+  font-style:italic;font-size:18.5px;color:#D7DFE7}
+
+/* ---------- faq ---------- */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:16.5px;list-style:none;
+  display:flex;justify-content:space-between;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--acc);font-weight:800;font-size:19px}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin-top:10px}
+
+/* ---------- contact ---------- */
+.ccols{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.ctabox{border:2px solid var(--acc);border-radius:16px;padding:26px 28px;margin-top:22px;
+  background:rgba(52,199,123,.06)}
+.ctabox .big{font-size:21px;font-weight:800;line-height:1.32;margin-bottom:9px}
+.alt{margin-top:20px;font-size:15.5px}
+.direct{margin-top:28px;display:flex;gap:34px;flex-wrap:wrap}
+.direct div{display:flex;flex-direction:column;gap:3px}
+.direct .k{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mut);font-weight:800}
+.direct a,.direct span:last-child{font-size:16px;font-weight:700}
+.direct a:hover{color:var(--acc)}
+.form{display:flex;flex-direction:column;gap:15px;padding:30px}
+.f{display:flex;flex-direction:column;gap:7px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+label{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);
+  font-weight:800}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);
+  border-radius:9px;padding:13px 15px;color:var(--tx);font-size:15.5px;
+  font-family:inherit;width:100%}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--acc)}
+textarea{resize:vertical}
+.form .btn{align-self:flex-start;margin-top:4px}
+.note{font-size:14px}
+.hp{position:absolute;left:-9999px}
+
+@media(max-width:1000px){ .tgrid{columns:2} .ggrid{grid-template-columns:1fr 1fr} }
+@media(max-width:900px){
+  .gfx{display:none}
+  .sechead.narrow{display:block !important}
+  .grid3.narrow,.evo.narrow{display:grid !important}
+  .hub{display:grid;grid-template-columns:1fr;gap:32px}
+  .trail{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .hero .inner,.split,.split.narrow,.ccols{grid-template-columns:1fr;gap:32px}
+  .evo{grid-template-columns:1fr 1fr;gap:26px}
+  .evo::before,.trail::before{display:none}
+  .hubword{max-width:260px;margin:0 auto}
+  .tgrid{columns:1}
+  .ggrid{grid-template-columns:1fr}
+  .faq{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+}
+</style>

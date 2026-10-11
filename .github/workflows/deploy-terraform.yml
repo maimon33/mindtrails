@@ -144,5 +144,5 @@ jobs:
           echo ""
           echo "📍 API Endpoint: ${{ steps.endpoint.outputs.api_endpoint }}"
           echo ""
-          echo "Next step: Update form action in content/index.html"
+          echo "Next step: Update form action in Mind-Trails-website/site/index.html"
           echo "Form action should be: ${{ steps.endpoint.outputs.api_endpoint }}"

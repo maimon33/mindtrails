@@ -1,0 +1,44 @@
+---
+import { cta, brand } from '../data/site.js';
+---
+<section class="ctasec">
+  <div class="wrap inner">
+    <div>
+      <div class="eyebrow g">Next step</div>
+      <h2>{cta.h2}</h2>
+      <div class="box">
+        <p class="big">{cta.big}</p>
+        <p class="mut">{cta.text}</p>
+      </div>
+      <p class="alt mut">{cta.alt}</p>
+    </div>
+    <div class="side">
+      <a class="btn" href={`mailto:${brand.email}?subject=Demo%20puzzle%20for%20our%20team`}>
+        Email us about a demo
+      </a>
+      <a class="btn ghost" href={`tel:${brand.phoneHref}`}>Call {brand.phone}</a>
+      <div class="meta">
+        <div><span class="k">Where</span><span>{brand.area}</span></div>
+        <div><span class="k">Language</span><span>English-friendly</span></div>
+        <div><span class="k">Setup</span><span>Fully mobile, we come to you</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.ctasec{background:var(--surf);border-top:1px solid var(--line);padding:70px 0}
+.inner{display:grid;grid-template-columns:1.2fr .8fr;gap:52px;align-items:center}
+.box{border:2px solid var(--acc);border-radius:16px;padding:26px 28px;margin-top:24px;
+  background:rgba(52,199,123,.06)}
+.big{font-size:21px;font-weight:800;line-height:1.32;margin-bottom:9px}
+.alt{margin-top:20px;font-size:15.5px}
+.side{display:flex;flex-direction:column;gap:12px}
+.side .btn{text-align:center}
+.meta{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.meta div{display:flex;flex-direction:column;gap:2px}
+.meta .k{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mut);font-weight:800}
+.meta span:last-child{font-size:15.5px}
+@media(max-width:900px){ .inner{grid-template-columns:1fr;gap:34px} }
+</style>

@@ -4,23 +4,27 @@
 Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudflare CDN with automated deployments via GitHub Actions.
 
 ## Tech Stack
-- **Frontend**: Static HTML/CSS/JS (exported from WordPress/Elementor)
+- **Frontend**: Astro 7 static site (`Mind-Trails-website/source`), built output in `Mind-Trails-website/site`
 - **Hosting**: AWS S3 + Cloudflare CDN
 - **Deployment**: GitHub Actions with OIDC (keyless AWS auth)
-- **CMS Origin**: WordPress 7.1.1 with Elementor 4.2.4 (no longer needed after export)
+- **Previous site**: WordPress/Elementor export, kept in `Archive/` (not deployed)
 
 ## Key File Map
 - `.github/workflows/deploy.yml` — Deployment pipeline (S3 sync + Cloudflare purge)
-- `content/` — Website files (HTML, CSS, images, plugins—only HTML/CSS/images used in prod)
+- `Mind-Trails-website/site/` — Built site uploaded to S3 root (this is what Docker and deploy serve)
+- `Mind-Trails-website/source/src/pages/index.astro` — Home page incl. contact form + submit handler (posts to Lambda API)
+- `Mind-Trails-website/source/src/data/site.js` — All page texts
+- `Archive/` — Previous WordPress export (`content/`, `custom.css`), reference only
 - `SETUP.md` — Step-by-step AWS OIDC and Cloudflare setup guide
 - `Dockerfile` & `docker-compose.yml` — Local dev environment
-- `.deployignore` — Files excluded from S3 deployment (plugins, feeds, etc.)
+- `.deployignore` — Legacy WordPress exclusion list (not used by the current deploy workflow)
 
 ## Active Conventions
 - Deploy on push to `main` branch (automatic via GitHub Actions)
 - S3 bucket: `mindtrails.net` (region: eu-central-1)
 - Cloudflare: Full cache purge on every deploy (~30s propagation)
-- Changes in `content/` or `.github/workflows/` trigger deploy
+- Changes in `Mind-Trails-website/site/` or `.github/workflows/` trigger deploy
+- Site is rebuilt from `source/` and the output is copied into `site/` (commit both)
 
 ## Current Initiatives
 - **Done**: Fixed S3 bucket name typo in deploy workflow (was `mindtrails.net0`)
@@ -39,6 +43,14 @@ Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudfla
 ---
 
 ## Session Log
+
+### 2026-10-11 — New Astro site replaces WordPress export
+- Moved the WordPress export (`content/`, `custom.css`) to `Archive/`
+- New site lives in `Mind-Trails-website/` (`source/` = Astro project, `site/` = built output, deployed)
+- Contact form now posts to the existing Lambda API (`/prod/contact`) with hCaptcha (same site key as before)
+- Extra form fields (company, people, date, activity) are folded into the message: Lambda only stores name, email, message
+- Deploy workflow syncs `Mind-Trails-website/site/` to S3; Dockerfile and docker-compose serve the same folder
+- Open: the Lambda CORS origin is hardcoded to `https://mindtrails.net`, so form submissions from `localhost:8080` are blocked by the browser; the Lambda still processes the request, so don't test-submit locally (it sends real emails)
 
 ### 2026-10-03 — Contact form integration & design improvements
 

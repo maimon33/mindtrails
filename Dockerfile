@@ -4,7 +4,7 @@ RUN apk add --no-cache entr
 
 WORKDIR /usr/share/nginx/html
 
-COPY content/ .
+COPY Mind-Trails-website/site/ .
 
 EXPOSE 80
 

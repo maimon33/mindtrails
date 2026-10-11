@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./content:/usr/share/nginx/html:ro
+      - ./Mind-Trails-website/site:/usr/share/nginx/html:ro
     environment:
       - NGINX_HOST=localhost
       - NGINX_PORT=80

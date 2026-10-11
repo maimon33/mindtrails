@@ -1,0 +1,27 @@
+---
+import { photos } from '../data/site.js';
+
+// Фото с подписью. Либо name из карты photos, либо готовый объект через p.
+const { name, p, h = '430px', cap = true, pos = 'center', grayscale = false } = Astro.props;
+const ph = p ?? photos[name];
+---
+<figure class="ph" style={`--h:${h}`}>
+  <div
+    class:list={['img', { gs: grayscale }]}
+    style={`background-image:url('${ph.src}');background-position:${pos}`}
+    role="img"
+    aria-label={ph.alt}
+  ></div>
+  {cap && <figcaption><b>{ph.who}</b>{ph.what}</figcaption>}
+</figure>
+
+<style>
+.ph{margin:0;display:flex;flex-direction:column;min-height:0}
+.img{background-size:cover;border-radius:var(--rad);border:1px solid var(--line);
+  height:var(--h);flex:none}
+.img.gs{filter:grayscale(1) contrast(1.05)}
+figcaption{margin-top:10px;font-size:12.5px;line-height:1.45;color:#7E8A96}
+figcaption b{color:var(--acc);font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;font-size:11px;margin-right:8px}
+@media(max-width:900px){ .img{height:auto;aspect-ratio:3/2} }
+</style>

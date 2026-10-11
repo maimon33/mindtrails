@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "content/**"
-      - "custom.css"
+      - "Mind-Trails-website/site/**"
       - ".github/workflows/deploy.yml"
 
 jobs:
@@ -25,13 +24,7 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync content/ s3://mindtrails.net/ --delete --region eu-central-1 \
-            --exclude "wp-content/plugins/*" \
-            --exclude "wp-includes/*" \
-            --exclude "wp-json/*" \
-            --exclude "feed/*" \
-            --exclude "comments/*"
-          aws s3 cp custom.css s3://mindtrails.net/custom.css --region eu-central-1 --content-type "text/css"
+          aws s3 sync Mind-Trails-website/site/ s3://mindtrails.net/ --delete --region eu-central-1
           echo "✅ Files synced to S3"
 
       - name: Purge Cloudflare cache

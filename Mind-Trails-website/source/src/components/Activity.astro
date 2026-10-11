@@ -1,0 +1,113 @@
+---
+import { photos } from '../data/site.js';
+const { e } = Astro.props;
+const ph = photos[e.photoKey];
+const gallery = (e.gallery ?? []).map((k) => photos[k]).filter(Boolean);
+---
+<details class="act" id={e.slug}>
+  <summary>
+    <div class:list={['ph', { contain: ph.fit === 'contain' }]} style={ph.blur ? `background-image:url('${ph.src}'),url('${ph.blur}')` : `background-image:url('${ph.src}')`} role="img" aria-label={ph.alt}></div>
+    <div class="body">
+      <p class="for">{e.forWhom}</p>
+      <h3>{e.name}</h3>
+      <p class="type">{e.type}</p>
+      <p class="card">{e.card}</p>
+      <p class="punch">{e.punchline}</p>
+      <div class="foot">
+        <span class="spec">{e.duration} · {e.people}</span>
+        <span class="more">{e.ctaLabel}<i></i></span>
+      </div>
+    </div>
+  </summary>
+
+  <div class="open">
+    <div class="cols">
+      <div class="txt">
+        {e.blocks.map((b) => (
+          <div class="blk">
+            <h4>{b.h}</h4>
+            {b.list && <ul>{b.list.map((i) => <li>{i}</li>)}</ul>}
+            {b.p && <p class:list={{ after: b.list }}>{b.p}</p>}
+          </div>
+        ))}
+        <p class="best"><span>Best for</span>{e.bestFor.join(' · ')}</p>
+        <a class="btn" href="#contact">Ask about {e.name}</a>
+      </div>
+      {gallery.length > 0 && (
+        <div class="gal">
+          {gallery.map((g) => (
+            <figure>
+              {g.fit === 'contain'
+                ? <img class="gfull" src={g.src} alt={g.alt} loading="lazy">
+                : <div class="gph" style={`background-image:url('${g.src}')${g.pos ? `;background-position:${g.pos}` : ''}`}
+                    role="img" aria-label={g.alt}></div>}
+              {(g.who || g.what) && <figcaption><b>{g.who}</b>{g.what}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</details>
+
+<style>
+.act{background:var(--surf);border:1px solid var(--line);border-radius:var(--rad);
+  overflow:hidden;transition:border-color .16s}
+.act:hover{border-color:rgba(52,199,123,.4)}
+.act[open]{border-color:var(--acc)}
+
+summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:300px 1fr;
+  gap:0;align-items:stretch}
+summary::-webkit-details-marker{display:none}
+.ph{background-size:cover;background-position:center;min-height:230px}
+.ph.contain{background-size:88% auto,cover;background-repeat:no-repeat;background-position:center;background-color:#0b0d12}
+.body{padding:26px 30px}
+.for{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc2);
+  font-weight:800;margin-bottom:10px}
+.act h3{font-size:27px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.type{color:var(--acc);font-weight:700;font-size:15px;margin-bottom:12px}
+.card{font-size:15.5px;line-height:1.55;color:var(--mut);margin-bottom:14px;max-width:64ch}
+.punch{font-size:16px;font-style:italic;color:#D7DFE7;border-left:3px solid var(--acc2);
+  padding-left:14px;margin-bottom:18px}
+.foot{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.spec{font-size:12px;font-weight:800;letter-spacing:.07em;color:var(--acc);
+  text-transform:uppercase}
+.more{margin-left:auto;font-size:14px;font-weight:700;color:var(--tx);
+  display:inline-flex;align-items:center;gap:9px}
+.more i{width:9px;height:9px;border-right:2px solid var(--acc);
+  border-bottom:2px solid var(--acc);transform:rotate(45deg);display:block;
+  transition:transform .2s;margin-top:-4px}
+.act[open] .more i{transform:rotate(-135deg);margin-top:3px}
+
+.open{padding:0 30px 30px;border-top:1px solid var(--line);margin-top:0}
+.cols{display:grid;grid-template-columns:1fr 300px;gap:34px;padding-top:26px}
+.blk{margin-bottom:22px}
+.blk h4{font-size:16px;font-weight:800;color:var(--acc);margin-bottom:8px}
+.blk p{font-size:15.5px;line-height:1.62;color:#C7D0D9}
+.blk ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:9px}
+.blk li{font-size:15px;color:#C7D0D9;padding-left:22px;position:relative}
+.blk li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;
+  border-radius:2px;background:var(--acc2)}
+.blk p.after{margin-top:14px}
+.best{font-size:14.5px;color:var(--mut);margin:24px 0 22px}
+.best span{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:#5F6A74;font-weight:800;margin-bottom:5px}
+
+.gal{display:flex;flex-direction:column;gap:16px}
+.gph{background-size:cover;background-position:center;border-radius:11px;height:180px;
+  border:1px solid var(--line)}
+.gal figure{margin:0}
+.gfull{display:block;width:100%;height:auto;border-radius:11px;border:1px solid var(--line)}
+.gal figcaption{margin-top:8px;font-size:12px;line-height:1.4;color:#7E8A96}
+.gal figcaption b{color:var(--acc);font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;font-size:10.5px;margin-right:7px}
+
+@media(max-width:900px){
+  summary{grid-template-columns:1fr}
+  .ph{min-height:200px}
+  .body{padding:22px}
+  .open{padding:0 22px 24px}
+  .cols{grid-template-columns:1fr;gap:22px}
+  .more{margin-left:0}
+}
+</style>
