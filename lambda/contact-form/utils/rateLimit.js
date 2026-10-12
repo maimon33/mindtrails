@@ -66,13 +66,11 @@ async function updateRateLimit(ip, email, bucket) {
       timestamp: Date.now()
     };
 
-    // Use conditional write with ETag to prevent race conditions
     await s3.putObject({
       Bucket: bucket,
       Key: s3Key,
       Body: JSON.stringify(data),
-      ContentType: 'application/json',
-      IfMatch: object.ETag
+      ContentType: 'application/json'
     }).promise();
   } catch (error) {
     if (error.code === 'NoSuchKey') {
@@ -89,10 +87,6 @@ async function updateRateLimit(ip, email, bucket) {
         Body: JSON.stringify(data),
         ContentType: 'application/json'
       }).promise();
-    } else if (error.code === 'PreconditionFailed') {
-      // ETag mismatch — file changed since read. Log and retry once
-      console.warn(`Rate limit update conflict for IP ${ip}, retrying...`);
-      return updateRateLimit(ip, email, bucket);
     } else {
       throw error;
     }
