@@ -7,22 +7,23 @@ data "archive_file" "contact_form_zip" {
 
 # Lambda function for handling contact form submissions
 resource "aws_lambda_function" "contact_form" {
-  filename            = data.archive_file.contact_form_zip.output_path
-  function_name       = "mindtrails-contact-form"
-  role                = aws_iam_role.lambda_role.arn
-  handler             = "index.handler"
-  runtime             = "nodejs20.x"
-  memory_size         = 256
-  timeout             = 30
-  source_code_hash    = data.archive_file.contact_form_zip.output_base64sha256
+  filename         = data.archive_file.contact_form_zip.output_path
+  function_name    = "mindtrails-contact-form"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "index.handler"
+  runtime          = "nodejs20.x"
+  memory_size      = 256
+  timeout          = 30
+  source_code_hash = data.archive_file.contact_form_zip.output_base64sha256
 
   environment {
     variables = {
-      HCAPTCHA_SECRET_KEY  = var.hcaptcha_secret_key
-      ADMIN_EMAIL          = var.admin_email
-      SES_FROM_EMAIL       = var.sender_email
-      S3_BUCKET_NAME       = aws_s3_bucket.contact_submissions.id
-      RATE_LIMIT_SECONDS   = var.rate_limit_minutes * 60
+      HCAPTCHA_SECRET_KEY = var.hcaptcha_secret_key
+      ADMIN_EMAIL         = var.admin_email
+      ADMIN_COPY_EMAIL    = var.admin_copy_email
+      SES_FROM_EMAIL      = var.sender_email
+      S3_BUCKET_NAME      = aws_s3_bucket.contact_submissions.id
+      RATE_LIMIT_SECONDS  = var.rate_limit_minutes * 60
     }
   }
 

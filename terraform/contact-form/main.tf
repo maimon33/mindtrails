@@ -72,11 +72,11 @@ resource "aws_apigatewayv2_api" "contact_form" {
 
 # Integration between API Gateway and Lambda
 resource "aws_apigatewayv2_integration" "contact_form_lambda" {
-  api_id             = aws_apigatewayv2_api.contact_form.id
-  integration_type   = "AWS_PROXY"
-  integration_method = "POST"
+  api_id                 = aws_apigatewayv2_api.contact_form.id
+  integration_type       = "AWS_PROXY"
+  integration_method     = "POST"
   payload_format_version = "2.0"
-  integration_uri    = aws_lambda_function.contact_form.invoke_arn
+  integration_uri        = aws_lambda_function.contact_form.invoke_arn
 }
 
 # Route for POST /contact

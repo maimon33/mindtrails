@@ -19,7 +19,7 @@
 - SES region: `eu-central-1`
 - Rate limit: 1 submission per 60 minutes per IP
 - Email sender: `contact@mindtrails.net` (must be verified in SES before Terraform apply)
-- Admin email: `maimon33@gmail.com` (configurable via Terraform variable)
+- Admin email: `admin@mindtrails.net` (configurable via Terraform variable)
 - CAPTCHA provider: hCaptcha (free tier)
 - Input validation: strip HTML/script tags before storing
 - CORS: allow `https://mindtrails.net` origin only
@@ -389,8 +389,8 @@ Before running `terraform apply`, you must verify email addresses in AWS SES:
    - Check email inbox for verification link
    - Click verification link
 
-2. **Admin email** (maimon33@gmail.com):
-   - Repeat steps 1-4 with maimon33@gmail.com
+2. **Admin email** (admin@mindtrails.net):
+   - Repeat steps 1-4 with admin@mindtrails.net
 
 3. **Move out of SES Sandbox** (optional):
    - SES sandbox mode can only send to verified emails
@@ -411,7 +411,7 @@ git add terraform/contact-form/ses.tf docs/SES_VERIFICATION.md
 git commit -m "feat: add SES email identity for contact form
 
 - Verify sender email (contact@mindtrails.net)
-- Verify admin email (maimon33@gmail.com)
+- Verify admin email (admin@mindtrails.net)
 - Document manual SES verification steps"
 ```
 
@@ -1307,7 +1307,7 @@ variable "environment" {
 # Copy this file to contact-form.tfvars and fill in your values
 # DO NOT commit contact-form.tfvars (add to .gitignore)
 
-admin_email = "maimon33@gmail.com"
+admin_email = "admin@mindtrails.net"
 sender_email = "contact@mindtrails.net"
 hcaptcha_secret_key = "your-hcaptcha-secret-key-here"
 s3_bucket_name = "mindtrails-contact-submissions"
@@ -1869,7 +1869,7 @@ See `docs/CONTACT_FORM_FRONTEND.md` for HTML/JavaScript examples.
    - Check email inbox for verification link
    - Click link to verify
 4. Create identity for admin email:
-   - Email: `maimon33@gmail.com`
+   - Email: `admin@mindtrails.net`
    - Check email inbox for verification link
    - Click link to verify
 

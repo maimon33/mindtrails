@@ -8,6 +8,11 @@ resource "aws_ses_email_identity" "admin" {
   email = var.admin_email
 }
 
+# SES email identity for admin copy recipient
+resource "aws_ses_email_identity" "admin_copy" {
+  email = var.admin_copy_email
+}
+
 # DKIM configuration for mindtrails.net domain
 resource "aws_ses_domain_dkim" "mindtrails" {
   domain = "mindtrails.net"

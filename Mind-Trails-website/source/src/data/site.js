@@ -4,7 +4,7 @@
 export const brand = {
   name: 'Mind Trails',
   tagline: 'Turning knowledge into adventure',
-  email: 'Avisvar86@gmail.com',
+  email: 'contact@mindtrails.net',
   phone: '538 203 896',
   phoneHref: '+48538203896',
   area: 'Krakow, within 20 km of the city centre',

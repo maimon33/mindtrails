@@ -414,7 +414,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
    - Recommendation: hCaptcha (free, privacy-friendly, widely used)
    
 2. **Admin email:** Where should notifications go?
-   - Example: maimon33@gmail.com (to be configured in Terraform variables)
+   - Example: admin@mindtrails.net (to be configured in Terraform variables)
 
 3. **Sender email:** What email address should contact form come from?
    - Example: contact@mindtrails.net (must be verified in SES)

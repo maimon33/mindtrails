@@ -26,7 +26,7 @@ async function sendAdminNotification(adminEmail, name, email, message, ip, phone
   const params = {
     Source: process.env.SES_FROM_EMAIL,
     Destination: {
-      ToAddresses: [adminEmail]
+      ToAddresses: [adminEmail, process.env.ADMIN_COPY_EMAIL]
     },
     Message: {
       Subject: {
@@ -47,7 +47,7 @@ async function sendRateLimitAlert(adminEmail, ip, email, secondsUntilAllowed) {
   const params = {
     Source: process.env.SES_FROM_EMAIL,
     Destination: {
-      ToAddresses: [adminEmail]
+      ToAddresses: [adminEmail, process.env.ADMIN_COPY_EMAIL]
     },
     Message: {
       Subject: {

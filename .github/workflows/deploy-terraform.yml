@@ -11,10 +11,8 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: us-east-1
-  BACKEND_REGION: eu-central-1
+  AWS_REGION: eu-central-1
   TF_VERSION: 1.6.0
-  TF_CLI_ARGS_init: "-skip-provider-verification"
 
 jobs:
   validate:
@@ -66,9 +64,9 @@ jobs:
         run: |
           terraform plan \
             -var="admin_email=${{ secrets.MINDTRAILS_ADMIN_EMAIL }}" \
-            -var="noreply_email=${{ secrets.MINDTRAILS_NOREPLY_EMAIL }}" \
-            -var="allowed_origin=${{ secrets.MINDTRAILS_DOMAIN_URL }}" \
-            -var="aws_region=${{ env.AWS_REGION }}" \
+            -var="admin_copy_email=${{ secrets.MINDTRAILS_ADMIN_COPY_EMAIL }}" \
+            -var="hcaptcha_secret_key=${{ secrets.HCAPTCHA_SECRET_KEY }}" \
+            -var="s3_bucket_name=mindtrails-contact-submissions" \
             -out=tfplan
 
           # Save plan for next job
@@ -123,9 +121,9 @@ jobs:
         run: |
           terraform apply \
             -var="admin_email=${{ secrets.MINDTRAILS_ADMIN_EMAIL }}" \
-            -var="noreply_email=${{ secrets.MINDTRAILS_NOREPLY_EMAIL }}" \
-            -var="allowed_origin=${{ secrets.MINDTRAILS_DOMAIN_URL }}" \
-            -var="aws_region=${{ env.AWS_REGION }}" \
+            -var="admin_copy_email=${{ secrets.MINDTRAILS_ADMIN_COPY_EMAIL }}" \
+            -var="hcaptcha_secret_key=${{ secrets.HCAPTCHA_SECRET_KEY }}" \
+            -var="s3_bucket_name=mindtrails-contact-submissions" \
             -auto-approve
         env:
           TF_INPUT: false
