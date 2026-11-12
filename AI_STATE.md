@@ -52,7 +52,14 @@ Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudfla
 - Contact form unchanged (same Lambda endpoint, hCaptcha site key, field names)
 - Open: the GTM container is empty (no tags), and there is no cookie banner; agree on consent before a GA4 tag is published
 - The GTM snippet (`async gtm.js` + `gtag('js', new Date())`) is Google's current install snippet; the older `gtm.start` form is not needed
-- Open: the "Who runs your event" section (`#daniel`, `.wrap.split.narrow`) is hidden at all widths by `.narrow{display:none !important}` in `index.astro`; this predates this update and is live that way; owner to decide whether it should show
+- "Who runs your event" section (`#daniel`) is now visible on desktop and mobile: removed the leftover `.narrow{display:none !important}` rule in `index.astro` that had hidden it since the 2026-10-11 version; `site/` rebuilt from `source/`
+- Rebuild check: `npm ci && npm run build` in `source/` (Node 24) reproduces `site/` byte for byte, so rebuilding is the preferred way to change the site
+
+**Previous versions (kept in git, not as a folder):**
+- Site before this update (vendor version 2026-10-11 + contact form wiring): commit `bc39bcf`
+- Vendor version 2026-11-09 exactly as delivered (Daniel section still hidden): commit `4e5c408`
+- Restore: `git checkout <commit> -- Mind-Trails-website` then commit and push to `main`
+- View without restoring: `git worktree add ../mindtrails-previous <commit>`
 
 ### 2026-10-11 — New Astro site replaces WordPress export
 - Moved the WordPress export (`content/`, `custom.css`) to `Archive/`
