@@ -44,6 +44,16 @@ Static website for MindTrails (custom quest experiences) hosted on S3 + Cloudfla
 
 ## Session Log
 
+### 2026-11-12 — Site updated from vendor archive of 2026-11-09 (Picknetic)
+- `Mind-Trails-website/site/` now matches `Mind-Trails-website-2026-11-09.zip` exactly; `source/` updated to match
+- Three graphics sections (not-find, something, evolution) show the graphic at all widths; the below-900px text layouts were removed; on mobile a tap opens a full-size `<dialog>` viewer
+- Google Tag Manager `GTM-PDHN79DT` added in `source/src/layouts/Base.astro` and in the static `presentation/index.html`
+- Vendor archives omit `source/public/img` and `source/public/presentation`; keep the repo copies, and mirror any `site/presentation` change into `source/public/presentation`
+- Contact form unchanged (same Lambda endpoint, hCaptcha site key, field names)
+- Open: the GTM container is empty (no tags), and there is no cookie banner; agree on consent before a GA4 tag is published
+- The GTM snippet (`async gtm.js` + `gtag('js', new Date())`) is Google's current install snippet; the older `gtm.start` form is not needed
+- Open: the "Who runs your event" section (`#daniel`, `.wrap.split.narrow`) is hidden at all widths by `.narrow{display:none !important}` in `index.astro`; this predates this update and is live that way; owner to decide whether it should show
+
 ### 2026-10-11 — New Astro site replaces WordPress export
 - Moved the WordPress export (`content/`, `custom.css`) to `Archive/`
 - New site lives in `Mind-Trails-website/` (`source/` = Astro project, `site/` = built output, deployed)
